@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改密码</title>
+    <link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/static/favicon.ico}"/>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/moban5146/assets/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/moban5146/assets/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/moban5146/assets/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/moban5146/assets/images/favicons/site.webmanifest">
+    <meta name="description" content="Pylon Loan HTML Template">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/swiper.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/animate.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/pylon-icons.css">
+    <link rel="stylesheet" href="moban5146/assets/css/odometer.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.pips.css">
+
+    <link rel="stylesheet" type="text/css" href="css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hyzx.css"/>
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="/moban5146/assets/css/main.css">
+</head>
+<body>
+<div class="preloader">
+    <img class="preloader__image" src="/moban5146/assets/images/loader.png" alt="">
+</div><!-- /.preloader -->
+<div class="page-wrapper">
+    <header class="main-header">
+        <div class="topbar">
+            <div class="container">
+                <div class="topbar__left">
+                    <div class="topbar__social">
+                        <a href="#" class="fab fa-facebook-square"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-pinterest-p"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                    </div><!-- /.topbar__social -->
+                    <a href="#">产品中心</a>
+                    <a href="#">普惠金融</a>
+                    <a href="#">申请贷款</a>
+                </div><!-- /.topbar__left -->
+                <div class="topbar__right">
+                    <a href="#"><i class="pylon-icon-email1"></i>needhelp@company.com</a>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret" th:text="${session.users}"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+                            <li><a href="/lma?loaDown=personal.html" style="margin-left: 10px; color: black;">个人中心</a></li>
+                            <li><a href="#" style="margin-left: 10px; color: black;">消息</a></li>
+                            <hr>
+                            <li><a href="signOut" style="margin-left: 10px; color: black;">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.topbar__right -->
+            </div><!-- /.container -->
+        </div><!-- /.topbar -->
+        <div th:replace="mytemp :: mainmenu"></div>
+        <!-- /.main-menu -->
+    </header><!-- /.main-header -->
+
+
+    <div class="stricky-header stricked-menu main-menu">
+        <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+    </div><!-- /.stricky-header -->
+
+    <div id="hy_con">
+        <div th:replace="mytemp :: leftmenu"></div>
+        <div id="con_rh">
+<!--            <p><img src="imgs/img_2.png"/></p>-->
+            <div class="con_rh_con">
+                <p class="rh_title">修改密码</p>
+                <form method="post" id="pswForm">
+                    <div class="form-group">
+                        <label for="psw1" class=" col-sm-5">当前密码:</label>
+                        <input id="hidPsw" type="hidden" th:value="${editPsw}">
+                        <div class="col-sm-3">
+                            <input type="password" class="form-control" id="psw1" name="comEmail" placeholder="请输入原密码"
+                                   required="">
+                            <span id="psw1_help" style="color: red;" class="glyphicon form-control-feedback"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="psw2" class="control-label col-sm-5">新密码:</label>
+                        <div class="col-sm-3 has-feedback" >
+                            <input type="password" class="form-control" id="psw2" name="comEmail" placeholder="请输入新密码"
+                                   required="">
+                            <span id="psw2-help" style="color: red;" class="glyphicon form-control-feedback"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="psw3" class="control-label col-sm-5">确认密码:</label>
+                        <div class="col-sm-3 has-feedback">
+                            <input type="password" class="form-control" id="psw3" name="comEmail" placeholder="请输入再次确认密码"
+                                   required="">
+                            <span id="psw3-help" style="color: red;" class="glyphicon form-control-feedback"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-4">
+                            <button type="submit" id="psw" class="btn btn-primary" onclick="send()">提&emsp;&emsp;交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+<!--            <p><img src="imgs/img_3.png"/></p>-->
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <div class="foot_con">
+            公司版权所有<br/>
+            Copyright 2012 All rights reserved<br/>
+            冀ICP备1234567890号
+        </div>
+    </div>
+</div>
+
+<!-- /.search-popup -->
+<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+<div th:replace="mytemp :: myfooter"></div>
+<script src="/js/jquery.easing.min.js"></script>
+
+<script>
+$(function (){
+    $("#psw").click(function (){
+        var hidPsw = $("#hidPsw").val();
+        var psw1 = $("#psw1").val();
+        var psw2 = $("#psw2").val();
+        var psw3 = $("#psw3").val();
+        // alert(hidPsw+psw1+psw2+psw3);
+        if (!(hidPsw === psw1)){
+            $("#psw1_help").html("原密码输入错误");
+            return false;
+        }else {
+            $("#psw1_help").html("");
+            if (!(psw2 === psw3)){
+                $("#psw3-help").html("两次密码输入不一致");
+                return false;
+            }else {
+                $("#psw3-help").html("");
+                if (psw1 === psw2){
+                    $("#psw2-help").html("原密码与新密码相同");
+                    return false;
+                }else {
+                    $("#psw2-help").html("");
+                    $.ajax({
+                        type: "post",
+                        url: "lma/editPsw",
+                        data: {psw:psw2},
+                        dataType: "json",
+                        success: function (){
+                            window.location.href = "signOut";
+                        }
+                    });
+                }
+            }
+
+        }
+    });
+
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/backend_puhui-master(初始化代码).iml" filepath="$PROJECT_DIR$/.idea/backend_puhui-master(初始化代码).iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend_puhui-master/qst.iml" filepath="$PROJECT_DIR$/backend_puhui-master/qst.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend_puhui-master/qst-admin/qst-admin.iml" filepath="$PROJECT_DIR$/backend_puhui-master/qst-admin/qst-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend_puhui-master/qst-common/qst-common.iml" filepath="$PROJECT_DIR$/backend_puhui-master/qst-common/qst-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend_puhui-master/qst-framework/qst-framework.iml" filepath="$PROJECT_DIR$/backend_puhui-master/qst-framework/qst-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend_puhui-master/qst-generator/qst-generator.iml" filepath="$PROJECT_DIR$/backend_puhui-master/qst-generator/qst-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend_puhui-master/qst-quartz/qst-quartz.iml" filepath="$PROJECT_DIR$/backend_puhui-master/qst-quartz/qst-quartz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backend_puhui-master/qst-system/qst-system.iml" filepath="$PROJECT_DIR$/backend_puhui-master/qst-system/qst-system.iml" />
+    </modules>
+  </component>
+</project>

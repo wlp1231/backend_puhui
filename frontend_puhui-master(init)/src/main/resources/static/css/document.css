@@ -1,0 +1,111 @@
+/*进度条start*/
+
+.order_status {
+    height: 175px;
+    text-align: center;
+    margin: 0 auto;
+    width: 60%;
+}
+
+.order_status .s-step {
+    float: left;
+    width: 170px;
+    height: 60px;
+    position: relative;
+}
+
+.order_status .s-step:nth-child(6n) {
+    width: 0px;
+}
+
+.order_status .s-step.active {
+    float: left;
+    width: 170px;
+    height: 60px;
+    position: relative;
+}
+
+.order_status .s-step>b>b.active {
+    background-color: #337ab7
+}
+
+.order_status .s-step>b {
+    display: block;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 32px;
+    position: absolute;
+    margin-left: -16px;
+    top: -20px;
+    z-index: 87
+}
+
+.order_status .s-step>b>b {
+    display: block;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    border-radius: 26px;
+    background: #ccc;
+    margin-top: 3px;
+    margin-left: 3px;
+    z-index: 88
+}
+
+.order_status .s-step>p {
+    width: 161px;
+    border: 1px dashed #ddd;
+    top: -5px;
+    position: absolute;
+    z-index: 86
+}
+
+.order_status .s-step>p.active {
+    width: 161px;
+    border: 1px dashed #337ab7;
+    top: -5px;
+    position: absolute;
+    z-index: 86
+}
+
+.order_status .s-step em {
+    display: block;
+    padding-top: 20px;
+    font-style: normal;
+    text-align: center;
+    color: #b7b7b7;
+    font-size: 12px;
+    margin-left: -65px;
+    width: 130px
+}
+
+.order_status .s-step>div {
+    display: block;
+    width: 80px;
+    height: 32px;
+    line-height: 32px;
+    position: absolute;
+    margin-left: -40px;
+    top: -55px;
+    z-index: 87;
+    text-align: center;
+    font-size: 12px;
+    color: #c9c4c4
+}
+
+.order_status .s-step>div.active {
+    display: block;
+    width: 80px;
+    height: 32px;
+    line-height: 32px;
+    position: absolute;
+    margin-left: -40px;
+    top: -55px;
+    z-index: 87;
+    text-align: center;
+    font-size: 12px;
+    color: #337ab7
+}
+
+/*步骤条end*/

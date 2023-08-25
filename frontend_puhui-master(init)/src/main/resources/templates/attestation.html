@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:c="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>实名认证</title>
+    <link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/static/favicon.ico}"/>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/moban5146/assets/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/moban5146/assets/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/moban5146/assets/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/moban5146/assets/images/favicons/site.webmanifest">
+    <meta name="description" content="Pylon Loan HTML Template">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="/moban5146/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/moban5146/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/moban5146/assets/css/swiper.min.css">
+    <link rel="stylesheet" href="/moban5146/assets/css/animate.min.css">
+    <link rel="stylesheet" href="/moban5146/assets/css/pylon-icons.css">
+    <link rel="stylesheet" href="/moban5146/assets/css/odometer.min.css">
+    <link rel="stylesheet" href="/moban5146/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="/moban5146/assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/moban5146/assets/css/nouislider.min.css">
+    <link rel="stylesheet" href="/moban5146/assets/css/nouislider.pips.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/hyzx.css"/>
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="/moban5146/assets/css/main.css">
+
+</head>
+<body>
+<div class="preloader">
+    <img class="preloader__image" src="/moban5146/assets/images/loader.png" alt="">
+</div><!-- /.preloader -->
+<div class="page-wrapper">
+    <header class="main-header">
+        <div class="topbar">
+            <div class="container">
+                <div class="topbar__left">
+                    <div class="topbar__social">
+                        <a href="#" class="fab fa-facebook-square"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-pinterest-p"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                    </div><!-- /.topbar__social -->
+                    <a href="#">产品中心</a>
+                    <a href="#">普惠金融</a>
+                    <a href="#">申请贷款</a>
+                </div><!-- /.topbar__left -->
+                <div class="topbar__right">
+                    <a href="#"><i class="pylon-icon-email1"></i>needhelp@company.com</a>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret" th:text="${session.users}"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+                            <li><a href="/lma?loaDown=personal.html" style="margin-left: 10px; color: black;">个人中心</a></li>
+                            <li><a href="#" style="margin-left: 10px; color: black;">消息</a></li>
+                            <hr>
+                            <li><a href="signOut" style="margin-left: 10px; color: black;">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.topbar__right -->
+            </div><!-- /.container -->
+        </div><!-- /.topbar -->
+        <div th:replace="mytemp :: mainmenu"></div>
+        <!-- /.main-menu -->
+    </header><!-- /.main-header -->
+
+
+    <div class="stricky-header stricked-menu main-menu">
+        <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+    </div><!-- /.stricky-header -->
+
+    <div id="hy_con">
+        <div id="con_lf">
+            <div th:replace="mytemp :: regleftmenu"></div>
+        </div>
+        <div id="con_rh">
+            <!--            <p><img src="imgs/img_2.png"/></p>-->
+            <div class="con_rh_con" style="overflow: auto; height: 350px">
+                <p class="rh_title">实名认证</p>
+                <form id="attFrom" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">营业执照</label>
+                        <div class="controls">
+                            <!--                            multiple-->
+                            <input id="choose-file" type="file" name="fileImg" maxlength="2"
+                                   style="position: absolute; opacity: 0; width: 70px;height: 70px; z-index: 200;"
+                                   accept="image/gif,image/jpeg,image/x-png,image/png"/>
+                            <img th:src="@{/imgs/img.png}" style="width: 50px;z-index: 100;">
+                            <div class="file-list" style="width: 70%; margin: 20px auto;">
+
+                            </div>
+                            <!-- 模态框（Modal），点击图片放大 -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <img id="imgSrc" src="" alt="" style="width: 100%;"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 cdontrol-label" for="attRequest">营业执照有效期</label>
+                        <input type="date" class="col-sm-3" id="attRequest" name="cLicTime" placeholder="请输入营业执照到期时间">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 cdontrol-label" for="optionsRadios0">企业类型</label>
+                        <label class="checkbox-inline col-md-2">
+                            <input type="radio" name="cType" id="optionsRadios0"
+                                   value="0" checked>个人独资
+                        </label>
+                        <label class="checkbox-inline col-md-2">
+                            <input type="radio" name="cType" id="optionsRadios1"
+                                   value="1">合伙企业
+                        </label>
+                        <label class="checkbox-inline col-md-2">
+                            <input type="radio" name="cType" id="optionsRadios2"
+                                   value="2">有限责任公司
+                        </label>
+                        <label class="checkbox-inline col-md-2">
+                            <input type="radio" name="cType" id="optionsRadios3"
+                                   value="3">股份有限公司
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="attRequest2">法人姓名</label>
+                        <input type="text" class="col-sm-3" id="attRequest2" name="cLegalName" placeholder="请输入法人姓名" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="attRequest3">法人证件号</label>
+                        <input type="text" class="col-sm-3" id="attRequest3" name="cLegalId" placeholder="请输入法人证件号" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="attRequest4">证件有效期限</label>
+                        <input type="date" id="attRequest4" class="col-md-3" name="cLegalTime" placeholder="请输入证件到期时间" required>
+
+                    </div>
+<!--                    <div class="form-group">-->
+<!--                        <label class="col-sm-2 right" for="prov">企业地址</label>-->
+<!--                        &lt;!&ndash;省份选择&ndash;&gt;-->
+<!--                        <select id="prov" class="col-md-3" name="cPro" required>-->
+<!--                            <option value="">=请选择省份=</option>-->
+<!--                        </select>-->
+<!--                        &lt;!&ndash;城市选择&ndash;&gt;-->
+<!--                        <select id="city" class="col-md-3" name="cCity" onclick="queryCity()" required>-->
+<!--                            <option value="">=请选择城市=</option>-->
+<!--                        </select>-->
+
+<!--                        &lt;!&ndash;县区选择&ndash;&gt;-->
+<!--                        <select id="country" class="col-md-3" onclick="queryArea()">-->
+<!--                            <option value="">=请选择县区=</option>-->
+<!--                        </select>-->
+
+<!--                    </div>-->
+
+                    <div class="form-group" id="distpicker">
+                        <label class="col-sm-2 right" for="prov">企业地址</label>
+                        <!--省份选择-->
+                        <select  id="province" class="col-md-3"  name="cPro" required></select>
+                        <!--城市选择-->
+                        <select id="city" class="col-md-3" name="cCity" required>
+                            <option value="">=请选择城市=</option>
+                        </select>
+
+                        <!--县区选择-->
+                        <select id="district" class="col-md-3">
+                            <option value="">=请选择县区=</option>
+                        </select>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="attRequest5">详细地址</label>
+                        <input type="text" id="attRequest5" class="col-md-3" name="cAddress" placeholder="请输入企业详细地址" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="attRequest6">经营范围</label>
+                        <textarea rows="2" id="attRequest6" class="col-sm-3" name="cBusSco" required></textarea>
+                    </div>
+                    <br>
+                    <button id="attButton" type="button" class="btn btn-default btn-lg btn-block" style="background-color: #7abaff" onclick="attSubmit()">提交</button>
+                </form>
+            </div>
+            <!--            <p><img src="imgs/img_3.png"/></p>-->
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <div class="foot_con">
+            公司版权所有<br/>
+            Copyright 2012 All rights reserved<br/>
+            冀ICP备1234567890号
+        </div>
+    </div>
+</div>
+
+<!-- /.search-popup -->
+<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+<div th:replace="mytemp :: myfooter"></div>
+<script src="/js/jquery.easing.min.js"></script>
+<script src="/js/distpicker.data.js"></script>
+<script src="/js/distpicker.js"></script>
+
+<script>
+    function attSubmit(){
+        var aFrom = new FormData($("#attFrom")[0]);
+        aFrom.delete("file");
+        for (var i = 0; i < fileList.length; i++) {
+            aFrom.append("file", fileList[i]);
+        }
+        $.ajax({
+            type: "post",
+            url: "lma/att",
+            data: aFrom,
+            // 使用FormData对象作为ajax发送服务器的数据载体，需要设置以下两个参数
+            contentType: false,// 防止request请求位置文件头上下文对象，如果进行处理，则会丢失文件流对象
+            processData: false,// 防止request请求自动处理ForamData对象，如果进行处理，则会丢失文件流对象
+            dataType: "Json",
+            success: function (data){
+                if (data && data == true){
+                    alert("认证成功");
+                    axios.get("/lma/giveScore").then((data)=>{
+                        window.location.href="lma?loaDown=personal.html";
+                    }).catch((err)=>{
+                        console.log(err);
+                    })
+                }else {
+                    layer.alert("请上传营业执照");
+                }
+            },
+            error:function (){
+                layer.alert("提交失败");
+            }
+        });
+    }
+
+
+    /*
+    * 图片上传
+    * */
+    //选择文件按钮
+    $file = $("#choose-file");
+    //回显的列表
+    $list = $('.file-list');
+    //选择要上传的所有文件
+    fileList = [];
+    //当前选择上传的文件
+    var curFile;
+    // 选择按钮change事件，实例化fileReader,调它的readAsDataURL并把原生File对象传给它，监听它的onload事件，load完读取的结果就在它的result属性里了。它是一个base64格式的，可直接赋值给一个img的src
+    $file.on('change', function () {
+        //原生的文件对象(File对象数组)，相当于$file.get(0).files[0];
+        curFile = this.files;
+        //将curFile数组和FileList数组合并
+        fileList = fileList.concat(Array.from(curFile));
+        for (var i = 0, len = curFile.length; i < len; i++) {
+            reviewFile(curFile[i])
+        }
+
+    });
+
+    //回显图片
+    function reviewFile(file) {
+        //实例化fileReader,
+        var fd = new FileReader();
+        //获取当前选择文件的类型
+        var fileType = file.type;
+        //调它的readAsDataURL并把原生File对象传给它，
+        fd.readAsDataURL(file);//base64
+        //监听它的onload事件，load完读取的结果就在它的result属性里了
+
+        fd.onload = function () {
+            $list.append('<label class="file-item" style="margin: 20px auto;" ><img onclick="showImage(this)" src="' + this.result + '" alt="" style="width: 100px;height: 100px;"/><i class="file-del" style="position: relative;left:-15px;top: -35px;">&times;</i></label>')
+        }
+    }
+
+    //删除图片
+    $(".file-list").on('click', '.file-del', function () {
+        var $parent = $(this).parent();
+        var index = $parent.index(".file-item");
+        //删除选择的图片
+        fileList.splice(index, 1);
+        $parent.remove();
+    });
+
+    //点击图片显示放大图(使用bootstrap的模态框)
+    function showImage(e) {
+        $("#imgSrc").attr("src", e.src);
+        $('#myModal').modal('show');
+    }
+
+    // axios.get("/lma/getUserIdInfo").then((data)=>{
+    //     let info = data.data[0]
+    //     console.log(info)
+    //     $("#attRequest2").val(info.username);
+    //     $("#attRequest3").val(info.idcard);
+    //     let period = info.period;
+    //     // $("#attRequest4").val();
+    //     period = period.substr(0,4)+'/'+period.substr(4,2)+'/'+period.substr(6,2);
+    //     $("#attRequest4").val(period)
+    // }).catch((err)=>{
+    //
+    // })
+</script>
+
+<script>
+    Vue.createApp({
+        data(){
+            return{
+                face:"text-success",
+                bank:"text-success",
+                idcard:"text-success",
+                cert:"text-success"
+            }
+        }
+    }).mount("#authmenu")
+</script>
+
+<script>
+    $(function () {
+
+        'use strict';
+
+        var $distpicker = $('#distpicker');
+        // 设置默认显示的省市区
+        $distpicker.distpicker({
+            province: '北京市',
+            city: '北京市市辖区',
+            district: '东城区'
+        });
+        //重置功能
+        // $('#reset').click(function () {
+        //     $distpicker.distpicker('reset');
+        //     $("#showMsg").attr("value",'');//清空内容
+        // });
+        //获取选中值
+        // $('#getMsg').click(function () {
+        //     var province = $('#province option:selected').val();
+        //     var city = $('#city option:selected').val();
+        //     var district = $('#district option:selected').val();
+        //     var message = province + city + district;
+        //     $("#showMsg").attr("value",message);//填充内容
+        // });
+
+    });
+
+</script>
+</body>
+</html>

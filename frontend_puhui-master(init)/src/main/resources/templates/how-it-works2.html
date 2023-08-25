@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品中心</title>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="moban5146/assets/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="moban5146/assets/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="moban5146/assets/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="moban5146/assets/images/favicons/site.webmanifest">
+    <meta name="description" content="Pylon Loan HTML Template">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/swiper.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/animate.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/pylon-icons.css">
+    <link rel="stylesheet" href="moban5146/assets/css/odometer.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.pips.css">
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="moban5146/assets/css/main.css">
+    <link rel="stylesheet" href="bootstrap-3.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/carousel.css">
+<!--    客服样式-->
+    <link rel="stylesheet" href="css/rightChart.css">
+    <link rel="stylesheet" href="css/reset.css">
+</head>
+
+<body>
+<div class="preloader">
+    <img class="preloader__image" src="/moban5146/assets/images/loader.png" alt="">
+</div><!-- /.preloader -->
+<div class="page-wrapper">
+    <header class="main-header">
+        <div class="topbar">
+            <div class="container">
+                <div class="topbar__left">
+                    <a href="#">产品中心</a>
+                    <a href="#">普惠金融</a>
+
+                </div><!-- /.topbar__left -->
+                <div class="topbar__right">
+                    <a href="#"><i class="pylon-icon-email1"></i>needhelp@company.com</a>
+                    <div class="dropdown">
+                        <a class="pl-5 dropdown-toggle" type="button" id="dropdownMenuDivider"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span th:text="${session.users}"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+                            <li><a href="lma?loaDown=personal.html" style="margin-left: 10px; color: black;">个人中心</a></li>
+                            <li><a href="#" style="margin-left: 10px; color: black;">消息</a></li>
+                            <hr>
+                            <li><a href="signOut" style="margin-left: 10px; color: black;">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.topbar__right -->
+            </div><!-- /.container -->
+        </div><!-- /.topbar -->
+        <nav class="main-menu">
+            <div class="container">
+                <div class="logo-box">
+                    <a href="/index-2.html" aria-label="logo image"><img
+                            src="/moban5146/assets/images/logo-dark.png" width="300" alt=""></a>
+                    <span class="fa fa-bars mobile-nav__toggler"></span>
+                </div><!-- /.logo-box -->
+                <ul class="main-menu__list" id="app2">
+                    <li class="dropdown">
+                        <a href="/index-2.html">首页</a>
+                        <ul>
+                            <li>
+                                <a href="/index-2.html">企业贷款</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">个人贷款</a>
+                                <ul>
+                                    <li><a href="/index-2.html">信用贷</a></li>
+                                    <li><a href="/index-2.html">订单贷</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#">品牌合作</a>
+                        <ul>
+                            <li><a>买好车</a></li>
+                            <li><a>中国银行</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">产品中心</a>
+                        <ul>
+                            <li><a href="/lma?loaDown=how-it-works.html">普惠金融</a></li>
+                            <li><a>信用贷</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">快捷银行</a>
+                        <ul>
+                            <li><a href="credit-card">办卡</a></li>
+                            <li><a>转账</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">其它</a>
+                        <ul>
+                            <li><a href="/actlist">活动信息</a></li>
+                            <li><a href="/rate">利率计算</a></li>
+                            <li class="dropdown">
+                                <a href="#">宣传信息</a>
+                                <ul>
+                                    <li><a href="/news/?type=1">法律法规</a></li>
+                                    <li><a href="/news/?type=2">贷款知识</a></li>
+                                    <li><a href="/news/?type=3">公司新闻</a></li>
+                                    <li><a href="/news/?type=4">常见问题</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/company/showMessage">用户留言</a></li>
+                            <li v-if="isLogin" @click="vite()"><a>邀请分享</a></li>
+                        </ul>
+                    </li>
+                    <li class="search-btn search-toggler">
+                        <a href="#"><i class="pylon-icon-magnifying-glass"></i></a>
+                    </li>
+                </ul>
+                <!-- /.main-menu__list -->
+
+                <div class="main-header__info">
+                    <div class="main-header__info-phone">
+                        <i class="pylon-icon-tech-support"></i>
+                        <div class="main-header__info-phone-content">
+                            <span>联系电话</span>
+                            <h3><a href="tel:92-666-888-0000">92 666 888 0000</a></h3>
+                        </div><!-- /.main-header__info-phone-content -->
+                    </div><!-- /.main-header__info-phone -->
+                </div><!-- /.main-header__info -->
+            </div><!-- /.container -->
+        </nav>
+        <!-- /.main-menu -->
+    </header><!-- /.main-header -->
+
+    <div class="stricky-header stricked-menu main-menu">
+        <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+    </div><!-- /.stricky-header -->
+    <section style="margin: auto 0;">
+        <div class="carouse-button" >
+            <div style="margin: 0 auto; align-content: center">
+                <div class="carouse-title">普惠金融</div>
+                <div class="carouse-p">商家专属服务平台</div>
+                <div class="carouse-btn">
+                    <a id="loansBut" role="button">立即借款</a>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.page-header__bg -->
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators" style="color: black">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            </ol>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img src="/imgs/jxd_prodect_01.jpg" alt="..." style="width: 100%">
+                    <div class="carousel-caption" style="color: #0b0b0b">
+                        <h1>认证京东好店</h1>
+                        <h3>权益升级，利率低至8折</h3>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/imgs/jxd_prodect_02.png" style="width: 100%" alt="...">
+                    <div class="carousel-caption">
+                        <h3>...</h3>
+                        <p>...</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/imgs/jxd_prodect_03.jpg" style="width: 100%" alt="...">
+                    <div class="carousel-caption">
+                        <h3>...</h3>
+                        <p>...</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="/imgs/jxd_prodect_04.jpg" style="width: 100%" alt="...">
+                    <div class="carousel-caption">
+                        <h3>...</h3>
+                        <p>...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+
+    </section><!-- /.page-header -->
+
+    <section class="feature-three">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-three__box">
+                        <div class="feature-three__box-inner">
+                            <i class="pylon-icon-point-of-sale"></i>
+                            <h3><a href="#">企业主贷</a></h3>
+                            <p>面向中小微企业法人的信用融资服务</p>
+                            <p><br></p>
+                            <div style="display: inline-block;vertical-align: top; width: 40%;">
+                                <h4>30万</h4>
+                                <p>最高额度</p>
+                            </div>
+                            <div style="display: inline-block;vertical-align: top; width: 40%;">
+                                <h4>6个月</h4>
+                                <p>最长期限</p>
+                            </div>
+                        </div><!-- /.feature-three__box-inner -->
+                    </div><!-- /.feature-three__box -->
+                </div><!-- /.col-lg-3 col-md-6 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-three__box">
+                        <div class="feature-three__box-inner">
+                            <i class="pylon-icon-consumer-behavior"></i>
+                            <h3><a href="#">订单贷</a></h3>
+                            <p>资金快速回笼，加快销售周转，根据店铺在途订单提供融资额度</p>
+                            <div style="display: inline-block;vertical-align: top; width: 40%;">
+                                <h4>200万</h4>
+                                <p>最高额度</p>
+                            </div>
+                            <div style="display: inline-block;vertical-align: top; width: 40%;">
+                                <h4>12个月</h4>
+                                <p>最长期限</p>
+                            </div>
+
+
+                        </div><!-- /.feature-three__box-inner -->
+                    </div><!-- /.feature-three__box -->
+                </div><!-- /.col-lg-3 col-md-6 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-three__box">
+                        <div class="feature-three__box-inner">
+                            <i class="pylon-icon-assets"></i>
+                            <h3><a href="#">极速收</a></h3>
+                            <p>提前收回货款，根据订单自动放款，可随时开通关闭</p>
+                            <div style="display: inline-block;vertical-align: top; width: 40%;">
+                                <h4>200万</h4>
+                                <p>最高额度</p>
+                            </div>
+
+                        </div><!-- /.feature-three__box-inner -->
+                    </div><!-- /.feature-three__box -->
+                </div><!-- /.col-lg-3 col-md-6 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-three__box">
+                        <div class="feature-three__box-inner">
+                            <i class="pylon-icon-investment"></i>
+                            <h3><a href="#">极速结</a></h3>
+                            <p>提前收回结算款，买家确认收货后实时结算，自动放款，可随时开通关闭</p>
+                            <div style="display: inline-block;vertical-align: top; width: 40%;">
+                                <h4>1000万</h4>
+                                <p>最高额度</p>
+                            </div>
+                        </div><!-- /.feature-three__box-inner -->
+                    </div><!-- /.feature-three__box -->
+                </div><!-- /.col-lg-3 col-md-6 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.feature-three -->
+
+    <section class="video-two">
+        <div class="video-two__bg"
+             style="background-image: url(/moban5146/assets/images/backgrounds/video-bg-1-1.jpg);"></div>
+        <!-- /.video-two__bg -->
+        <div class="container">
+            <a role="button" class="view_more_video video-one__btn"><i
+                    class="fa fa-play"></i>
+            </a>
+            <h3>了解一下，什么是普惠金融</h3>
+        </div><!-- /.container -->
+        <div id="show-video">
+            <a class="video-close">
+			<span>
+				<svg t="1614676844098" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2082"
+                     width="30" height="30">
+					<path d="M591.506286 511.853714l417.133714-416.914285a54.601143 54.601143 0 0 0 0-76.8l-2.267429-2.267429a54.601143 54.601143 0 0 0-76.8 0L512.438857 433.481143 95.305143 15.798857a54.601143 54.601143 0 0 0-76.8 0L16.237714 18.066286a53.577143 53.577143 0 0 0 0 76.8l417.097143 416.987428L16.201143 929.097143a54.601143 54.601143 0 0 0 0 76.8l2.267428 2.267428a54.601143 54.601143 0 0 0 76.8 0l417.170286-417.060571 417.097143 417.097143a54.601143 54.601143 0 0 0 76.8 0l2.267429-2.267429a54.601143 54.601143 0 0 0 0-76.8z"
+                          p-id="2083" fill="#e6e6e6"></path>
+				</svg>
+			</span>
+            </a>
+            <video controls>
+                <!-- source 里面的src="这里填写需要展示的视频路径" -->
+                <source src="https://storage.360buyimg.com/pc-online/qj-portal/jxd.mp4">
+            </video>
+        </div>
+    </section><!-- /.video-two -->
+
+    <section class="how-works">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <img src="moban5146/assets/images/resources/how-works.jpg" class="how-works__image" alt="">
+                </div><!-- /.col-lg-5 -->
+                <div class="col-lg-7">
+                    <div class="how-works__content wow fadeInRight" data-wow-duration="1500ms">
+                        <div class="block-title text-left">
+                            <p>填写信息线下签约</p>
+                            <h2>线下签约</h2>
+                        </div><!-- /.block-title -->
+                        <p class="block-text">线下签约是和上上签公司联合打造的线下签发合同，可以做到高效、安全、有保障。</p>
+                        <!-- /.block-text -->
+                    </div><!-- /.how-works__content -->
+                </div><!-- /.col-lg-7 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.how-works -->
+
+
+    <section class="faq-one faq-one__faq-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="block-title text-left">
+                        <p>常见问题</p>
+                    </div><!-- /.block-title -->
+                    <ul id="accordion" class="mb-0 wow fadeInUp list-unstyled" data-wow-duration="1500ms">
+                        <li>
+                            <h2 class="para-title active">
+                                    <span class="collapsed" role="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <i class="far fa-plus"></i>
+                                        京小贷的开通条件是什么
+                                    </span>
+                            </h2>
+                            <div id="collapseTwo" class="collapse" role="button" aria-labelledby="collapseTwo" data-parent="#accordion">
+                                <p>在京东开放连续经营3个月以上，工商营业执照且注册时间满1年，法人年龄18-65周岁，无严重违规记录、信用记录良好并且已开通京东钱包“T+1结算”功能，京小贷页面开通并查看授信额度。</p>
+                            </div>
+                        </li>
+                        <li class="active">
+                            <h2 class="para-title">
+                                    <span class="collapsed" role="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        <i class="far fa-minus"></i>
+                                        订单贷和极速收有什么区别？
+                                    </span>
+                            </h2>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="collapseOne" data-parent="#accordion">
+                                <p>订单贷需要您手动进行申请提款，而极速收开通后不需自行提款， 系统会根据在途订单自动为您发放贷款；订单贷按日计息，而极速收按笔收费。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <h2 class="para-title">
+                                    <span class="collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" role="button" aria-controls="collapseThree">
+                                        <i class="far fa-plus"></i>
+                                        京小贷贷款后多久到账？
+                                    </span>
+                            </h2>
+                            <div id="collapseThree" class="collapse" aria-labelledby="collapseThree" data-parent="#accordion">
+                                <p>贷款申请成功后，正常情况下款项将即时到达商家的京东钱包账户，请及时刷新页面查款结果或登陆京东钱包账户查询余额。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <h2 class="para-title">
+                                    <span class="collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" role="button" aria-controls="collapseFour">
+                                        <i class="far fa-plus"></i>
+                                        贷款利率是否可以优惠？
+                                    </span>
+                            </h2>
+                            <div id="collapseFour" class="collapse" aria-labelledby="collapseFour" data-parent="#accordion">
+                                <p>您可以定期关注我们的官网或微信公众号，我们会组织多种优惠活 动，您可以前往活动领取利率折扣券等优惠。如果您是新客户，我们会将新手大礼包发放至您的账户中。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <h2 class="para-title">
+                                    <span class="collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" role="button" aria-controls="collapseFive">
+                                        <i class="far fa-plus"></i>
+                                        贷款额度如何提升？
+                                    </span>
+                            </h2>
+                            <div id="collapseFive" class="collapse" aria-labelledby="collapseFive" data-parent="#accordion">
+                                <p>我们会定期根据您的贷款使用情况和还款情况，对您的贷款额度进行提升，请您保持良好还款记录。同时，我们会在每年6.18及双11 期间，对您进行大促专项贷款额度提升，请您及时关注相关活动通知。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div><!-- /.col-lg-8 -->
+                <div class="col-lg-4">
+                    <div class="faq-one__box">
+                        <img src="moban5146/assets/images/resources/faq-box-1-1.png" class="img-fluid" alt="">
+                        <div class="main-header__info">
+                            <div class="main-header__info-phone">
+                                <i class="pylon-icon-tech-support"></i>
+                                <div class="main-header__info-phone-content">
+                                    <span>服务大厅</span>
+                                    <h3><a href="tel:92-666-888-0000">92 666 888 0000</a></h3>
+                                </div><!-- /.main-header__info-phone-content -->
+                            </div><!-- /.main-header__info-phone -->
+                        </div><!-- /.main-header__info -->
+                    </div><!-- /.faq-one__box -->
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.faq-one -->
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget footer-widget__about">
+                        <a href="/index-2.html">
+                            <img src="moban5146/assets/images/logo-light.png" width="155" alt="">
+                        </a>
+                        <p>融资性担保系统</p>
+                        <p>金融中介平台系统</p>
+                        <p>银行委贷系统</p>
+                        <div class="footer-widget__about-phone">
+                            <i class="pylon-icon-tech-support"></i>
+                            <div class="footer-widget__about-phone-content">
+                                <span>咨询热线</span>
+                                <h3><a href="tel:92-666-888-0000">92 666 888 0000</a></h3>
+                            </div><!-- /.footer-widget__about-phone-content -->
+                        </div><!-- /.footer-widget__about-phone -->
+                    </div><!-- /.footer-widget footer-widget__about -->
+                </div><!-- /.col-lg-3 -->
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-widget footer-widget__link">
+                        <h3 class="footer-widget__title">搜索</h3>
+                        <ul class="list-unstyled footer-widget__link-list">
+                            <li><a href="#">关于</a></li>
+                            <li><a href="#">系统产品</a></li>
+                            <li><a href="#">我们的服务</a></li>
+                            <li><a href="#">最新消息</a></li>
+                            <li><a href="#">客户评价</a></li>
+                            <li><a href="#">联系我们</a></li>
+                        </ul><!-- /.list-unstyled -->
+                    </div><!-- /.footer-widget -->
+                </div><!-- /.col-lg-2 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget footer-widget__post">
+                        <h3 class="footer-widget__title">最新消息</h3>
+                        <ul class="list-unstyled footer-widget__post-list">
+                            <li>
+                                <img src="moban5146/assets/images/resources/footer-post-1-1.png" alt="">
+                                <div class="footer-widget__post-list-content">
+                                    <span>2021年10月</span>
+                                    <h3><a href="news-details.html">人工智能客服随时为你服务</a></h3>
+                                </div><!-- /.footer-widget__post-content -->
+                            </li>
+                            <li>
+                                <img src="moban5146/assets/images/resources/footer-post-1-2.png" alt="">
+                                <div class="footer-widget__post-list-content">
+                                    <span>2021年10月</span>
+                                    <h3><a href="news-details.html">我们正在提供优质的服务</a></h3>
+                                </div><!-- /.footer-widget__post-content -->
+                            </li>
+                        </ul><!-- /.list-unstyled -->
+                    </div><!-- /.footer-widget -->
+                </div><!-- /.col-lg-3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-widget footer-widget__contact">
+                        <h3>联系我们</h3>
+                        <ul class="list-unstyled footer-widget__contact-list">
+                            <li>
+                                <a href="#"><i class="pylon-icon-email1"></i>puhui_finance@163.com</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="pylon-icon-clock2"></i>工作日 早上8:00 - 下午6:00</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="pylon-icon-pin1"></i>天津市西青区TBD云集中心4号楼C座307室</a>
+                            </li>
+                        </ul>
+                    </div><!-- /.footer-widget footer-widget__contact -->
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </footer><!-- /.site-footer -->
+    <div class="bottom-footer">
+        <div class="container">
+            <p>Pocket &copy; 2021 All Rights Reserved 模拟商业银行普惠金融版权所有</p>
+            <div class="bottom-footer__social">
+                <a href="#" class="fab fa-facebook-square"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-pinterest-p"></a>
+                <a href="#" class="fab fa-instagram"></a>
+            </div><!-- /.bottom-footer__social -->
+        </div><!-- /.container -->
+    </div><!-- /.bottom-footer -->
+
+</div><!-- /.page-wrapper -->
+
+
+<div class="mobile-nav__wrapper">
+    <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+    <!-- /.mobile-nav__overlay -->
+    <div class="mobile-nav__content">
+        <span class="mobile-nav__close mobile-nav__toggler"><i class="far fa-times"></i></span>
+
+        <div class="logo-box">
+            <a href="/index-2.html" aria-label="logo image"><img src="moban5146/assets/images/logo-light.png" width="155"
+                                                              alt=""/></a>
+        </div>
+        <!-- /.logo-box -->
+        <div class="mobile-nav__container"></div>
+        <!-- /.mobile-nav__container -->
+
+        <ul class="mobile-nav__contact list-unstyled">
+            <li>
+                <i class="pylon-icon-email1"></i>
+                <a href="mailto:needhelp@azino.com">puhui_finance@163.com</a>
+            </li>
+            <li>
+                <i class="pylon-icon-telephone"></i>
+                <a href="tel:666-888-0000">666 888 0000</a>
+            </li>
+        </ul><!-- /.mobile-nav__contact -->
+        <div class="mobile-nav__top">
+            <div class="mobile-nav__language">
+                <img src="moban5146/assets/images/resources/flag-1-1.jpg" alt="">
+                <label class="sr-only" for="language-select">select language</label><!-- /#language-select.sr-only -->
+                <select class="selectpicker" id="language-select">
+                    <option value="english">English</option>
+                    <option value="arabic">Arabic</option>
+                </select>
+            </div><!-- /.mobile-nav__language -->
+            <div class="mobile-nav__social">
+                <a href="#" aria-label="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="facebook"><i class="fab fa-facebook-square"></i></a>
+                <a href="#" aria-label="pinterest"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#" aria-label="instagram"><i class="fab fa-instagram"></i></a>
+            </div><!-- /.mobile-nav__social -->
+        </div><!-- /.mobile-nav__top -->
+
+
+    </div>
+    <!-- /.mobile-nav__content -->
+</div>
+<!-- /.mobile-nav__wrapper -->
+
+<div class="search-popup">
+    <div class="search-popup__overlay search-toggler"></div>
+    <!-- /.search-popup__overlay -->
+    <div class="search-popup__content">
+        <form action="#">
+            <label for="search" class="sr-only">搜索</label><!-- /.sr-only -->
+            <input type="text" id="search" placeholder="请输入..."/>
+            <button type="submit" aria-label="search submit" class="thm-btn">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+    <!-- /.search-popup__content -->
+</div>
+<!-- /.search-popup -->
+
+<!--右侧-->
+<div class="cndns-right">
+<!--    <div class="cndns-right-meau meau-sev">-->
+<!--        <a id="triggerBtn" href="javascript:" class="cndns-right-btn">-->
+<!--            <span><img src="imgs/kefu.png" style="width: 32px"></span>-->
+<!--            <p>-->
+<!--                在线<br/>-->
+<!--                客服-->
+<!--            </p>-->
+<!--        </a>-->
+<!--        <div class="cndns-right-box">-->
+<!--            <div class="box-border">-->
+<!--                <div class="sev-t">-->
+<!--                    <i>在线客服服务时间：9:00-24:00</i>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="cndns-right-meau meau-code">
+        <a href="http://sighttp.qq.com/authd?IDKEY=062d72bc01493d9166319c645c14626c75cad3898022c8c6" class="cndns-right-btn" target="_blank">
+            <span class="demo-icon"><img src="imgs/qq.png" style="width: 45px"></span>
+            <p>
+                QQ<br/>
+                咨询
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border">
+                <div class="sev-t">
+                    <i>嗨，我来帮您</i>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
+    <div class="cndns-right-meau meau-code">
+        <a href="javascript:" class="cndns-right-btn">
+            <span class="demo-icon"><img src="imgs/wx_logo.png"></span>
+            <p>
+                关注<br/>
+                微信
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border">
+                <div class="sev-t">
+                    <img src="imgs/weixin.jpg" style="width: 100px"/>
+                    <i>关注官方微信</i>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
+    <div class="cndns-right-meau meau-contact">
+        <a href="javascript:" class="cndns-right-btn">
+            <span><img src="imgs/dianhua.png" style="width: 32px"></span>
+            <p>
+                客服<br/>
+                热线
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border" style="height: 100px;">
+                <div class="sev-t">
+                    <p>400-920-9999<br/><i>7*24小时客服服务热线</i></p>
+                    <div class="clear"></div>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 模态框 -->
+<div id="myModal" class="modal" style="z-index: 999999999999999;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <p>普惠金融客服-小金 <small th:text="${ #dates.format(new java.util.Date().getTime(), 'yyyy:MM:dd')}"></small></p>
+            <span id="closeBtn" class="close">×</span>
+        </div>
+        <!--<div class="modal-body">
+            <iframe>
+
+            </iframe>
+        </div>
+        <div class="modal-footer">
+            <input type="text" placeholder="请输入信息">
+            <input type="button" value="发送">
+        </div>-->
+        <!--mini聊天窗口开始-->
+        <div class="modal-body" >
+
+            <div class="heading" draggable="true">
+                <small class="chat-date pull-right">
+                </small>
+                <!--                <label class="col-sm-5">房间名</label>-->
+                <input id="input_roomName" th:value="1099" type="hidden" class="col-sm-3" style="color: #0f0f0f">
+                <!--                <label class=" col-sm-5">用户名</label>-->
+                <input id="username" type="hidden" class="col-sm-3" style="color: #0f0f0f" th:value="${session.users}">
+                <input type="hidden" value="进入聊天室" onclick="initWebSocket()"/>
+                <!--                <input type="button" value="退出聊天室" onclick="closeWs()" /><br>-->
+            </div>
+
+            <div class="content" style="height: 300px;">
+                <div class="left">
+                    <div class="msg_board author-name" style=" overflow:auto; height:300px;">
+                        <p>小金：这里是客服小金，很高兴为您服务<small
+                                th:text="${ #dates.format(new java.util.Date().getTime(), 'HH:mm:ss')}"></small></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-chat">
+                <div class="input-group">
+                    <textarea id="input_msg" name="input_msg" class="form-control"></textarea>
+                    <span class="input-group-btn">
+                        <span class="emotion glyphicon glyphicon-plus" style="font-size: 20px" title="表情包(caps lock)">表情</span>
+                        <button id="sendMessage" class="btn btn-primary" type="button" onclick="send_msg()">发送</button>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+<script src="moban5146/assets/js/jquery-3.5.1.min.js"></script>
+<script src="moban5146/assets/js/bootstrap.bundle.min.js"></script>
+<script src="moban5146/assets/js/swiper.min.js"></script>
+<script src="moban5146/assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="moban5146/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="moban5146/assets/js/jquery.validate.min.js"></script>
+<script src="moban5146/assets/js/bootstrap-select.min.js"></script>
+<script src="moban5146/assets/js/wow.js"></script>
+<script src="moban5146/assets/js/odometer.min.js"></script>
+<script src="moban5146/assets/js/jquery.appear.min.js"></script>
+<script src="moban5146/assets/js/wNumb.min.js"></script>
+<script src="moban5146/assets/js/nouislider.min.js"></script>
+<script src="/vue/vue.global.js"></script>
+
+<!--表情包-->
+<script type="text/javascript" src="js/jquery.qqFace.js"></script>
+<script src="js/jquery-migrate.js"></script>
+<!--客服-->
+<script src="js/rightChart.js"></script>
+
+<!-- template js -->
+<script src="moban5146/assets/js/theme.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $(".view_more_video").click(function() {
+            $("#show-video").show();
+        });
+        $(".video-close").click(function() {
+            $("#show-video").hide();
+        });
+
+
+    });
+
+    $("#loansBut").click(function (){
+        $.ajax({
+            type:"get",
+            url: "lma/queryAtt",
+            dataType: "json",
+            success: function (data){
+                if (data){
+                    alert("请先进行实名认证");
+                    window.location.href="lma?loaDown=personal.html";
+                }else {
+                    window.location.href="faq.html";
+                }
+            }
+        });
+    });
+
+    Vue.createApp({
+        data(){
+            return {
+                isLogin: false,
+                comId:""
+            }
+        },
+        mounted(){
+            let that = this;
+            axios.get('/company/isLogin')
+                .then((data)=>{
+                    that.comId = data.data;
+                    if(that.comId){
+                        that.isLogin = true;
+                    }else{
+                        that.isLogin = false;
+                    }
+                }).catch((err)=>{
+                console.log(err);
+            })
+        },
+        methods:{
+            vite(){
+                let vitelink = "http://localhost:9090/company/vite/?comId="+this.comId;
+                navigator.clipboard.writeText(vitelink);
+                alert("链接已复制到剪贴板！")
+            }
+        }
+    }).mount("#app2");
+</script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,487 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div th:replace="mytemp :: myhead"></div>
+
+</head>
+
+<body>
+<div class="preloader">
+    <img class="preloader__image" src="/moban5146/assets/images/loader.png" alt="">
+</div><!-- /.preloader -->
+<div class="page-wrapper">
+    <div th:replace="mytemp :: myheader"></div>
+
+    <div class="stricky-header stricked-menu main-menu">
+        <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+    </div><!-- /.stricky-header -->
+
+
+    <div class="container" id="app">
+        <div class="h1 text-center mt-5 mb-5">利率计算器</div>
+        <div class="row">
+            <div class="col">
+                <div class="mb-3 row">
+                    <label for="inputLoanTitle" class="col-sm-3 col-form-label">贷款金额</label>
+                    <div class="col-sm-9 d-flex">
+                        <input type="text" class="form-control" id="inputLoanTitle" v-model="inputTotalLoan"><label
+                            class="col-form-label">&nbsp;&nbsp;元</label>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="inputDeadline" class="col-sm-3 col-form-label">贷款期限</label>
+                    <div class="col-sm-9 d-flex">
+                        <input type="text" class="form-control" id="inputDeadline" v-model="inputDeadLine"><label
+                            class="col-form-label">&nbsp;&nbsp;月</label>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="inputMonthly" class="col-sm-3 col-form-label">月息</label>
+                    <div class="col-sm-9 d-flex">
+                        <input type="text" class="form-control" id="inputMonthly" v-model="inputMonthly"><label
+                            class="col-form-label">&nbsp;&nbsp;分</label>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="inputMode" class="col-sm-3 col-form-label">还款方式</label>
+                    <div class="col-sm-9">
+                        <select class="form-select" aria-label="Default select example" id="inputMode" v-model="inputMode">
+                            <option v-for="item in inputModes" :value="item.key">{{ item.value }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <input @click="computeLoan" type="button" class="btn btn-success me-3" value="计算">
+                    <input type="button" class="ml-2 btn btn-danger" value="重置" onclick="location.reload()">
+                </div>
+
+            </div>
+            <div class="col">
+                <div class="mb-3 row">
+                    <label for="showLoanTitle" class="col-sm-3 col-form-label">贷款总额</label>
+                    <div class="col-sm-9 d-flex">
+                        <input disabled type="number" :value="showTotalLoan" class="form-control" id="showLoanTitle"><label
+                            class="col-form-label">&nbsp;&nbsp;元</label>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showDeadLine" class="col-sm-3 col-form-label">贷款期限</label>
+                    <div class="col-sm-9 d-flex">
+                        <input disabled type="text" class="form-control" id="showDeadLine" :value="showDeadLine"><label
+                            class="col-form-label">&nbsp;&nbsp;元</label>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showMonthly" class="col-sm-3 col-form-label">月利率</label>
+                    <div class="col-sm-9 d-flex">
+                        <input disabled type="text" class="form-control" id="showMonthly" :value="showMonthly"><label
+                            class="col-form-label">&nbsp;&nbsp;%</label>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="showYearRate" class="col-sm-3 col-form-label">年利率</label>
+                    <div class="col-sm-9 d-flex">
+                        <input disabled type="text" class="form-control" id="showYearRate" :value="showYearRate"><label
+                            class="col-form-label">&nbsp;&nbsp;%</label>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">还款方式</label>
+                    <div class="col-sm-9 d-flex">
+                        <input disabled type="text" class="form-control" :value="showMode">
+                    </div>
+                </div>
+
+                <div class="mb-3 row" v-for="item in type">
+                    <label class="col-sm-3 col-form-label">{{ item.title }}</label>
+                    <div class="col-sm-9 d-flex">
+                        <input disabled type="text" class="form-control" :id="item.word" :value="item.value"><label
+                            class="col-form-label">&nbsp;&nbsp;{{ item.unit }}</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget footer-widget__about">
+                        <a href="/index-2.html">
+                            <img src="/moban5146/assets/images/logo-light.png" width="155" alt="">
+                        </a>
+                        <p>融资性担保系统</p>
+                        <p>金融中介平台系统</p>
+                        <p>银行委贷系统</p>
+                        <div class="footer-widget__about-phone">
+                            <i class="pylon-icon-tech-support"></i>
+                            <div class="footer-widget__about-phone-content">
+                                <span>咨询热线</span>
+                                <h3><a href="tel:92-666-888-0000">92 666 888 0000</a></h3>
+                            </div><!-- /.footer-widget__about-phone-content -->
+                        </div><!-- /.footer-widget__about-phone -->
+                    </div><!-- /.footer-widget footer-widget__about -->
+                </div><!-- /.col-lg-3 -->
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-widget footer-widget__link">
+                        <h3 class="footer-widget__title">搜索</h3>
+                        <ul class="list-unstyled footer-widget__link-list">
+                            <li><a href="#">关于</a></li>
+                            <li><a href="#">系统产品</a></li>
+                            <li><a href="#">我们的服务</a></li>
+                            <li><a href="#">最新消息</a></li>
+                            <li><a href="#">客户评价</a></li>
+                            <li><a href="#">联系我们</a></li>
+                        </ul><!-- /.list-unstyled -->
+                    </div><!-- /.footer-widget -->
+                </div><!-- /.col-lg-2 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget footer-widget__post">
+                        <h3 class="footer-widget__title">最新消息</h3>
+                        <ul class="list-unstyled footer-widget__post-list">
+                            <li>
+                                <img src="/moban5146/assets/images/resources/footer-post-1-1.png" alt="">
+                                <div class="footer-widget__post-list-content">
+                                    <span>2021年10月</span>
+                                    <h3><a href="news-details.html">人工智能客服随时为你服务</a></h3>
+                                </div><!-- /.footer-widget__post-content -->
+                            </li>
+                            <li>
+                                <img src="/moban5146/assets/images/resources/footer-post-1-2.png" alt="">
+                                <div class="footer-widget__post-list-content">
+                                    <span>2021年10月</span>
+                                    <h3><a href="news-details.html">我们正在提供优质的服务</a></h3>
+                                </div><!-- /.footer-widget__post-content -->
+                            </li>
+                        </ul><!-- /.list-unstyled -->
+                    </div><!-- /.footer-widget -->
+                </div><!-- /.col-lg-3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-widget footer-widget__contact">
+                        <h3>联系我们</h3>
+                        <ul class="list-unstyled footer-widget__contact-list">
+                            <li>
+                                <a href="#"><i class="pylon-icon-email1"></i>needhelp@joker.com</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="pylon-icon-clock2"></i>工作日 早上8:00 - 下午6:00</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="pylon-icon-pin1"></i>天津市西青区TBD云集中心4号楼C座307室</a>
+                            </li>
+                        </ul>
+                    </div><!-- /.footer-widget footer-widget__contact -->
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </footer><!-- /.site-footer -->
+    <div class="bottom-footer">
+        <div class="container">
+            <p>Pocket &copy; 2021 All Rights Reserved Joker小组版权所有</p>
+            <div class="bottom-footer__social">
+                <a href="#" class="fab fa-facebook-square"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-pinterest-p"></a>
+                <a href="#" class="fab fa-instagram"></a>
+            </div><!-- /.bottom-footer__social -->
+        </div><!-- /.container -->
+    </div><!-- /.bottom-footer -->
+
+</div><!-- /.page-wrapper -->
+
+
+<div class="mobile-nav__wrapper">
+    <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+    <!-- /.mobile-nav__overlay -->
+    <div class="mobile-nav__content">
+        <span class="mobile-nav__close mobile-nav__toggler"><i class="far fa-times"></i></span>
+
+        <div class="logo-box">
+            <a href="/index-2.html" aria-label="logo image"><img src="/moban5146/assets/images/logo-light.png" width="155"
+                                                              alt=""/></a>
+        </div>
+        <!-- /.logo-box -->
+        <div class="mobile-nav__container"></div>
+        <!-- /.mobile-nav__container -->
+
+        <ul class="mobile-nav__contact list-unstyled">
+            <li>
+                <i class="pylon-icon-email1"></i>
+                <a href="mailto:needhelp@azino.com">needhelp@joker.com</a>
+            </li>
+            <li>
+                <i class="pylon-icon-telephone"></i>
+                <a href="tel:666-888-0000">666 888 0000</a>
+            </li>
+        </ul><!-- /.mobile-nav__contact -->
+        <div class="mobile-nav__top">
+            <div class="mobile-nav__language">
+                <img src="/moban5146/assets/images/resources/flag-1-1.jpg" alt="">
+                <label class="sr-only" for="language-select">select language</label><!-- /#language-select.sr-only -->
+                <select class="selectpicker" id="language-select">
+                    <option value="english">English</option>
+                    <option value="arabic">Arabic</option>
+                </select>
+            </div><!-- /.mobile-nav__language -->
+            <div class="mobile-nav__social">
+                <a href="#" aria-label="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="facebook"><i class="fab fa-facebook-square"></i></a>
+                <a href="#" aria-label="pinterest"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#" aria-label="instagram"><i class="fab fa-instagram"></i></a>
+            </div><!-- /.mobile-nav__social -->
+        </div><!-- /.mobile-nav__top -->
+
+
+    </div>
+    <!-- /.mobile-nav__content -->
+</div>
+<!-- /.mobile-nav__wrapper -->
+
+<div class="search-popup">
+    <div class="search-popup__overlay search-toggler"></div>
+    <!-- /.search-popup__overlay -->
+    <div class="search-popup__content">
+        <form action="#">
+            <label for="search" class="sr-only">搜索</label><!-- /.sr-only -->
+            <input type="text" id="search" placeholder="请输入..."/>
+            <button type="submit" aria-label="search submit" class="thm-btn">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+    <!-- /.search-popup__content -->
+</div>
+<!-- /.search-popup -->
+<!--右侧-->
+<div class="cndns-right">
+<!--    <div class="cndns-right-meau meau-sev">-->
+<!--        <a id="triggerBtn" href="javascript:" class="cndns-right-btn">-->
+<!--            <span><img src="/imgs/kefu.png" style="width: 32px"></span>-->
+<!--            <p>-->
+<!--                在线<br/>-->
+<!--                客服-->
+<!--            </p>-->
+<!--        </a>-->
+<!--        <div class="cndns-right-box">-->
+<!--            <div class="box-border">-->
+<!--                <div class="sev-t">-->
+<!--                    <i>在线客服服务时间：9:00-24:00</i>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="cndns-right-meau meau-code">
+        <a href="http://sighttp.qq.com/authd?IDKEY=062d72bc01493d9166319c645c14626c75cad3898022c8c6" class="cndns-right-btn" target="_blank">
+            <span class="demo-icon"><img src="/imgs/qq.png" style="width: 45px"></span>
+            <p>
+                QQ<br/>
+                咨询
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border">
+                <div class="sev-t">
+                    <i>嗨，我来帮您</i>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
+    <div class="cndns-right-meau meau-code">
+        <a href="javascript:" class="cndns-right-btn">
+            <span class="demo-icon"><img src="/imgs/wx_logo.png"></span>
+            <p>
+                关注<br/>
+                微信
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border">
+                <div class="sev-t">
+                    <img src="/imgs/weixin.jpg" style="width: 100px"/>
+                    <i>关注官方微信</i>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
+    <div class="cndns-right-meau meau-contact">
+        <a href="javascript:" class="cndns-right-btn">
+            <span><img src="/imgs/dianhua.png" style="width: 32px"></span>
+            <p>
+                客服<br/>
+                热线
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border" style="height: 100px;">
+                <div class="sev-t">
+                    <p>400-920-9999<br/><i>7*24小时客服服务热线</i></p>
+                    <div class="clear"></div>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 模态框 -->
+<div id="myModal" class="modal" style="z-index: 999999999999999;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <p>普惠金融客服-小金 <small th:text="${ #dates.format(new java.util.Date().getTime(), 'yyyy:MM:dd')}"></small></p>
+            <span id="closeBtn" class="close">×</span>
+        </div>
+        <!--<div class="modal-body">
+            <iframe>
+
+            </iframe>
+        </div>
+        <div class="modal-footer">
+            <input type="text" placeholder="请输入信息">
+            <input type="button" value="发送">
+        </div>-->
+        <!--mini聊天窗口开始-->
+        <div class="modal-body" >
+
+            <div class="heading" draggable="true">
+                <small class="chat-date pull-right">
+                </small>
+                <!--                <label class="col-sm-5">房间名</label>-->
+                <input id="input_roomName" th:value="1099" type="hidden" class="col-sm-3" style="color: #0f0f0f">
+                <!--                <label class=" col-sm-5">用户名</label>-->
+                <input id="username" type="hidden" class="col-sm-3" style="color: #0f0f0f" th:value="${session.users}">
+                <input type="hidden" value="进入聊天室" onclick="initWebSocket()"/>
+                <!--                <input type="button" value="退出聊天室" onclick="closeWs()" /><br>-->
+            </div>
+
+            <div class="content" style="height: 300px;">
+                <div class="left">
+                    <div class="msg_board author-name" style=" overflow:auto; height:300px;">
+                        <p>小金：这里是客服小金，很高兴为您服务<small
+                                th:text="${ #dates.format(new java.util.Date().getTime(), 'HH:mm:ss')}"></small></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-chat">
+                <div class="input-group">
+                    <textarea id="input_msg" name="input_msg" class="form-control"></textarea>
+                    <span class="input-group-btn">
+                        <span class="emotion glyphicon glyphicon-plus" style="font-size: 20px" title="表情包(caps lock)">表情</span>
+                        <button id="sendMessage" class="btn btn-primary" type="button" onclick="send_msg()">发送</button>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+<div th:replace="mytemp :: myfooter"></div>
+
+<script>
+    $(function (){
+        $.ajax({
+            type: 'get',
+            url: 'me/megCount',
+            success: function (data){
+                $("#megText").html(data);
+            }
+        });
+    });
+
+    // $(".main-menu__list a").attr("href","#");
+</script>
+
+<script>
+
+    Vue.createApp({
+        data() {
+            return {
+                inputTotalLoan: 10000,
+                showTotalLoan: '',
+                inputDeadLine: 24,
+                showDeadLine: '',
+                inputMonthly: 2,
+                showMonthly: '',
+                showYearRate: '',
+                inputModes: [
+                    {key: 0, value: '按月付息，到期还本'},
+                    {key: 1, value: '一次偿还本金和利息'}
+                ],
+                inputMode: 0,
+                showMode: "",
+                type: "",
+                allInterest:'',
+                capitalInterest:'',
+                monthly: [
+                    {
+                        title: "每月利息",
+                        unit: "元",
+                        value:"",
+                        word: "monthlyInterest"
+                    },
+                    {
+                        title: "利息总额",
+                        unit: "元",
+                        word: ""
+                    },
+                    {
+                        title: "本息合计",
+                        unit: "元",
+                        word: ""
+                    }
+                ],
+                whole: [
+                    {
+                        title: "利息总额",
+                        unit: "元",
+                        value:"",
+                        word: ""
+                    },
+                    {
+                        title: "本息合计",
+                        unit: "元",
+                        value:"",
+                        word: ""
+                    }
+                ]
+            }
+        },
+        methods: {
+            computeLoan() {
+                this.showTotalLoan = this.inputTotalLoan;
+                this.showDeadLine = this.inputDeadLine;
+                this.showMonthly = this.inputMonthly;
+                this.showMode = this.inputModes[this.inputMode].value;
+                this.showYearRate = this.inputMonthly * 12;
+                if(this.inputMode == '0'){
+                    this.type = this.monthly;
+                    this.monthly[0].value=this.inputTotalLoan*this.inputMonthly/100
+                    this.monthly[1].value=this.inputTotalLoan*this.inputMonthly/100*this.inputDeadLine
+                    this.monthly[2].value=this.inputTotalLoan*this.inputMonthly/100*this.inputDeadLine+this.inputTotalLoan*1
+                }else if(this.inputMode == "1"){
+                    this.type = this.whole;
+                    this.whole[0].value=this.inputTotalLoan*this.inputMonthly/100*this.inputDeadLine
+                    this.whole[1].value=this.inputTotalLoan*this.inputMonthly/100*this.inputDeadLine+this.inputTotalLoan*1
+                }
+                console.log(this.type)
+            }
+        }
+    }).mount("#app")
+
+
+</script>
+</body>
+</html>

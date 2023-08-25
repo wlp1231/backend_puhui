@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="qst-quartz" />
+        <module name="qst-system" />
+        <module name="qst-framework" />
+        <module name="qst-common" />
+        <module name="qst-admin" />
+        <module name="qst-generator" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="qst" target="1.8" />
+      <module name="qst-admin" target="1.8" />
+      <module name="qst-common" target="1.8" />
+      <module name="qst-framework" target="1.8" />
+      <module name="qst-generator" target="1.8" />
+      <module name="qst-quartz" target="1.8" />
+      <module name="qst-system" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

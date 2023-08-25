@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>身份证提交</title>
+    <link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/static/favicon.ico}"/>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/moban5146/assets/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/moban5146/assets/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/moban5146/assets/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/moban5146/assets/images/favicons/site.webmanifest">
+    <meta name="description" content="Pylon Loan HTML Template">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/swiper.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/animate.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/pylon-icons.css">
+    <link rel="stylesheet" href="moban5146/assets/css/odometer.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.pips.css">
+
+    <link rel="stylesheet" type="text/css" href="css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hyzx.css"/>
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="/moban5146/assets/css/main.css">
+
+
+
+    <script type="text/javascript" src="/js/webcam/webcam.min.js"></script>
+</head>
+<body>
+<div class="preloader">
+    <img class="preloader__image" src="/moban5146/assets/images/loader.png" alt="">
+</div><!-- /.preloader -->
+<div class="page-wrapper">
+    <header class="main-header">
+        <div class="topbar">
+            <div class="container">
+                <div class="topbar__left">
+                    <div class="topbar__social">
+                        <a href="#" class="fab fa-facebook-square"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-pinterest-p"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                    </div><!-- /.topbar__social -->
+                    <a href="#">产品中心</a>
+                    <a href="#">普惠金融</a>
+                    <a href="#">申请贷款</a>
+                </div><!-- /.topbar__left -->
+                <div class="topbar__right">
+                    <a href="#"><i class="pylon-icon-email1"></i>needhelp@company.com</a>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret" th:text="${session.users}"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+                            <li><a href="personal.html" style="margin-left: 10px; color: black;">个人中心</a></li>
+                            <li><a href="#" style="margin-left: 10px; color: black;">消息</a></li>
+                            <hr>
+                            <li><a href="signOut" style="margin-left: 10px; color: black;">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.topbar__right -->
+            </div><!-- /.container -->
+        </div><!-- /.topbar -->
+        <div th:replace="mytemp :: mainmenu"></div>
+
+        <!-- /.main-menu -->
+    </header><!-- /.main-header -->
+
+
+    <div class="stricky-header stricked-menu main-menu">
+        <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+    </div><!-- /.stricky-header -->
+
+    <div id="hy_con">
+        <div id="con_lf">
+            <div th:replace="mytemp :: regleftmenu"></div>
+        </div>
+        <div id="con_rh">
+            <!--            <p><img src="imgs/img_2.png"/></p>-->
+            <div class="con_rh_con">
+                <p class="rh_title">身份证正面上传</p>
+
+                <div>
+                    <input type="file" title="身份证正面图片上传" id="file" onchange="showImage()">
+                </div>
+
+                <p class="rh_title">身份证反面上传</p>
+
+                <div>
+                    <input type="file" title="身份证反面图片上传" id="fileback" onchange="showImageback()">
+                </div>
+
+                <div>
+                    <div class="form-group mt-5">
+                        <label>姓名</label>
+                        <input type="text" disabled class="form-control" id="username" value="暂无">
+                    </div>
+                    <div class="form-group">
+                        <label>身份证号</label>
+                        <input type="text" disabled class="form-control" id="idcard" value="暂无">
+                    </div>
+                    <div class="form-group">
+                        <label>住址</label>
+                        <input type="text" disabled class="form-control" id="address" value="暂无">
+                    </div>
+                    <div class="form-group">
+                        <label>出生日期</label>
+                        <input type="text" disabled class="form-control" id="birthday" value="暂无">
+                    </div>
+                    <div class="form-group">
+                        <label>性别</label>
+                        <input type="text" disabled class="form-control" id="gender" value="暂无">
+                    </div>
+                    <div class="form-group">
+                        <label>民族</label>
+                        <input type="text" disabled class="form-control" id="nation" value="暂无">
+                    </div>
+                    <div class="form-group">
+                        <label>身份证有效期</label>
+                        <input type="text" disabled class="form-control" id="period" value="暂无">
+                    </div>
+                    <button id="idCardSave" type="button" class="btn btn-secondary" onclick="submit()">确认提交</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <div class="foot_con">
+            公司版权所有<br/>
+            Copyright 2012 All rights reserved<br/>
+            冀ICP备1234567890号
+        </div>
+    </div>
+</div>
+
+<!-- /.search-popup -->
+<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+<div th:replace="mytemp :: myfooter"></div>
+<script src="/js/jquery.easing.min.js"></script>
+
+
+<script language="JavaScript">
+    var address = null;
+    var username = null;
+    var birthday = null;
+    var idcard = null;
+    var gender = null;
+    var nation = null;
+    var period = null;
+    function showImage(){
+        var file = document.getElementById("file").files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e){
+            var imgBase64Data = e.target.result;
+            $("#bankcard").remove();
+            imgBase64Data = imgBase64Data.replace("data:image/jpeg;base64,", "");
+            console.log(imgBase64Data);
+            $.ajax({
+                url: "/lma/idCardCheck",
+                method: "post",
+                data: {
+                    idCard:imgBase64Data
+                },
+                success:function (data){
+                    var result = $.parseJSON(data);
+                    if(result.error_code=="111"){
+                        alert("访问token过期，请更新。更新地址/lma/accessToken");
+                    }else{
+                        username = result.words_result["姓名"].words;
+                        address = result.words_result["住址"].words;
+                        birthday = result.words_result["出生"].words;
+                        idcard = result.words_result["公民身份号码"].words;
+                        gender = result.words_result["性别"].words;
+                        nation = result.words_result["民族"].words;
+                        $("#username").val(username);
+                        $("#address").val(address);
+                        $("#birthday").val(birthday);
+                        $("#idcard").val(idcard);
+                        $("#gender").val(gender);
+                        $("#nation").val(nation);
+
+                        if(username!=null && address!=null&& birthday!=null&& idcard!=null&& gender!=null&& nation!=null&period!=null){
+                            $("#idCardSave").attr("class","btn btn-primary");
+                        }
+                    }
+
+                },
+                error:function (err){
+                    console.log(err);
+                }
+            })
+        }
+
+
+        console.log(file);
+    }
+
+    function showImageback(){
+        var file = document.getElementById("fileback").files[0];
+        console.log(file)
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e){
+            var imgBase64Data = e.target.result;
+            $("#bankcard").remove();
+            imgBase64Data = imgBase64Data.replace("data:image/jpeg;base64,", "");
+            console.log(imgBase64Data);
+            $.ajax({
+                url: "/lma/idCardCheckBack",
+                method: "post",
+                data: {
+                    idCard:imgBase64Data
+                },
+                success:function (data){
+                    var result = $.parseJSON(data);
+                    period = result.words_result["失效日期"].words;
+                    $("#period").val(period);
+                    if(username!=null && address!=null&& birthday!=null&& idcard!=null&& gender!=null&& nation!=null&period!=null){
+                        $("#idCardSave").attr("class","btn btn-primary");
+                    }
+                },
+                error:function (err){
+                    console.log(err);
+                }
+            })
+        }
+
+
+        console.log(file);
+    }
+
+
+    function submit(){
+        if(username!=null && address!=null&& birthday!=null&& idcard!=null&& gender!=null&& nation!=null&&period!=null){
+           $.ajax({
+               url:"/lma/idCardSave",
+               method: "post",
+               data:{
+                   userName: username,
+                   address: address,
+                   birthday:birthday,
+                   idCard:idcard,
+                   gender:gender,
+                   nation:nation,
+                   period:period,
+               },
+               success:function (data){
+
+                   layer.alert('注册成功', {icon: 6}, function(){
+                       window.location.href="lma?loaDown=faceCheck.html"
+                   });
+               },
+               error:function (err){
+                   console.log(err);
+               }
+           })
+       }else{
+           alert("无数据")
+       }
+    }
+</script>
+<script>
+    Vue.createApp({
+        data(){
+            return{
+                face:"text-success",
+                bank:"text-success",
+                idcard:"text-success",
+                cert:"text-info"
+            }
+        }
+    }).mount("#authmenu")
+</script>
+</body>
+</html>

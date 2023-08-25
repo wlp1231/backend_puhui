@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>申请贷款</title>
+    <link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/static/favicon.ico}"/>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/moban5146/assets/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/moban5146/assets/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/moban5146/assets/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/moban5146/assets/images/favicons/site.webmanifest">
+    <meta name="description" content="Pylon Loan HTML Template">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/swiper.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/animate.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/pylon-icons.css">
+    <link rel="stylesheet" href="moban5146/assets/css/odometer.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.pips.css">
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="/moban5146/assets/css/main.css">
+    <link rel="stylesheet" href="/css/form.css">
+
+    <script>
+        if (window.top !== window.self) {
+            window.top.location = window.location;
+        }
+        window.onload = function () {
+            /*在gameid增加对检查按钮的验证*/
+            var submitBtn = document.getElementById("textRead");
+
+            submitBtn.onclick = function () {
+                if (!document.getElementById("checkbox").checked) {
+                    alert("请阅读须知,并勾选按钮!");
+                    return false;
+                }
+            };
+        }
+    </script>
+</head>
+
+<body>
+<div class="preloader">
+    <img class="preloader__image" src="/moban5146/assets/images/loader.png" alt="">
+</div><!-- /.preloader -->
+<div class="page-wrapper">
+    <header class="main-header">
+        <div class="topbar">
+            <div class="container">
+                <div class="topbar__left">
+                    <div class="topbar__social">
+                        <a href="#" class="fab fa-facebook-square"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-pinterest-p"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                    </div><!-- /.topbar__social -->
+                    <a href="#">产品中心</a>
+                    <a href="#">普惠金融</a>
+                    <a href="#">申请贷款</a>
+                </div><!-- /.topbar__left -->
+                <div class="topbar__right">
+                    <a href="#"><i class="pylon-icon-email1"></i>needhelp@company.com</a>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret" th:text="${session.users}"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+                            <li><a href="lma?loaDown=personal.html" style="margin-left: 10px; color: black;">个人中心</a></li>
+                            <li><a href="#" style="margin-left: 10px; color: black;">消息</a></li>
+                            <hr>
+                            <li><a href="signOut" style="margin-left: 10px; color: black;">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.topbar__right -->
+            </div><!-- /.container -->
+        </div><!-- /.topbar -->
+        <nav class="main-menu">
+            <div class="container">
+                <div class="logo-box">
+                    <a href="/index-2.html" aria-label="logo image"><img
+                            src="/moban5146/assets/images/logo-dark.png" width="300" alt=""></a>
+                    <span class="fa fa-bars mobile-nav__toggler"></span>
+                </div><!-- /.logo-box -->
+                <ul class="main-menu__list">
+                    <li class="dropdown">
+                        <a href="/index-2.html">首页</a>
+                        <ul>
+                            <li>
+                                <a href="index.html">企业贷款</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">个人贷款</a>
+                                <ul>
+                                    <li><a href="index.html">信用贷</a></li>
+                                    <li><a href="/index-2.html">订单贷</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="about.html">品牌合作</a>
+                        <ul>
+                            <li><a href="team.html">买好车</a></li>
+                            <li><a href="team-details.html">中国银行</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="services.html">产品中心</a>
+                        <ul>
+                            <li><a href="how-it-works.html">普惠金融</a></li>
+                            <li><a href="credit-card-details.html">信用贷</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="news.html">快捷银行</a>
+                        <ul>
+                            <li><a href="credit-card">办卡</a></li>
+                            <li><a href="news-details.html">转账</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">金融资讯</a>
+                        <ul>
+                            <li><a href="how-it-works.html">How It Works</a></li>
+                            <li><a href="loan-calculator.html">Loan Calculator</a></li>
+                            <li class="dropdown">
+                                <a href="credit-card.html">Credit Card</a>
+                                <ul>
+                                    <li><a href="credit-card.html">Credit Card</a></li>
+                                    <li><a href="credit-card-details.html">Credit Card Details</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="testimonials.html">Testimonials</a></li>
+                        </ul>
+                    </li>
+                    <li class="search-btn search-toggler">
+                        <a href="#"><i class="pylon-icon-magnifying-glass"></i></a>
+                    </li>
+                </ul>
+                <!-- /.main-menu__list -->
+
+                <div class="main-header__info">
+                    <div class="main-header__info-phone">
+                        <i class="pylon-icon-tech-support"></i>
+                        <div class="main-header__info-phone-content">
+                            <span>联系电话</span>
+                            <h3><a href="tel:92-666-888-0000">92 666 888 0000</a></h3>
+                        </div><!-- /.main-header__info-phone-content -->
+                    </div><!-- /.main-header__info-phone -->
+                </div><!-- /.main-header__info -->
+            </div><!-- /.container -->
+        </nav>
+        <!-- /.main-menu -->
+    </header><!-- /.main-header -->
+
+
+    <div class="stricky-header stricked-menu main-menu">
+        <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+    </div><!-- /.stricky-header -->
+
+    <section>
+        <div id="msform" class="container">
+            <!-- progressbar -->
+            <ul id="progressbar">
+                <li class="active">贷款须知</li>
+                <li>填写贷款表</li>
+                <li>填写材料表</li>
+                <li>填写资质表</li>
+            </ul>
+            <!-- fieldsets -->
+            <fieldset>
+                <h2 class="fs-title">贷款条件</h2>
+                <h3 class="fs-subtitle">请认真阅读</h3>
+                <form id="textarea">
+                    <textarea style="width: 80%; height: 500px" readonly disabled>
+                        一、贷款流程
+                            1、借款人提供贷款证明材料；
+                            2、管理中心审核、决定；
+                            3、借款人签订借款合同；
+                            4、借款人到房管部门办理抵押手续；
+                            5、发放贷款；
+                            6、借款人按合同规定归还贷款本息。
+                        二、贷款条件
+                            1、具有有效的身份证明；
+                            2、按时连续足额缴存住房公积金6个月（含）以上；
+                            3、有符合规定的首付款凭证；
+                            4、有符合规定的购房合同（协议）；
+                            5、无贷款、无担保、信用良好，具有完全民事行为能力和偿还贷款本息的能力；
+                            6、有符合法律规定的担保；
+                            7、同意提供管理中心需要审核的其他有关证明材料。
+                        三、贷款应提供的证明材料  （另附）
+                        四、贷款额度和期限
+                            ㈠ 贷款额度须同时符合以下条件,取其中最低值。
+                            1、按单笔最高贷款额度计算
+                                夫妻双方按时连续足额缴存住房公积金的，贷款最高额度55万元；
+                                单方按时连续足额缴存住房公积金的，贷款最高额度30万元；
+                            2、按工资基数计算
+                                计算贷款额时，双方缴存的，以借款人和配偶的住房公积金缴存工资基数之和为准，
+                                月还款额与缴存工资基数比上限控制在50%；单方缴存的，以借款人的住房公积金缴存工资基数为准，
+                                月还款额与缴存工资基数比上限控制在50%。
+                            3、按账户余额和缴存年限计算
+                                贷款额度=（借款申请人住房公积金缴存账户余额+共同申请人住房公积金缴存账户余额） 20倍
+                                缴存时间系数
+                                商品房总价款的认定：房屋建筑面积 每平方米价格。
+                            二手房总价款的认定：参照《中华人民共和国税收缴款书》票据上的计税金额和《新乡市存量房买卖合同》或《房屋买卖契约》协议中的成交价格，二者取低。
+                            ㈡ 贷款期限
+                                贷款期限最长不超过30年，且不得超过借款人法定退休前剩余工作年限；
+                                购买普通住房（建筑面积144平米及以下）的，可延至借款人法定退休年龄后5年，最长贷款期限为30年。
+                        五、贷款利率
+                            按贷款期限的长短而实行不同档次的利率，具体利率档次依照人民银行公布的贷款利率档次执行；贷款期限在1年以上的遇法定利率调整，于下年初开始，按相应利率档次执行新的利率规定。
+                            目前执行的贷款年利率5年（含）以下2.75%;5年以上3.25%。住房套数的界定标准及二套房利率按国家政策执行。
+                        六、贷款本息偿还方式
+                            借款人应按合同约定的还款方式，委托贷款银行通过借记卡、存折等方式代扣。
+                            借款人如提前归还贷款时，到新乡市市民中心三楼住房公积金受委托贷款银行窗口申请办理，不收取任何费用；其提
+                            前归还部分不再计收利息，已计收的贷款利息不再调整。
+                            对逾期贷款，会产生额外利息。额外利息也是逾期产生的罚息，本平台根据银行要求在贷款执行利率基础上加收50%
+                        七、担保方式
+                            ㈠ 房产抵押担保        ㈡ 保证担保
+                            房产抵押担保的，抵押物应为所购住房，所购住房不具备抵押条件前，也可用贷款机构所在地符合抵押条件的其它住房抵押。
+                            开发商保证担保的，必须具有代偿全部贷款本息的能力，同意提供有关资质证明材料，按照合作协议条款的约定，共同承担连带责任；放贷前，足额存入保证金，并办结所购房产预抵押登记手续。
+                        八、处  罚
+                            依据借款合同的约定，借款人连续3个月或累计6个月不按借款合同偿还贷款本息时，住房公积金管理中心将委托放贷银行会同有关部门处置抵押物，启动自然担保人履行共同承担连带责任程序，偿还借款人所欠贷款本息、罚息等有关费用，不足部分依法追索。
+                    </textarea>
+                    <div class="controls">
+                        <input id="checkbox" type="checkbox" required>已阅读</label>
+                    </div>
+
+
+                </form>
+
+                <input id="textRead" class="next action-button" type="button" name="next" value="下一步"/>
+            </fieldset>
+            <fieldset>
+                <h2 class="fs-title">贷款表</h2>
+                <h3 class="fs-subtitle">请如实填写</h3>
+                <form id="loans">
+                    <input type="text" name="loaComNo" placeholder="企业名称" required/>
+                    <!--                    <input type="password" name="loaBankId" placeholder="银行名称"/>-->
+                    <select id="loaBankId" name="loaBankId">
+                        <option>请选择···</option>
+                    </select>
+                    <input type="text" name="loaUse" placeholder="贷款用途"/>
+                    <input id="loaRate" type="text" name="loaRate" placeholder="贷款利率" readonly/>
+                    <input type="text" name="loaMoney" placeholder="贷款金额(￥)"/>
+                    <label>收款信息</label>
+                    <input type="text" name="bAccountNo" id="bAccountNo" placeholder="收款账户" readonly=""/>
+                    <input type="text" name="bName" id="bName" placeholder="收款人" readonly=""/>
+                    <input type="text" name="bBankName" placeholder="开户行"/>
+                    <input type="text" name="bIdCard" id="bIdCard" placeholder="身份证号"  readonly=""/>
+                </form>
+<!--                <input class="previous action-button" type="button" name="previous" value="上一步"/>-->
+                <input class="next action-button" type="button" name="next" onclick="insert_loans()" value="下一步"/>
+            </fieldset>
+            <fieldset>
+                <h2 class="fs-title">材料表</h2>
+                <h3 class="fs-subtitle">请按顺序上传相关材料照片</h3>
+                <form id="materialsForm" method="post" enctype="multipart/form-data">
+                    <div class="control-group">
+                            <label class="control-label">近六个月流水照片-企业营业执照-征信报告-抵押物</label>
+                        <div class="controls">
+                            <!--                            multiple-->
+                            <input id="choose-file" type="file" name="fileImg" maxlength="2"
+                                   style="position: absolute; opacity: 0; width: 70px;height: 70px; z-index: 200;"
+                                   accept="image/gif,image/jpeg,image/x-png,image/png"/>
+                            <img th:src="@{/imgs/img.png}" style="width: 50px;z-index: 100;">
+                            <div class="file-list" style="width: 70%; margin: 20px auto;">
+
+                            </div>
+
+                            <input id="choose-file" type="file" name="fileImg" maxlength="2"
+                                   style="position: absolute; opacity: 0; width: 70px;height: 70px; z-index: 200;"
+                                   accept="image/gif,image/jpeg,image/x-png,image/png"/>
+                            <img th:src="@{/imgs/img.png}" style="width: 50px;z-index: 100;">
+                            <div class="file-list" style="width: 70%; margin: 20px auto;">
+
+                            </div>
+
+
+                            <input id="choose-file" type="file" name="fileImg" maxlength="2"
+                                   style="position: absolute; opacity: 0; width: 70px;height: 70px; z-index: 200;"
+                                   accept="image/gif,image/jpeg,image/x-png,image/png"/>
+                            <img th:src="@{/imgs/img.png}" style="width: 50px;z-index: 100;">
+                            <div class="file-list" style="width: 70%; margin: 20px auto;">
+
+                            </div>
+
+
+                            <input id="choose-file" type="file" name="fileImg" maxlength="2"
+                                   style="position: absolute; opacity: 0; width: 70px;height: 70px; z-index: 200;"
+                                   accept="image/gif,image/jpeg,image/x-png,image/png"/>
+                            <img th:src="@{/imgs/img.png}" style="width: 50px;z-index: 100;">
+                            <div class="file-list" style="width: 70%; margin: 20px auto;">
+
+                            </div>
+
+
+                            <!-- 模态框（Modal），点击图片放大 -->
+                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <img id="imgSrc" src="" alt="" style="width: 100%;"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!--<input type="text" name="lisWork" placeholder="工作证明"/>
+                    <input type="text" name="lisReport" placeholder="征信报告"/>
+                    <input type="text" name="lisPawn" placeholder="抵押物"/>-->
+                </form>
+<!--                <input class="previous action-button" type="button" name="previous" value="上一步"/>-->
+                <input class="next action-button" type="button" name="next" value="下一步"/>
+            </fieldset>
+            <fieldset>
+                <h2 class="fs-title">资质表</h2>
+                <h3 class="fs-subtitle">请如实填写</h3>
+                <form id="aptForm">
+                    <!--<input type="text" name="aptCredit" placeholder="信用额度"/>-->
+                    <input type="text" name="aptPawn" placeholder="抵押物"/>
+                    <label>有无贷款</label>
+                    <select name="aptLoansRecord">
+                        <option value="0">无</option>
+                        <option value="1">有</option>
+                    </select>
+                    <!--                <input type="text" placeholder="现在有无其他贷款" />-->
+                    <input type="text" name="aptComValue" placeholder="企业市值"/>
+                </form>
+<!--                <input class="previous action-button" type="button" name="previous" value="上一步"/>-->
+                <input class="submit action-button" type="button" name="submit" onclick="aptSave()" value="提交"/>
+            </fieldset>
+        </div>
+
+    </section>
+
+
+    <!--<section class="faq-one faq-one__faq-page">
+        <div>
+
+        </div>&lt;!&ndash; /.container &ndash;&gt;
+    </section>&lt;!&ndash; /.faq-one &ndash;&gt;-->
+
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget footer-widget__about">
+                        <a href="index.html">
+                            <img src="moban5146/assets/images/logo-light.png" width="155" alt="">
+                        </a>
+                        <p>融资性担保系统</p>
+                        <p>金融中介平台系统</p>
+                        <p>银行委贷系统</p>
+                        <div class="footer-widget__about-phone">
+                            <i class="pylon-icon-tech-support"></i>
+                            <div class="footer-widget__about-phone-content">
+                                <span>咨询热线</span>
+                                <h3><a href="tel:92-666-888-0000">92 666 888 0000</a></h3>
+                            </div><!-- /.footer-widget__about-phone-content -->
+                        </div><!-- /.footer-widget__about-phone -->
+                    </div><!-- /.footer-widget footer-widget__about -->
+                </div><!-- /.col-lg-3 -->
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-widget footer-widget__link">
+                        <h3 class="footer-widget__title">搜索</h3>
+                        <ul class="list-unstyled footer-widget__link-list">
+                            <li><a href="#">关于</a></li>
+                            <li><a href="#">系统产品</a></li>
+                            <li><a href="#">我们的服务</a></li>
+                            <li><a href="#">最新消息</a></li>
+                            <li><a href="#">客户评价</a></li>
+                            <li><a href="#">联系我们</a></li>
+                        </ul><!-- /.list-unstyled -->
+                    </div><!-- /.footer-widget -->
+                </div><!-- /.col-lg-2 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget footer-widget__post">
+                        <h3 class="footer-widget__title">最新消息</h3>
+                        <ul class="list-unstyled footer-widget__post-list">
+                            <li>
+                                <img src="moban5146/assets/images/resources/footer-post-1-1.png" alt="">
+                                <div class="footer-widget__post-list-content">
+                                    <span>2021年10月</span>
+                                    <h3><a href="news-details.html">人工智能客服随时为你服务</a></h3>
+                                </div><!-- /.footer-widget__post-content -->
+                            </li>
+                            <li>
+                                <img src="moban5146/assets/images/resources/footer-post-1-2.png" alt="">
+                                <div class="footer-widget__post-list-content">
+                                    <span>2021年10月</span>
+                                    <h3><a href="news-details.html">我们正在提供优质的服务</a></h3>
+                                </div><!-- /.footer-widget__post-content -->
+                            </li>
+                        </ul><!-- /.list-unstyled -->
+                    </div><!-- /.footer-widget -->
+                </div><!-- /.col-lg-3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-widget footer-widget__contact">
+                        <h3>联系我们</h3>
+                        <ul class="list-unstyled footer-widget__contact-list">
+                            <li>
+                                <a href="#"><i class="pylon-icon-email1"></i>puhui_finance@163.com</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="pylon-icon-clock2"></i>工作日 早上8:00 - 下午6:00</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="pylon-icon-pin1"></i>天津市西青区TBD云集中心4号楼C座307室</a>
+                            </li>
+                        </ul>
+                    </div><!-- /.footer-widget footer-widget__contact -->
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </footer><!-- /.site-footer -->
+    <div class="bottom-footer">
+        <div class="container">
+            <p>Pocket &copy; 2021 All Rights Reserved 模拟商业银行普惠金融版权所有</p>
+            <div class="bottom-footer__social">
+                <a href="#" class="fab fa-facebook-square"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-pinterest-p"></a>
+                <a href="#" class="fab fa-instagram"></a>
+            </div><!-- /.bottom-footer__social -->
+        </div><!-- /.container -->
+    </div><!-- /.bottom-footer -->
+
+</div><!-- /.page-wrapper -->
+
+
+<div class="mobile-nav__wrapper">
+    <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+    <!-- /.mobile-nav__overlay -->
+    <div class="mobile-nav__content">
+        <span class="mobile-nav__close mobile-nav__toggler"><i class="far fa-times"></i></span>
+
+        <div class="logo-box">
+            <a href="index.html" aria-label="logo image"><img src="moban5146/assets/images/logo-light.png" width="155"
+                                                              alt=""/></a>
+        </div>
+        <!-- /.logo-box -->
+        <div class="mobile-nav__container"></div>
+        <!-- /.mobile-nav__container -->
+
+        <ul class="mobile-nav__contact list-unstyled">
+            <li>
+                <i class="pylon-icon-email1"></i>
+                <a href="mailto:needhelp@azino.com">puhui_finance@163.com</a>
+            </li>
+            <li>
+                <i class="pylon-icon-telephone"></i>
+                <a href="tel:666-888-0000">666 888 0000</a>
+            </li>
+        </ul><!-- /.mobile-nav__contact -->
+        <div class="mobile-nav__top">
+            <div class="mobile-nav__language">
+                <img src="moban5146/assets/images/resources/flag-1-1.jpg" alt="">
+                <label class="sr-only" for="language-select">select language</label><!-- /#language-select.sr-only -->
+                <select class="selectpicker" id="language-select">
+                    <option value="english">English</option>
+                    <option value="arabic">Arabic</option>
+                </select>
+            </div><!-- /.mobile-nav__language -->
+            <div class="mobile-nav__social">
+                <a href="#" aria-label="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="facebook"><i class="fab fa-facebook-square"></i></a>
+                <a href="#" aria-label="pinterest"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#" aria-label="instagram"><i class="fab fa-instagram"></i></a>
+            </div><!-- /.mobile-nav__social -->
+        </div><!-- /.mobile-nav__top -->
+
+
+    </div>
+    <!-- /.mobile-nav__content -->
+</div>
+<!-- /.mobile-nav__wrapper -->
+
+<div class="search-popup">
+    <div class="search-popup__overlay search-toggler"></div>
+    <!-- /.search-popup__overlay -->
+    <div class="search-popup__content">
+        <form action="#">
+            <label for="search" class="sr-only">搜索</label><!-- /.sr-only -->
+            <input type="text" id="search" placeholder="请输入..."/>
+            <button type="submit" aria-label="search submit" class="thm-btn">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+    <!-- /.search-popup__content -->
+</div>
+<!-- /.search-popup -->
+<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+<script src="/moban5146/assets/js/jquery-3.5.1.min.js"></script>
+<script src="/moban5146/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/moban5146/assets/js/swiper.min.js"></script>
+<script src="/moban5146/assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="/moban5146/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="/moban5146/assets/js/jquery.validate.min.js"></script>
+<script src="/moban5146/assets/js/bootstrap-select.min.js"></script>
+<script src="/moban5146/assets/js/wow.js"></script>
+<script src="/moban5146/assets/js/odometer.min.js"></script>
+<script src="/moban5146/assets/js/jquery.appear.min.js"></script>
+<script src="/moban5146/assets/js/wNumb.min.js"></script>
+<script src="/moban5146/assets/js/nouislider.min.js"></script>
+
+<!-- template js -->
+<script src="/moban5146/assets/js/theme.js"></script>
+<script src="/js/jquery.easing.min.js"></script>
+<script src="/vue/axios.min.js"></script>
+<script>
+    function aptSave(){
+        var formData = new FormData($('#materialsForm')[0]);
+        var materFrom = $("#materialsForm").serialize();
+        formData.delete("file");
+        for (var i = 0; i < fileList.length; i++) {
+            formData.append("file", fileList[i]);
+        }
+        console.log(materFrom);
+        $.ajax({
+            type: "post",
+            url: "lma/listWater",
+            data: formData,
+            dataType: "json",
+            cache: false,//上传文件无需缓存
+            contentType: false, //必须,防止request请求位置文件头上下文对象，如果进行处理，则会丢失文件流对象
+            processData: false,//用于对data参数进行序列化处理 这里必须false,防止request请求自动处理ForamData对象，如果进行处理，则会丢失文件流对象
+            success: function (data) {
+                console.log("返回值" + data);
+                if (data) {
+                    // location.href="/mall/admin/product/toList.html"
+                    console.log("添加成功");
+                } else {
+                    // alert("保存失败");
+                }
+            }
+        });
+        var aptDate = $("#aptForm").serialize();
+        $.ajax({
+            type: "post",
+            url: "lma/apt",
+            data: aptDate,
+            dataType: "json",
+            success: function (){
+                alert("提交成功");
+                window.location.href = "lma?loaDown=loansLog.html";
+            },
+            error: function (error){
+                alert("提交出错"+error);
+            }
+        });
+    }
+    function doSave() {
+        var formData = new FormData($('#materialsForm')[0]);
+        var materFrom = $("#materialsForm").serialize();
+        formData.delete("file");
+        for (var i = 0; i < fileList.length; i++) {
+            formData.append("file", fileList[i]);
+        }
+        console.log(materFrom);
+        $.ajax({
+            type: "post",
+            url: "lma/listWater",
+            data: formData,
+            dataType: "json",
+            cache: false,//上传文件无需缓存
+            contentType: false, //必须,防止request请求位置文件头上下文对象，如果进行处理，则会丢失文件流对象
+            processData: false,//用于对data参数进行序列化处理 这里必须false,防止request请求自动处理ForamData对象，如果进行处理，则会丢失文件流对象
+            success: function (data) {
+                console.log("返回值" + data);
+                if (data) {
+                    // location.href="/mall/admin/product/toList.html"
+                    alert("添加成功")
+                } else {
+                    alert("保存失败");
+                }
+            }
+        });
+    }
+
+    /*
+    * 图片上传
+    * */
+    //选择文件按钮
+    $file = $("#choose-file");
+    //回显的列表
+    $list = $('.file-list');
+    //选择要上传的所有文件
+    fileList = [];
+    //当前选择上传的文件
+    var curFile;
+    // 选择按钮change事件，实例化fileReader,调它的readAsDataURL并把原生File对象传给它，监听它的onload事件，load完读取的结果就在它的result属性里了。它是一个base64格式的，可直接赋值给一个img的src
+    $file.on('change', function () {
+        //原生的文件对象(File对象数组)，相当于$file.get(0).files[0];
+        curFile = this.files;
+        //将curFile数组和FileList数组合并
+        fileList = fileList.concat(Array.from(curFile));
+        for (var i = 0, len = curFile.length; i < len; i++) {
+            reviewFile(curFile[i])
+        }
+
+    });
+
+    //回显图片
+    function reviewFile(file) {
+        //实例化fileReader,
+        var fd = new FileReader();
+        //获取当前选择文件的类型
+        var fileType = file.type;
+        //调它的readAsDataURL并把原生File对象传给它，
+        fd.readAsDataURL(file);//base64
+        //监听它的onload事件，load完读取的结果就在它的result属性里了
+
+        fd.onload = function () {
+            $list.append('<label class="file-item" style="margin: 20px auto;" ><img onclick="showImage(this)" src="' + this.result + '" alt="" style="width: 100px;height: 100px;"/><i class="file-del" style="position: relative;left:-15px;top: -35px;">&times;</i></label>')
+        }
+    }
+
+    //删除图片
+    $(".file-list").on('click', '.file-del', function () {
+        var $parent = $(this).parent();
+        var index = $parent.index(".file-item");
+        //删除选择的图片
+        fileList.splice(index, 1);
+        $parent.remove();
+    });
+
+    //点击图片显示放大图(使用bootstrap的模态框)
+    function showImage(e) {
+        $("#imgSrc").attr("src", e.src);
+        $('#myModal').modal('show');
+    }
+
+    $(function () {
+        // 银行列表
+        $.ajax({
+            type: "GET",
+            url: "lma/banks",
+            dataType: "json",
+            success: function (data) {
+                var bList = data;
+                var bSelect = "<option value=''>--请选择--</option>";
+                for (var i = 0; i < bList.length; i++) {
+                    bSelect += ("<option value='" + bList[i].bankId + "'>" + bList[i].bankName + "--利率：" + bList[i].bankRate + "--起始期：" + bList[i].bankLength +"个月</option>");
+                    $("#loaBankId").empty();
+                    $("#loaBankId").append(bSelect);
+                }
+            },
+            error: function (error) {
+                alert("添加错误信息" + error);
+            }
+        });
+        // 银行利率
+        $("#loaBankId").blur(function () {
+            var bId = $("#loaBankId").val();
+            if (bId == null) {
+                alert("请重新选择银行");
+            } else {
+                $.ajax({
+                    type: "get",
+                    url: "lma/rateById",
+                    data: {bId: bId},
+                    dataType: "json",
+                    success: function (data) {
+                        console.log("银行Id" + data);
+                        $("#loaRate").val(data);
+                        // $("#loaRate").attr("disabled", true);
+                    },
+                    error: function (error) {
+                        alert("无法更改" + error);
+                    }
+                });
+            }
+        });
+        // 图片上传
+
+    });
+
+    // 添加贷款表
+    function insert_loans() {
+        var loansForm = $("#loans").serialize();
+        if(confirm('进行下一步操作后，该页面信息将不可更改，确定继续？')){
+            $.ajax({
+                type: "POST",
+                url: "lma/loans",
+                data: loansForm,
+                dataType: "json",
+                success: function (data) {
+                    console.log("数据" + data);
+                    if (data === "ok") {
+                        console.log("贷款插入成功！");
+                    }
+                }
+                /*error: function (error) {
+                    alert("错误信息" + error);
+                }*/
+            });
+        }
+
+    }
+
+
+</script>
+<script type="text/javascript">
+    // 步骤表单
+    var current_fs, next_fs, previous_fs; //fieldsets
+    var left, opacity, scale; //fieldset properties which we will animate
+    var animating; //flag to prevent quick multi-click glitches
+
+    $(".next").click(function () {
+        if (animating) return false;
+        animating = true;
+
+        current_fs = $(this).parent();
+        next_fs = $(this).parent().next();
+
+        //activate next step on progressbar using the index of next_fs
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+        //show the next fieldset
+        next_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function (now, mx) {
+                //as the opacity of current_fs reduces to 0 - stored in "now"
+                //1. scale current_fs down to 80%
+                scale = 1 - (1 - now) * 0.2;
+                //2. bring next_fs from the right(50%)
+                left = (now * 50) + "%";
+                //3. increase opacity of next_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({'transform': 'scale(' + scale + ')'});
+                next_fs.css({'left': left, 'opacity': opacity});
+            },
+            duration: 800,
+            complete: function () {
+                current_fs.hide();
+                animating = false;
+            },
+            //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+        });
+    });
+
+    $(".previous").click(function () {
+        if (animating) return false;
+        animating = true;
+
+        current_fs = $(this).parent();
+        previous_fs = $(this).parent().prev();
+
+        //de-activate current step on progressbar
+        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+        //show the previous fieldset
+        previous_fs.show();
+        //hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function (now, mx) {
+                //as the opacity of current_fs reduces to 0 - stored in "now"
+                //1. scale previous_fs from 80% to 100%
+                scale = 0.8 + (1 - now) * 0.2;
+                //2. take current_fs to the right(50%) - from 0%
+                left = ((1 - now) * 50) + "%";
+                //3. increase opacity of previous_fs to 1 as it moves in
+                opacity = 1 - now;
+                current_fs.css({'left': left});
+                previous_fs.css({'transform': 'scale(' + scale + ')', 'opacity': opacity});
+            },
+            duration: 800,
+            complete: function () {
+                current_fs.hide();
+                animating = false;
+            },
+            //this comes from the custom easing plugin
+            easing: 'easeInOutBack'
+        });
+    });
+
+    $(".submit").click(function () {
+        return false;
+    })
+</script>
+<script>
+    // $.ajax({
+    //     url: '/lma/getUserIdInfo',
+    //     method: 'get',
+    //     success: function(data){
+    //         $(".bAccountNo")[0].val(data)
+    //     console.log(data);
+    //
+    // },
+    //     error: function(err){
+    //     console.log(err);
+    // }
+    // })
+    axios.get('/lma/getUserIdInfo').then((data)=>{
+        let userinfo = data.data[0];
+        console.log(userinfo)
+        $("#bAccountNo").val(userinfo.idcard)
+        $("#bName").val(userinfo.username)
+        $("#bIdCard").val(userinfo.idcard)
+    })
+</script>
+</body>
+
+</html>

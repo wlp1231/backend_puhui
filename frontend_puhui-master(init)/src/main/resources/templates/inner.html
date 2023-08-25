@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css">
+    <style>
+        img{
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+<div class="text-success text-center m-2">保存成功</div>
+<span id="qrcode"></span>
+</body>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/moban5146/assets/js/jquery-3.5.1.min.js"></script>
+<script src="/qrcode/qrcode.min.js"></script>
+<script src="/vue/axios.min.js"></script>
+
+<script>
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        width : 100,
+        height : 100
+    });
+    function makeCode () {
+        axios.get('/lma/getComId').then((data)=>{
+            console.log(data.data)
+            var elText = "http://www.baidu.com/?id="+data.data;
+            qrcode.makeCode(elText);
+        }).catch((err)=>{
+            console.log(err);
+        })
+
+    }
+    makeCode();
+</script>
+</html>

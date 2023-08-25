@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:replace="mytemp :: myhead"></div>
+</head>
+
+<body>
+<div class="preloader">
+    <img class="preloader__image" src="/moban5146/assets/images/loader.png" alt="">
+</div><!-- /.preloader -->
+<div class="page-wrapper">
+<div th:replace="mytemp :: myheader"></div>
+    <div class="stricky-header stricked-menu main-menu">
+        <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+    </div><!-- /.stricky-header -->
+
+    <section class="main-slider">
+        <div class="swiper-container thm-swiper__slider" data-swiper-options='{
+        "slidesPerView": 1,
+        "loop": true,
+        "effect": "fade",
+        "autoplay": {
+            "delay": 5000
+        },
+        "navigation": {
+            "nextEl": "#main-slider__swiper-button-next",
+            "prevEl": "#main-slider__swiper-button-prev"
+        }
+    }'>
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="image-layer"
+                         style="background-image: url(/moban5146/assets/images/main-slider/main-slider-1-1.jpg);"></div>
+                    <!-- /.image-layer -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6">
+                                <p>先采购 & 后付款 & 放心享</p>
+                                <h2>企业金采 采购无忧</h2>
+                                <a href="#" class=" thm-btn">查看详情</a>
+                                <!-- /.thm-btn dynamic-radius -->
+                            </div><!-- /.col-lg-7 text-right -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container -->
+                </div><!-- /.swiper-slide -->
+                <div class="swiper-slide">
+                    <div class="image-layer"
+                         style="background-image: url(/moban5146/assets/images/main-slider/main-slider-1-2.jpg);"></div>
+                    <!-- /.image-layer -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6">
+                                <p>低门槛 & 期限长 / 低利率</p>
+                                <h2>金宝贝一站式供应服务</h2>
+                                <a href="#" class=" thm-btn">查看详情</a>
+                                <!-- /.thm-btn dynamic-radius -->
+                            </div><!-- /.col-lg-7 text-right -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container -->
+                </div><!-- /.swiper-slide -->
+                <div class="swiper-slide">
+                    <div class="image-layer"
+                         style="background-image: url(/moban5146/assets/images/main-slider/main-slider-1-1.jpg);"></div>
+                    <!-- /.image-layer -->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6">
+                                <p>信用贷 & 订单贷 & 企业贷</p>
+                                <h2>普惠金融 不等“贷”</h2>
+                                <a href="#" class=" thm-btn">查看详情</a>
+                                <!-- /.thm-btn dynamic-radius -->
+                            </div><!-- /.col-lg-7 text-right -->
+                        </div><!-- /.row -->
+                    </div><!-- /.container -->
+                </div><!-- /.swiper-slide -->
+            </div><!-- /.swiper-wrapper -->
+
+            <!-- If we need navigation buttons -->
+            <div class="main-slider__nav">
+                <div class="swiper-button-prev" id="main-slider__swiper-button-next"><i
+                        class="pylon-icon-left-arrow"></i></div>
+                <div class="swiper-button-next" id="main-slider__swiper-button-prev"><i
+                        class="pylon-icon-right-arrow"></i></div>
+            </div><!-- /.main-slider__nav -->
+
+        </div><!-- /.swiper-container thm-swiper__slider -->
+        <div class="feature-two">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-duration="1500ms">
+                        <div class="feature-two__box">
+                            <i class="pylon-icon-consumer-behavior"></i>
+                            <p>金东快银</p>
+                        </div><!-- /.feature-two__box -->
+                    </div><!-- /.col-lg-4 col-md-6 -->
+                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-duration="1500ms">
+                        <div class="feature-two__box">
+                            <i class="pylon-icon-point-of-sale"></i>
+                            <p>企业金采</p>
+                        </div><!-- /.feature-two__box -->
+                    </div><!-- /.col-lg-4 col-md-6 -->
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </div><!-- /.feature-two -->
+    </section><!-- /.main-slider -->
+
+    <section class="about-one">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="about-one__content">
+                        <div class="block-title text-left">
+                            <p>理财服务</p>
+                            <h2>企业金库</h2>
+                        </div><!-- /.block-title -->
+                        <p class="about-one__text">企业金库是服务于中小企业的企业现金管理和余额增值工具</p><!-- /.about-one__text -->
+                        <p>银行存管、严控风险、数据加密、严格准入</p>
+                        <p>0.01元起投，七日年化收益率历史最高5.455%</p>
+                        <p>买入取出零费用，取出T+1日到账</p>
+                        <p>支持银行账户、企业钱包余额买入</p>
+                    </div><!-- /.about-one__content -->
+                </div><!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <form action="#" id="loan-calculator" data-interest-rate="15"
+                          class="about-one__form wow fadeInRight" data-wow-duration="1500ms">
+                        <h3>你的收益</h3>
+                        <div class="about-one__form-content">
+                            <div class="input-box__top">
+                                <span>￥1000</span>
+                                <span>￥40000</span>
+                            </div><!-- /.input-box__top -->
+                            <div class="input-box">
+                                <div class="range-slider-count" id="range-slider-count"></div>
+                                <input type="hidden" value="" id="min-value-rangeslider-count">
+                                <input type="hidden" value="" id="max-value-rangeslider-count">
+                            </div><!-- /.input-box -->
+                            <div class="input-box__top">
+                                <span>1 月</span>
+                                <span>12 月</span>
+                            </div><!-- /.input-box__top -->
+                            <div class="input-box">
+                                <div class="range-slider-month" id="range-slider-month"></div>
+                                <input type="hidden" value="" id="min-value-rangeslider-month">
+                                <input type="hidden" value="" id="max-value-rangeslider-month">
+                            </div><!-- /.input-box -->
+                            <p>
+                                <span>每月支付</span>
+                                <b>￥<i id="loan-monthly-pay"></i></b>
+                            </p>
+                            <p>
+                                <span>使用期限</span>
+                                <b><i id="loan-month"></i> 个月</b>
+                            </p>
+                            <p>
+                                <span>总回报</span>
+                                <b>￥<i id="loan-total"></i></b>
+                            </p>
+                            <button type="submit" class="thm-btn">申请贷款</button>
+                        </div><!-- /.about-one__from-content -->
+                    </form><!-- /.about-one__form -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.about-one -->
+
+    <section class="service-one">
+        <div class="container">
+            <div class="block-title text-center">
+                <p></p>
+                <h2>融资服务</h2>
+            </div><!-- /.block-title -->
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="service-one__card">
+                        <div class="service-one__image">
+                            <img src="/moban5146/assets/images/services/services-1-1.png" alt="">
+                        </div><!-- /.service-one__image -->
+                        <div class="service-one__content">
+                            <h3><a href="service-details.html">普惠金融</a></h3>
+                            <p>针对京东零售平台POP商家，根据商城历史经营及销售情况进行综合风险评估后，提供信用类，结算类及代充值的金融产品服务</p>
+                            <a href="service-details.html" class="pylon-icon-right-arrow service-one__link"></a>
+                            <!-- /.service-one__link -->
+                        </div><!-- /.service-one__content -->
+                    </div><!-- /.service-one__card -->
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <div class="service-one__card">
+                        <div class="service-one__image">
+                            <img src="/moban5146/assets/images/services/services-1-2.png" alt="">
+                        </div><!-- /.service-one__image -->
+                        <div class="service-one__content">
+                            <h3><a href="service-details.html">易贷</a></h3>
+                            <p>基于历史交易数据，为品牌方下游经销商提供无抵押融资，定向用于向品牌方采购 <br/><br/></p>
+                            <a href="service-details.html" class="pylon-icon-right-arrow service-one__link"></a>
+                            <!-- /.service-one__link -->
+                        </div><!-- /.service-one__content -->
+                    </div><!-- /.service-one__card -->
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <div class="service-one__card">
+                        <div class="service-one__image">
+                            <img src="/moban5146/assets/images/services/services-1-3.png" alt="">
+                        </div><!-- /.service-one__image -->
+                        <div class="service-one__content">
+                            <h3><a href="service-details.html">京东快赢</a></h3>
+                            <p>为纳税记录良好的中小微企业提供信用贷款服务,根据企业的经营和风险情况，灵活设置贷款额度和贷款利率<br/><br/></p>
+                            <a href="service-details.html" class="pylon-icon-right-arrow service-one__link"></a>
+                            <!-- /.service-one__link -->
+                        </div><!-- /.service-one__content -->
+                    </div><!-- /.service-one__card -->
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.service-one -->
+
+    <section class="feature-one">
+        <img src="/moban5146/assets/images/shapes/feature-shape-1-1.png" alt="" class="feature-one__shape-1">
+        <img src="/moban5146/assets/images/shapes/feature-shape-1-2.png" alt="" class="feature-one__shape-2">
+        <img src="/moban5146/assets/images/shapes/feature-shape-1-3.png" alt="" class="feature-one__shape-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="block-title text-left">
+                        <p>了解一下</p>
+                        <h2>科技助力金融服务</h2>
+                    </div><!-- /.block-title -->
+                </div><!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <p class="block-text">文字识别
+                        OCR服务，能够将图像文件中的文本资料进行分析识别，获取图像中的文字内容。针对营业执照、身份证、驾驶证等场景，可以为客户解析证件关键信息，方便资料录入</p>
+                    <!-- /.block-text -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="feature-one__box">
+                        <i class="pylon-icon-assets"></i>
+                        <p>文字识别OCR</p>
+                    </div><!-- /.feature-one__box -->
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <div class="feature-one__box">
+                        <i class="pylon-icon-verification"></i>
+                        <p>人脸识别</p>
+                    </div><!-- /.feature-one__box -->
+                </div><!-- /.col-lg-4 -->
+                <div class="col-lg-4">
+                    <div class="feature-one__box">
+                        <i class="pylon-icon-finance"></i>
+                        <p>京东区块链云</p>
+                    </div><!-- /.feature-one__box -->
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.feature-one -->
+
+    <section class="trusted-company">
+        <div class="trusted-company__bg"
+             style="background-image: url(moban5146/assets/images/shapes/trust-bg-1-1.png);"></div>
+        <!-- /.trusted-company__bg -->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="trusted-company__content">
+                        <div class="block-title text-left">
+                            <p>了解一下</p>
+                            <h2>企业津彩</h2>
+                        </div><!-- /.block-title -->
+                        <div class="trusted-company__image">
+                            <img src="/moban5146/assets/images/resources/trust-1-1.png" alt="">
+                            <p>为优质企业客户提供信用赊购、账期管理等服务，评定信用额度后，企业可在京东商城使用“先采购、后付款”的信用支付服务</p>
+                        </div><!-- /.trusted-company__image -->
+                    </div><!-- /.trusted-company__content -->
+                </div><!-- /.col-lg-6 -->
+                <div class="col-lg-6">
+                    <div class="trusted-company__box-wrap">
+                        <div class="trusted-company__box">
+                            <span>01</span>
+                            <p>先采购，后付款,采购越多信用越好</p>
+                        </div><!-- /.trusted-company__box -->
+                        <div class="trusted-company__box">
+                            <span>02</span>
+                            <p>周结/月结 灵活配置</p>
+                        </div><!-- /.trusted-company__box -->
+                        <div class="trusted-company__box">
+                            <span>03</span>
+                            <p>企业实名认证 在线轻松申请</p>
+                        </div><!-- /.trusted-company__box -->
+                    </div><!-- /.trusted-company__box-wrap -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.trusted-company -->
+
+    <section class="funfact-one">
+        <div class="funfact-one__bg"
+             style="background-image: url(/moban5146/assets/images/backgrounds/funfact-bg-1-1.jpg);"></div>
+        <!-- /.funfact-one__bg -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="funfact-one__box">
+                        <h3><span class="odometer" data-count="99">00</span>%</h3>
+                        <p>好评</p>
+                    </div><!-- /.funfact-one__box -->
+                </div><!-- /.col-md-6 col-lg-3 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="funfact-one__box">
+                        <h3>￥<span class="odometer" data-count="90">00</span>k</h3>
+                        <p>交易额</p>
+                    </div><!-- /.funfact-one__box -->
+                </div><!-- /.col-md-6 col-lg-3 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="funfact-one__box">
+                        <h3><span class="odometer" data-count="8900">00</span></h3>
+                        <p>顾客</p>
+                    </div><!-- /.funfact-one__box -->
+                </div><!-- /.col-md-6 col-lg-3 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="funfact-one__box">
+                        <h3><span class="odometer" data-count="346">00</span></h3>
+                        <p>员工</p>
+                    </div><!-- /.funfact-one__box -->
+                </div><!-- /.col-md-6 col-lg-3 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /.funfact-one -->
+
+
+    <div class="client-carousel pt-120 pb-120 client-carousel__has-border-top">
+        <div class="container">
+            <div class="thm-swiper__slider swiper-container" data-swiper-options='{"spaceBetween": 100, "slidesPerView": 5, "autoplay": { "delay": 5000 }, "breakpoints": {
+                "0": {
+                    "spaceBetween": 30,
+                    "slidesPerView": 2
+                },
+                "375": {
+                    "spaceBetween": 30,
+                    "slidesPerView": 2
+                },
+                "575": {
+                    "spaceBetween": 30,
+                    "slidesPerView": 3
+                },
+                "767": {
+                    "spaceBetween": 50,
+                    "slidesPerView": 4
+                },
+                "991": {
+                    "spaceBetween": 50,
+                    "slidesPerView": 5
+                },
+                "1199": {
+                    "spaceBetween": 100,
+                    "slidesPerView": 5
+                }
+            }}'>
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="/moban5146/assets/images/index/5b4303deN1116502f.png" alt="">
+                    </div><!-- /.swiper-slide -->
+                    <div class="swiper-slide">
+                        <img src="/moban5146/assets/images/index/5b4303deN78709b43.png" alt="">
+                    </div><!-- /.swiper-slide -->
+                    <div class="swiper-slide">
+                        <img src="/moban5146/assets/images/index/5b4303deN8203462a.png" alt="">
+                    </div><!-- /.swiper-slide -->
+                    <div class="swiper-slide">
+                        <img src="/moban5146/assets/images/index/5b4303deN8ed2f7d5.png" alt="">
+                    </div><!-- /.swiper-slide -->
+                    <div class="swiper-slide">
+                        <img src="/moban5146/assets/images/index/5b4303deN9cf7a23f.png" alt="">
+                    </div><!-- /.swiper-slide -->
+                    <div class="swiper-slide">
+                        <img src="/moban5146/assets/images/index/5b4303deNca872064.png" alt="">
+                    </div><!-- /.swiper-slide -->
+                    <div class="swiper-slide">
+                        <img src="/moban5146/assets/images/index/5b4303deNca872064.png" alt="">
+                    </div><!-- /.swiper-slide -->
+                    <div class="swiper-slide">
+                        <img src="/moban5146/assets/images/resources/brand-1-1.png" alt="">
+                    </div><!-- /.swiper-slide -->
+                    <div class="swiper-slide">
+                        <img src="/moban5146/assets/images/resources/brand-1-1.png" alt="">
+                    </div><!-- /.swiper-slide -->
+                    <div class="swiper-slide">
+                        <img src="/moban5146/assets/images/resources/brand-1-1.png" alt="">
+                    </div><!-- /.swiper-slide -->
+                </div><!-- /.swiper-wrapper -->
+            </div><!-- /.thm-swiper__slider -->
+        </div><!-- /.container -->
+    </div><!-- /.client-carousel -->
+
+    <section class="call-to-action"
+             style="background-image: url(/moban5146/assets/images/backgrounds/call-to-action-bg-1-1.jpg);">
+        <div class="container">
+            <div class="left-content">
+                <p><span>简单</span><span>透明</span><span>安全</span></p>
+                <h3>快速获得贷款</h3>
+            </div><!-- /.left-content -->
+            <div class="right-content">
+                <a href="#" class="thm-btn">申请贷款</a><!-- /.thm-btn -->
+            </div><!-- /.right-content -->
+        </div><!-- /.container -->
+    </section><!-- /.call-to-action -->
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget footer-widget__about">
+                        <a href="/index-2.html">
+                            <img src="moban5146/assets/images/logo-light.png" width="155" alt="">
+                        </a>
+                        <p>融资性担保系统</p>
+                        <p>金融中介平台系统</p>
+                        <p>银行委贷系统</p>
+                        <div class="footer-widget__about-phone">
+                            <i class="pylon-icon-tech-support"></i>
+                            <div class="footer-widget__about-phone-content">
+                                <span>咨询热线</span>
+                                <h3><a href="tel:92-666-888-0000">92 666 888 0000</a></h3>
+                            </div><!-- /.footer-widget__about-phone-content -->
+                        </div><!-- /.footer-widget__about-phone -->
+                    </div><!-- /.footer-widget footer-widget__about -->
+                </div><!-- /.col-lg-3 -->
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-widget footer-widget__link">
+                        <h3 class="footer-widget__title">搜索</h3>
+                        <ul class="list-unstyled footer-widget__link-list">
+                            <li><a href="#">关于</a></li>
+                            <li><a href="#">系统产品</a></li>
+                            <li><a href="#">我们的服务</a></li>
+                            <li><a href="#">最新消息</a></li>
+                            <li><a href="#">客户评价</a></li>
+                            <li><a href="#">联系我们</a></li>
+                        </ul><!-- /.list-unstyled -->
+                    </div><!-- /.footer-widget -->
+                </div><!-- /.col-lg-2 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget footer-widget__post">
+                        <h3 class="footer-widget__title">最新消息</h3>
+                        <ul class="list-unstyled footer-widget__post-list">
+                            <li>
+                                <img src="/moban5146/assets/images/resources/footer-post-1-1.png" alt="">
+                                <div class="footer-widget__post-list-content">
+                                    <span>2021年10月</span>
+                                    <h3><a href="news-details.html">人工智能客服随时为你服务</a></h3>
+                                </div><!-- /.footer-widget__post-content -->
+                            </li>
+                            <li>
+                                <img src="/moban5146/assets/images/resources/footer-post-1-2.png" alt="">
+                                <div class="footer-widget__post-list-content">
+                                    <span>2021年10月</span>
+                                    <h3><a href="news-details.html">我们正在提供优质的服务</a></h3>
+                                </div><!-- /.footer-widget__post-content -->
+                            </li>
+                            <li>
+                                <div id="qrcode"></div>
+                            </li>
+                        </ul><!-- /.list-unstyled -->
+                    </div><!-- /.footer-widget -->
+                </div><!-- /.col-lg-3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-widget footer-widget__contact">
+                        <h3>联系我们</h3>
+                        <ul class="list-unstyled footer-widget__contact-list">
+                            <li>
+                                <a href="#"><i class="pylon-icon-email1"></i>puhui_finance@163.com</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="pylon-icon-clock2"></i>工作日 早上8:00 - 下午6:00</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="pylon-icon-pin1"></i>天津市西青区TBD云集中心4号楼C座307室</a>
+                            </li>
+                        </ul>
+                    </div><!-- /.footer-widget footer-widget__contact -->
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </footer><!-- /.site-footer -->
+    <div class="bottom-footer">
+        <div class="container">
+            <p>Pocket &copy; 2021 All Rights Reserved 模拟商业银行普惠金融版权所有</p>
+            <div class="bottom-footer__social">
+                <a href="#" class="fab fa-facebook-square"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-pinterest-p"></a>
+                <a href="#" class="fab fa-instagram"></a>
+            </div><!-- /.bottom-footer__social -->
+        </div><!-- /.container -->
+    </div><!-- /.bottom-footer -->
+
+</div><!-- /.page-wrapper -->
+
+
+<div class="mobile-nav__wrapper">
+    <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+    <!-- /.mobile-nav__overlay -->
+    <div class="mobile-nav__content">
+        <span class="mobile-nav__close mobile-nav__toggler"><i class="far fa-times"></i></span>
+
+        <div class="logo-box">
+            <a href="/index-2.html" aria-label="logo image"><img src="moban5146/assets/images/logo-light.png" width="155"
+                                                              alt=""/></a>
+        </div>
+        <!-- /.logo-box -->
+        <div class="mobile-nav__container"></div>
+        <!-- /.mobile-nav__container -->
+
+        <ul class="mobile-nav__contact list-unstyled">
+            <li>
+                <i class="pylon-icon-email1"></i>
+                <a href="mailto:needhelp@azino.com">puhui_finance@163.com</a>
+            </li>
+            <li>
+                <i class="pylon-icon-telephone"></i>
+                <a href="tel:666-888-0000">666 888 0000</a>
+            </li>
+        </ul><!-- /.mobile-nav__contact -->
+        <div class="mobile-nav__top">
+            <div class="mobile-nav__language">
+                <img src="/moban5146/assets/images/resources/flag-1-1.jpg" alt="">
+                <label class="sr-only" for="language-select">select language</label><!-- /#language-select.sr-only -->
+                <select class="selectpicker" id="language-select">
+                    <option value="english">English</option>
+                    <option value="arabic">Arabic</option>
+                </select>
+            </div><!-- /.mobile-nav__language -->
+            <div class="mobile-nav__social">
+                <a href="#" aria-label="twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="facebook"><i class="fab fa-facebook-square"></i></a>
+                <a href="#" aria-label="pinterest"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#" aria-label="instagram"><i class="fab fa-instagram"></i></a>
+            </div><!-- /.mobile-nav__social -->
+        </div><!-- /.mobile-nav__top -->
+
+
+    </div>
+    <!-- /.mobile-nav__content -->
+</div>
+<!-- /.mobile-nav__wrapper -->
+
+<div class="search-popup">
+    <div class="search-popup__overlay search-toggler"></div>
+    <!-- /.search-popup__overlay -->
+    <div class="search-popup__content">
+        <form action="#">
+            <label for="search" class="sr-only">搜索</label><!-- /.sr-only -->
+            <input type="text" id="search" placeholder="请输入..."/>
+            <button type="submit" aria-label="search submit" class="thm-btn">
+                <i class="fa fa-search"></i>
+            </button>
+        </form>
+    </div>
+    <!-- /.search-popup__content -->
+</div>
+<!-- /.search-popup -->
+<!--右侧-->
+<div class="cndns-right">
+<!--    <div class="cndns-right-meau meau-sev">-->
+<!--        <a id="triggerBtn" href="javascript:" class="cndns-right-btn">-->
+<!--            <span><img src="imgs/kefu.png" style="width: 32px"></span>-->
+<!--            <p>-->
+<!--                在线<br/>-->
+<!--                客服-->
+<!--            </p>-->
+<!--        </a>-->
+<!--        <div class="cndns-right-box">-->
+<!--            <div class="box-border">-->
+<!--                <div class="sev-t">-->
+<!--                    <i>在线客服服务时间：9:00-24:00</i>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="cndns-right-meau meau-code">
+        <a href="http://sighttp.qq.com/authd?IDKEY=062d72bc01493d9166319c645c14626c75cad3898022c8c6" class="cndns-right-btn" target="_blank">
+            <span class="demo-icon"><img src="imgs/qq.png" style="width: 45px"></span>
+            <p>
+                QQ<br/>
+                咨询
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border">
+                <div class="sev-t">
+                    <i>嗨，我来帮您</i>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
+    <div class="cndns-right-meau meau-code">
+        <a href="javascript:" class="cndns-right-btn">
+            <span class="demo-icon"><img src="imgs/wx_logo.png"></span>
+            <p>
+                关注<br/>
+                微信
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border">
+                <div class="sev-t">
+                    <img src="imgs/weixin.jpg" style="width: 100px"/>
+                    <i>关注官方微信</i>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
+    <div class="cndns-right-meau meau-contact">
+        <a href="javascript:" class="cndns-right-btn">
+            <span><img src="imgs/dianhua.png" style="width: 32px"></span>
+            <p>
+                客服<br/>
+                热线
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border" style="height: 100px;">
+                <div class="sev-t">
+                    <p>400-920-9999<br/><i>7*24小时客服服务热线</i></p>
+                    <div class="clear"></div>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 模态框 -->
+<div id="myModal" class="modal" style="z-index: 999999999999999;">
+    <div class="modal-content">
+        <div class="modal-header">
+            <p>普惠金融客服-小金 <small th:text="${ #dates.format(new java.util.Date().getTime(), 'yyyy:MM:dd')}"></small></p>
+            <span id="closeBtn" class="close">×</span>
+        </div>
+        <!--<div class="modal-body">
+            <iframe>
+
+            </iframe>
+        </div>
+        <div class="modal-footer">
+            <input type="text" placeholder="请输入信息">
+            <input type="button" value="发送">
+        </div>-->
+        <!--mini聊天窗口开始-->
+        <div class="modal-body" >
+
+            <div class="heading" draggable="true">
+                <small class="chat-date pull-right">
+                </small>
+                <!--                <label class="col-sm-5">房间名</label>-->
+                <input id="input_roomName" th:value="1099" type="hidden" class="col-sm-3" style="color: #0f0f0f">
+                <!--                <label class=" col-sm-5">用户名</label>-->
+                <input id="username" type="hidden" class="col-sm-3" style="color: #0f0f0f" th:value="${session.users}">
+                <input type="hidden" value="进入聊天室" onclick="initWebSocket()"/>
+                <!--                <input type="button" value="退出聊天室" onclick="closeWs()" /><br>-->
+            </div>
+
+            <div class="content" style="height: 300px;">
+                <div class="left">
+                    <div class="msg_board author-name" style=" overflow:auto; height:300px;">
+                        <p>小金：这里是客服小金，很高兴为您服务<small
+                                th:text="${ #dates.format(new java.util.Date().getTime(), 'HH:mm:ss')}"></small></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-chat">
+                <div class="input-group">
+                    <textarea id="input_msg" name="input_msg" class="form-control"></textarea>
+                    <span class="input-group-btn">
+                        <span class="emotion glyphicon glyphicon-plus" style="font-size: 20px" title="表情包(caps lock)">表情</span>
+                        <button id="sendMessage" class="btn btn-primary" type="button" onclick="send_msg()">发送</button>
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+<div th:replace="mytemp :: myfooter"></div>
+
+<!-- template js -->
+<script src="/moban5146/assets/js/theme.js"></script>
+<!--表情包-->
+<script type="text/javascript" src="/js/jquery.qqFace.js"></script>
+<script src="/js/jquery-migrate.js"></script>
+<!--客服-->
+<script src="/js/rightChart.js"></script>
+<script src="/qrcode/qrcode.min.js"></script>
+
+<script>
+    $(function (){
+        $.ajax({
+            type: 'get',
+            url: 'me/megCount',
+            success: function (data){
+                $("#megText").html(data);
+            }
+        });
+    });
+
+    // $(".main-menu__list a").attr("href","#");
+    $(".main-menu__list a:eq(9)").attr("href","lma?loaDown=how-it-works.html");
+</script>
+
+
+
+
+</body>
+</html>

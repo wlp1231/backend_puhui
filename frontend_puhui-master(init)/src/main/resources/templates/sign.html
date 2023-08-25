@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>待签约</title>
+    <link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/static/favicon.ico}"/>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/moban5146/assets/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/moban5146/assets/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/moban5146/assets/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="moban5146/assets/images/favicons/site.webmanifest">
+    <meta name="description" content="Pylon Loan HTML Template">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/swiper.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/animate.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/pylon-icons.css">
+    <link rel="stylesheet" href="moban5146/assets/css/odometer.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.pips.css">
+
+    <link rel="stylesheet" type="text/css" href="css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hyzx.css"/>
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="/moban5146/assets/css/main.css">
+</head>
+<body>
+<div class="preloader">
+    <img class="preloader__image" src="/moban5146/assets/images/loader.png" alt="">
+</div><!-- /.preloader -->
+<div class="page-wrapper">
+    <header class="main-header">
+        <div class="topbar">
+            <div class="container">
+                <div class="topbar__left">
+                    <div class="topbar__social">
+                        <a href="#" class="fab fa-facebook-square"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-pinterest-p"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                    </div><!-- /.topbar__social -->
+                    <a href="#">产品中心</a>
+                    <a href="#">普惠金融</a>
+                    <a href="#">申请贷款</a>
+                </div><!-- /.topbar__left -->
+                <div class="topbar__right">
+                    <a href="#"><i class="pylon-icon-email1"></i>needhelp@company.com</a>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret" th:text="${session.users}"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+                            <li><a href="/lma?loaDown=personal.html" style="margin-left: 10px; color: black;">个人中心</a></li>
+                            <li><a href="#" style="margin-left: 10px; color: black;">消息</a></li>
+                            <hr>
+                            <li><a href="signOut" style="margin-left: 10px; color: black;">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.topbar__right -->
+            </div><!-- /.container -->
+        </div><!-- /.topbar -->
+        <div th:replace="mytemp :: mainmenu"></div>
+        <!-- /.main-menu -->
+    </header><!-- /.main-header -->
+
+
+    <div class="stricky-header stricked-menu main-menu">
+        <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+    </div><!-- /.stricky-header -->
+
+    <div id="hy_con">
+        <div th:replace="mytemp :: leftmenu"></div>
+        <div id="con_rh">
+            <!--            <p><img src="imgs/img_2.png"/></p>-->
+            <div class="con_rh_con">
+                <p class="rh_title">待签约</p>
+
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>贷款编号</th>
+                        <th>贷款银行</th>
+                        <th>贷款金额</th>
+                        <th>贷款时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="s,si : ${sign}">
+                        <td class="signBankId" style="display: none;" th:text="${s.loaBankId}"></td>
+                        <td th:text="${si.index + 1}"></td>
+                        <td th:text="${s.loaNo}"></td>
+                        <td th:text="${s.loaBank}"></td>
+                        <td th:text="${s.loaMoney}"></td>
+                        <td th:text="${#dates.format(s.loaTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td>
+                            <form id="addForm" enctype="multipart/form-data" style="float:left">
+                                <input type="file" id="upload" name="files"  style="display: none">
+                                <input type="button" value="上传图片" class="btn btn-success" th:onclick="scfile([[${s.loaNo}]])">
+                            </form>
+                            <a onclick="signModel(this)" role="button" style="float:left; margin-left: 5px;">待签约</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- 模态框（Modal） -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">
+                            签约信息
+                        </h4>
+                        <button type="button" class="close"
+                                data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+
+                    </div>
+                    <div class="modal-body">
+                        <p><span id="signBank">您好</span>:</p>
+                        <p>
+                            &emsp;&emsp;请前往 <span id="signAddress"></span> 进行签约！
+                        </p>
+                        <p>联系电话：<span id="signPhone"></span></p>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">关闭
+                        </button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal -->
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <div class="foot_con">
+            公司版权所有<br/>
+            Copyright 2012 All rights reserved<br/>
+            冀ICP备1234567890号
+        </div>
+    </div>
+</div>
+
+<!-- /.search-popup -->
+<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+<div th:replace="mytemp :: myfooter"></div>
+
+<script src="/js/jquery.easing.min.js"></script>
+
+<script>
+    function signModel(bank){
+        $("#myModalLabel").html("");
+        $("#signAddress").html("");
+        $("#signPhone").html("");
+        var bankId = $(bank).parents("tr").find(".signBankId").text();
+        console.log(bankId);
+        $.ajax({
+            type: "get",
+            url: "lma/bankSign",
+            data: {bId:bankId},
+            dataType: "Json",
+            success: function (data){
+                $("#myModalLabel").html(data.bankName);
+                $("#signAddress").html(data.provinces.province+data.cities.city+data.areas.area+data.bankAdress);
+                $("#signPhone").html(data.bankPhone);
+            }
+        });
+        $("#myModal").modal('show');
+    };
+</script>
+
+<script>
+    function scfile(nid){
+        $("#upload").click();
+        $("#upload").change(function(){
+            var formData = new FormData($("#addForm")[0]);
+            $.ajax({
+                url: "/lma/loadfile", // 文件上传接口
+                type:'post',
+                data:formData,
+                processData: false,
+                contentType: false,
+                success:function (data) {
+                    axios.get('/lma/updateloan?file='+data+"&nid="+nid).then((data)=>{
+                        layer.alert("上传成功！");
+                        console.log(data)
+                    }).catch((err)=>{
+                        console.log(err);
+                    })
+                },
+                error:function (err) {
+                    console.log(err)
+                }
+            });
+        })
+
+    }
+
+</script>
+</body>
+</html>

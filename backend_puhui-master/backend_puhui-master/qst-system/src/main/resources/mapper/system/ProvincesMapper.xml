@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.ProvincesMapper">
+
+    <resultMap type="Provinces" id="pResult">
+        <result property="id"    column="id"    />
+        <result property="provinceid"    column="provinceid"    />
+        <result property="province"    column="province"    />
+        <collection property="citiesList"  select="com.qst.system.mapper.CitiesMapper.selectCitiesByProId" column="provinceid"/>
+    </resultMap>
+
+    <select id="selectProvincesAndCity" resultMap="pResult">
+        select * from provinces
+    </select>
+
+
+    <resultMap type="Provinces" id="ProvincesResult">
+        <result property="id"    column="id"    />
+        <result property="provinceid"    column="provinceid"    />
+        <result property="province"    column="province"    />
+    </resultMap>
+
+
+
+    <sql id="selectProvincesVo">
+        select id, provinceid, province from provinces
+    </sql>
+
+    <select id="selectProvincesList" parameterType="Provinces" resultMap="ProvincesResult">
+        <include refid="selectProvincesVo"/>
+        <where>  
+            <if test="provinceid != null "> and provinceid = #{provinceid}</if>
+            <if test="province != null  and province != ''"> and province = #{province}</if>
+        </where>
+    </select>
+    
+    <select id="selectProvincesById" parameterType="Long" resultMap="ProvincesResult">
+        <include refid="selectProvincesVo"/>
+        where id = #{id}
+    </select>
+    <select id="selectProById" parameterType="String" resultMap="ProvincesResult">
+        <include refid="selectProvincesVo"/>
+        where provinceid = #{cPro}
+    </select>
+
+    <select id="selectProvincesAll" resultMap="ProvincesResult">
+        <include refid="selectProvincesVo"/>
+    </select>
+
+
+    <insert id="insertProvinces" parameterType="Provinces">
+        insert into provinces
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">id,</if>
+            <if test="provinceid != null">provinceid,</if>
+            <if test="province != null">province,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">#{id},</if>
+            <if test="provinceid != null">#{provinceid},</if>
+            <if test="province != null">#{province},</if>
+         </trim>
+    </insert>
+
+    <update id="updateProvinces" parameterType="Provinces">
+        update provinces
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="provinceid != null">provinceid = #{provinceid},</if>
+            <if test="province != null">province = #{province},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteProvincesById" parameterType="Long">
+        delete from provinces where id = #{id}
+    </delete>
+
+    <delete id="deleteProvincesByIds" parameterType="String">
+        delete from provinces where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,31 @@
+.page-wrapper .login {
+    float: right;
+    z-index: 99;
+    position: absolute;
+    width: 350px;
+    height: 450px;
+    background-color: #FFFFFF;
+    margin-left: 70%;
+    margin-top: 2%;
+    border-radius: 15px;
+    -webkit-box-shadow:0px 3px 3px #c8c8c8 ;
+    -moz-box-shadow:0px 3px 3px #c8c8c8 ;
+    box-shadow:0px 3px 3px #c8c8c8 ;
+}
+
+.page-wrapper .login .login-reg {
+    position: absolute;
+    padding: 2px;
+    margin-left: 140px;
+    margin-bottom: 5px;
+}
+
+.page-wrapper .login .login-font {
+    margin: 5px auto;
+    text-align: center;
+}
+
+.login-Message{
+    font-size: 10px;
+    color: red;
+}

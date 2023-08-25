@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>银行卡提交</title>
+    <link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/static/favicon.ico}"/>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/moban5146/assets/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/moban5146/assets/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/moban5146/assets/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/moban5146/assets/images/favicons/site.webmanifest">
+    <meta name="description" content="Pylon Loan HTML Template">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/swiper.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/animate.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/pylon-icons.css">
+    <link rel="stylesheet" href="moban5146/assets/css/odometer.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.pips.css">
+
+    <link rel="stylesheet" type="text/css" href="css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hyzx.css"/>
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="/moban5146/assets/css/main.css">
+
+
+
+    <script type="text/javascript" src="/js/webcam/webcam.min.js"></script>
+</head>
+<body>
+<div class="preloader">
+    <img class="preloader__image" src="/moban5146/assets/images/loader.png" alt="">
+</div><!-- /.preloader -->
+<div class="page-wrapper">
+    <header class="main-header">
+        <div class="topbar">
+            <div class="container">
+                <div class="topbar__left">
+                    <div class="topbar__social">
+                        <a href="#" class="fab fa-facebook-square"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-pinterest-p"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                    </div><!-- /.topbar__social -->
+                    <a href="#">产品中心</a>
+                    <a href="#">普惠金融</a>
+                    <a href="#">申请贷款</a>
+                </div><!-- /.topbar__left -->
+                <div class="topbar__right">
+                    <a href="#"><i class="pylon-icon-email1"></i>needhelp@company.com</a>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret" th:text="${session.users}"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+                            <li><a href="personal.html" style="margin-left: 10px; color: black;">个人中心</a></li>
+                            <li><a href="#" style="margin-left: 10px; color: black;">消息</a></li>
+                            <hr>
+                            <li><a href="signOut" style="margin-left: 10px; color: black;">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.topbar__right -->
+            </div><!-- /.container -->
+        </div><!-- /.topbar -->
+        <nav class="main-menu">
+            <div class="container">
+                <div class="logo-box">
+                    <a href="/index-2.html" aria-label="logo image"><img
+                            src="/moban5146/assets/images/logo-dark.png" width="300" alt=""></a>
+                    <span class="fa fa-bars mobile-nav__toggler"></span>
+                </div><!-- /.logo-box -->
+                <ul class="main-menu__list">
+                    <li class="dropdown">
+                        <a href="/index-2.html">首页</a>
+                        <ul>
+                            <li>
+                                <a href="index.html">企业贷款</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">个人贷款</a>
+                                <ul>
+                                    <li><a href="index.html">信用贷</a></li>
+                                    <li><a href="/index-2.html">订单贷</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="about.html">品牌合作</a>
+                        <ul>
+                            <li><a href="team.html">买好车</a></li>
+                            <li><a href="team-details.html">中国银行</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="services.html">产品中心</a>
+                        <ul>
+                            <li><a href="how-it-works.html">金小贷</a></li>
+                            <li><a href="credit-card-details.html">信用贷</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="news.html">快捷银行</a>
+                        <ul>
+                            <li><a href="credit-card">办卡</a></li>
+                            <li><a href="news-details.html">转账</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="test.html">金融资讯</a>
+                        <ul>
+                            <li><a href="how-it-works.html">How It Works</a></li>
+                            <li><a href="loan-calculator.html">Loan Calculator</a></li>
+                            <li class="dropdown">
+                                <a href="credit-card.html">Credit Card</a>
+                                <ul>
+                                    <li><a href="credit-card.html">Credit Card</a></li>
+                                    <li><a href="credit-card-details.html">Credit Card Details</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="testimonials.html">Testimonials</a></li>
+                        </ul>
+                    </li>
+                    <li class="search-btn search-toggler">
+                        <a href="#"><i class="pylon-icon-magnifying-glass"></i></a>
+                    </li>
+                </ul>
+                <!-- /.main-menu__list -->
+
+                <div class="main-header__info">
+                    <div class="main-header__info-phone">
+                        <i class="pylon-icon-tech-support"></i>
+                        <div class="main-header__info-phone-content">
+                            <span>联系电话</span>
+                            <h3><a href="tel:92-666-888-0000">92 666 888 0000</a></h3>
+                        </div><!-- /.main-header__info-phone-content -->
+                    </div><!-- /.main-header__info-phone -->
+                </div><!-- /.main-header__info -->
+            </div><!-- /.container -->
+        </nav>
+        <!-- /.main-menu -->
+    </header><!-- /.main-header -->
+
+
+    <div class="stricky-header stricked-menu main-menu">
+        <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+    </div><!-- /.stricky-header -->
+
+    <div id="hy_con">
+        <div id="con_lf">
+            <div th:replace="mytemp :: regleftmenu"></div>
+        </div>
+        <div id="con_rh">
+            <!--            <p><img src="imgs/img_2.png"/></p>-->
+            <div class="con_rh_con">
+                <p class="rh_title">银行卡上传</p>
+
+                <div>
+                    <input type="file" title="银行卡图片上传" id="file" onchange="showImage()">
+                </div>
+
+                <div>
+                    <div class="form-group mt-5">
+                        <label>银行名称</label>
+                        <input type="text" disabled class="form-control" id="bankName" value="暂无">
+                    </div>
+                    <div class="form-group">
+                        <label>银行卡号</label>
+                        <input type="text" disabled class="form-control" id="bankNo" value="暂无">
+                    </div>
+
+
+                    <button id="bankCardSave" type="button" class="btn btn-secondary" onclick="submit()">确认提交</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <div class="foot_con">
+            公司版权所有<br/>
+            Copyright 2012 All rights reserved<br/>
+            冀ICP备1234567890号
+        </div>
+    </div>
+</div>
+
+<!-- /.search-popup -->
+<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+<div th:replace="mytemp :: myfooter"></div>
+<script src="/js/jquery.easing.min.js"></script>
+
+<script language="JavaScript">
+    var bank_card_number = null;
+    var bank_name = null;
+    function showImage(){
+        var file = document.getElementById("file").files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e){
+            var imgBase64Data = e.target.result;
+            $("#bankcard").remove();
+            imgBase64Data = imgBase64Data.replace("data:image/jpeg;base64,", "");
+            console.log(imgBase64Data);
+            $.ajax({
+                url: "/lma/bankCardCheck",
+                method: "post",
+                data: {
+                    bankCard:imgBase64Data
+                },
+                success:function (data){
+                    var result = $.parseJSON(data);
+                    if(result.error_code=="111"){
+                        alert("访问token过期，请更新。更新地址/lma/accessToken");
+                    }else{
+                        bank_card_number = result.result.bank_card_number;
+                        bank_name = result.result.bank_name;
+                        $("#bankName").val(bank_name);
+                        $("#bankNo").val(bank_card_number);
+                        if(bank_card_number!="" && bank_name!=""){
+                            $("#bankCardSave").attr("class","btn btn-primary");
+                        }
+                    }
+
+                },
+                error:function (err){
+                    console.log(err);
+                }
+            })
+        }
+
+
+        console.log(file);
+    }
+    function submit(){
+       if(bank_name!="" && bank_name!=null || bank_card_number!="" && bank_card_number!=null){
+           $.ajax({
+               url:"/lma/bankCardSave",
+               method: "post",
+               data:{
+                   bankName: bank_name,
+                   bankCardNo: bank_card_number.replace(/\s*/g,""),
+               },
+               success:function (data){
+                   layer.alert('注册成功', {icon: 6}, function(){
+                       window.location.href="/lma?loaDown=idcard.html"
+                   });
+               },
+               error:function (err){
+                   console.log(err);
+               }
+           })
+       }else{
+           alert("无数据")
+       }
+    }
+</script>
+
+<script>
+    Vue.createApp({
+        data(){
+            return{
+                face:"text-success",
+                bank:"text-success",
+                idcard:"text-info",
+                cert:"text-info"
+            }
+        }
+    }).mount("#authmenu")
+</script>
+</body>
+</html>

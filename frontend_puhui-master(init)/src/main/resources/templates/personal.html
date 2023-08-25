@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/static/favicon.ico}"/>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/moban5146/assets/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/moban5146/assets/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/moban5146/assets/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/moban5146/assets/images/favicons/site.webmanifest">
+    <meta name="description" content="Pylon Loan HTML Template">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/swiper.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/animate.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/pylon-icons.css">
+    <link rel="stylesheet" href="moban5146/assets/css/odometer.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.pips.css">
+
+    <link rel="stylesheet" type="text/css" href="css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="css/hyzx.css"/>
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="/moban5146/assets/css/main.css">
+</head>
+<body>
+<div class="preloader">
+    <img class="preloader__image" src="/moban5146/assets/images/loader.png" alt="">
+</div><!-- /.preloader -->
+<div class="page-wrapper">
+    <header class="main-header">
+        <div class="topbar">
+            <div class="container">
+                <div class="topbar__left">
+                    <div class="topbar__social">
+                        <a href="#" class="fab fa-facebook-square"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-pinterest-p"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                    </div><!-- /.topbar__social -->
+                    <a href="#">产品中心</a>
+                    <a href="#">普惠金融</a>
+                    <a href="#">申请贷款</a>
+                </div><!-- /.topbar__left -->
+                <div class="topbar__right">
+                    <a href="#"><i class="pylon-icon-email1"></i>needhelp@company.com</a>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret" th:text="${session.users}"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+                            <li><a href="/lma?loaDown=personal.html" style="margin-left: 10px; color: black;">个人中心</a></li>
+                            <li class="list-group-item">
+                                <a href="me?mgs=fmessages.html" style="margin-left: 10px; color: black;">
+                                    消息
+                                    <span id="megText" class="badge">4</span>
+                                </a>
+                            </li>
+                            <hr>
+                            <li><a href="signOut" style="margin-left: 10px; color: black;">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.topbar__right -->
+            </div><!-- /.container -->
+        </div><!-- /.topbar -->
+        <div th:replace="mytemp :: mainmenu"></div>
+        <!-- /.main-menu -->
+    </header><!-- /.main-header -->
+
+
+    <div class="stricky-header stricked-menu main-menu">
+        <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+    </div><!-- /.stricky-header -->
+
+    <div id="hy_con">
+        <div th:replace="mytemp :: leftmenu"></div>
+
+        <div id="con_rh">
+<!--            <p><img src="imgs/img_2.png"/></p>-->
+            <div class="con_rh_con">
+                <p class="rh_title">账户信息</p>
+<!--                <div class="zh_num">账户积分：<span th:text="${comDetails.cIntegral}"></span></div>-->
+                <ul class="ul_zhxx" >
+                    <li class="li_bj">企业名称：<span th:text="${comDetails.company.comName}"></span></li>
+                    <li class="li_bj">企业编号：<span th:text="${comDetails.company.comNo}"></span></li>
+                    <li>邮箱：<span th:text="${comDetails.company.comEmail}"></span></li>
+                    <li>电话：<span th:text="${comDetails.company.comPhone}"></span></li>
+                    <li class="li_bj">贷款：<span th:text="${loaCount}"></span>个</li>
+                    <li class="li_bj">状态：<span th:switch="${comDetails.company.comStatus}">
+                        <div style="display: inline"  id="app">
+                            <span th:case="3" style="background-color: #FFFFFF; color: red;">未实名 <a style="color: #7abaff"  href="/lma?loaDown=faceReg.html">去认证</a></span>
+                            <span th:case="4" style="background-color: #FFFFFF;">待认证</span>
+                            <span th:case="5" style="background-color: greenyellow;">已认证</span>
+                            <span th:case="" style="background-color: #FFFFFF; color: red;">未实名 <a style="color: #7abaff" href="/lma?loaDown=faceReg.html">去认证</a></span>
+
+                        </div>
+  </span>
+
+                    </li>
+                    <li>法人姓名：<span th:text="${comDetails.cLegalName}"></span></li>
+                    <li>身份证号：<span th:text="${comDetails.cLegalId}"></span></li>
+                    <li class="li_bj">注册时间：<span th:text="${#dates.format(comDetails.company.comTime, 'yyyy-MM-dd HH:mm')}"></span></li>
+                    <li class="li_bj">
+                        公司地址：<span th:text="${comDetails.provinces.province}"></span>
+                        <span th:text="${comDetails.cities.city}"></span> <span th:text="${comDetails.cAddress}"></span>
+                    </li>
+                    <li>姓名：<span th:text="${idCard.username}"></span></li>
+                    <li>身份证号：<span th:text="${idCard.idcard}"></span></li>
+                    <li>开卡行名称：<span th:text="${bankCard.bankName}"></span></li>
+                    <li>银行卡账号：<span th:text="${bankCard.bankCardNo}"></span></li>
+                    <li>人脸识别认证：<span th:text="${faceState}"></span></li>
+                    <div class="clear"></div>
+                </ul>
+            </div>
+<!--            <p><img src="imgs/img_3.png"/></p>-->
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <div class="foot_con">
+            公司版权所有<br/>
+            Copyright 2012 All rights reserved<br/>
+            冀ICP备1234567890号
+        </div>
+    </div>
+</div>
+
+<!-- /.search-popup -->
+<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+<div th:replace="mytemp :: myfooter"></div>
+<script src="/js/jquery.easing.min.js"></script>
+<script>
+    $(function (){
+        $.ajax({
+            type: 'get',
+            url: 'me/megCount',
+            success: function (data){
+                $("#megText").html(data);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

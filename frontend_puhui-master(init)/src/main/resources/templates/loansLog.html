@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>申请贷款</title>
+    <link rel="shortcut icon" href="../resources/favicon.ico" th:href="@{/static/favicon.ico}"/>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/moban5146/assets/images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/moban5146/assets/images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/moban5146/assets/images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/moban5146/assets/images/favicons/site.webmanifest">
+    <meta name="description" content="Pylon Loan HTML Template">
+
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/swiper.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/animate.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/pylon-icons.css">
+    <link rel="stylesheet" href="moban5146/assets/css/odometer.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="moban5146/assets/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.min.css">
+    <link rel="stylesheet" href="moban5146/assets/css/nouislider.pips.css">
+
+    <!-- template styles -->
+    <link rel="stylesheet" href="/moban5146/assets/css/main.css">
+    <link rel="stylesheet" href="/css/document.css">
+</head>
+
+<body>
+<div class="preloader">
+    <img class="preloader__image" src="/moban5146/assets/images/loader.png" alt="">
+</div><!-- /.preloader -->
+<div class="page-wrapper">
+    <header class="main-header">
+        <div class="topbar">
+            <div class="container">
+                <div class="topbar__left">
+                    <div class="topbar__social">
+                        <a href="#" class="fab fa-facebook-square"></a>
+                        <a href="#" class="fab fa-twitter"></a>
+                        <a href="#" class="fab fa-pinterest-p"></a>
+                        <a href="#" class="fab fa-instagram"></a>
+                    </div><!-- /.topbar__social -->
+                    <a href="#">产品中心</a>
+                    <a href="#">普惠金融</a>
+                    <a href="#">申请贷款</a>
+                </div><!-- /.topbar__left -->
+                <div class="topbar__right">
+                    <a href="#"><i class="pylon-icon-email1"></i>needhelp@company.com</a>
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDivider"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="caret" th:text="${session.users}"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuDivider">
+                            <li><a href="/lma?loaDown=personal.html" style="margin-left: 10px; color: black;">个人中心</a>
+                            </li>
+                            <li><a href="#" style="margin-left: 10px; color: black;">消息</a></li>
+                            <hr>
+                            <li><a href="signOut" style="margin-left: 10px; color: black;">退出登录</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.topbar__right -->
+            </div><!-- /.container -->
+        </div><!-- /.topbar -->
+        <nav class="main-menu">
+            <div class="container">
+                <div class="logo-box">
+                    <a href="/index-2.html" aria-label="logo image"><img
+                            src="/moban5146/assets/images/logo-dark.png" width="300" alt=""></a>
+                    <span class="fa fa-bars mobile-nav__toggler"></span>
+                </div><!-- /.logo-box -->
+                <ul class="main-menu__list">
+                    <li class="dropdown">
+                        <a href="/index-2.html">首页</a>
+                        <ul>
+                            <li>
+                                <a href="index.html">企业贷款</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">个人贷款</a>
+                                <ul>
+                                    <li><a href="index.html">信用贷</a></li>
+                                    <li><a href="/index-2.html">订单贷</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="about.html">品牌合作</a>
+                        <ul>
+                            <li><a href="team.html">买好车</a></li>
+                            <li><a href="team-details.html">中国银行</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="#">产品中心</a>
+                        <ul>
+                            <li><a href="lma?loaDown=how-it-works.html">普惠金融</a></li>
+                            <li><a href="credit-card-details.html">信用贷</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="news.html">快捷银行</a>
+                        <ul>
+                            <li><a href="credit-card">办卡</a></li>
+                            <li><a href="news-details.html">转账</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown"><a href="test.html">金融资讯</a>
+                        <ul>
+                            <li><a href="how-it-works.html">How It Works</a></li>
+                            <li><a href="loan-calculator.html">Loan Calculator</a></li>
+                            <li class="dropdown">
+                                <a href="credit-card.html">Credit Card</a>
+                                <ul>
+                                    <li><a href="credit-card.html">Credit Card</a></li>
+                                    <li><a href="credit-card-details.html">Credit Card Details</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="testimonials.html">Testimonials</a></li>
+                        </ul>
+                    </li>
+                    <li class="search-btn search-toggler">
+                        <a href="#"><i class="pylon-icon-magnifying-glass"></i></a>
+                    </li>
+                </ul>
+                <!-- /.main-menu__list -->
+
+                <div class="main-header__info">
+                    <div class="main-header__info-phone">
+                        <i class="pylon-icon-tech-support"></i>
+                        <div class="main-header__info-phone-content">
+                            <span>联系电话</span>
+                            <h3><a href="tel:92-666-888-0000">92 666 888 0000</a></h3>
+                        </div><!-- /.main-header__info-phone-content -->
+                    </div><!-- /.main-header__info-phone -->
+                </div><!-- /.main-header__info -->
+            </div><!-- /.container -->
+        </nav>
+        <!-- /.main-menu -->
+    </header><!-- /.main-header -->
+
+
+    <div class="stricky-header stricked-menu main-menu">
+        <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+    </div><!-- /.stricky-header -->
+
+    <div style="margin: 0 auto; width: 90%">
+        <table id="loansTable" class="table table-hover">
+            <div th:if="${loansLog} eq 0"
+                 style="height: 100px; line-height: 100px; margin: 0 auto; text-align: center;">暂无数据显示
+            </div>
+        </table>
+
+    </div>
+
+
+    <section class="faq-one faq-one__faq-page">
+
+        <div class="order_status">
+            <span id="stat1" class="s-step s-step0">
+                <b>
+                 <b></b>
+                </b>
+                <p></p>
+                <em id="stat1Time"></em>
+                <em id="stat1Text" style="color: #7abaff"></em>
+                <div>申请贷款</div>
+            </span>
+            <span id="stat2" class="s-step s-step1">
+                <b>
+                    <b></b>
+                </b>
+                <p></p>
+                <em id="stat2Time"></em>
+                <em id="stat2Text"></em>
+                <div>平台审批</div>
+            </span>
+            <span id="stat3" class="s-step s-step2">
+                <b>
+                    <b></b>
+                </b>
+                <p></p>
+                <em id="stat3Time"></em>
+                <em id="stat3Text" style="color: #7abaff"></em>
+                <div>银行审批</div>
+            </span>
+            <span id="stat4" class="s-step s-step3">
+                <b>
+                    <b></b>
+                </b>
+                <p></p>
+                <em id="stat4Time"></em>
+                <em id="stat4Text" style="color: #7abaff"></em>
+                <div>待签约</div>
+            </span>
+            <span id="stat5" class="s-step s-step4">
+                <b>
+                    <b></b>
+                </b>
+                <p></p>
+                <em id="stat5Time"></em>
+                <em id="stat5Text" style="color: #7abaff"></em>
+                <div>银行放款</div>
+            </span>
+            <span id="stat6" class="s-step s-step5" style="width: 0px">
+                <b>
+                    <b></b>
+                </b>
+                <em id="stat6Time"></em>
+                <em id="stat6Text" style="color: #7abaff"></em>
+                <div>贷款完成</div>
+            </span>
+        </div>
+        <div style="margin: 0 auto; width: 80%; text-align: center;">
+            <a href="lma?loaDown=personal.html">
+                <button type="button" class="btn btn-primary ">
+                    返回
+                </button>
+            </a>
+        </div>
+    </section>
+
+
+    <!--<section class="faq-one faq-one__faq-page">
+        <div>
+
+        </div>&lt;!&ndash; /.container &ndash;&gt;
+    </section>&lt;!&ndash; /.faq-one &ndash;&gt;-->
+
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget footer-widget__about">
+                        <a href="index.html">
+                            <img src="moban5146/assets/images/logo-light.png" width="155" alt="">
+                        </a>
+                        <p>融资性担保系统</p>
+                        <p>金融中介平台系统</p>
+                        <p>银行委贷系统</p>
+                        <div class="footer-widget__about-phone">
+                            <i class="pylon-icon-tech-support"></i>
+                            <div class="footer-widget__about-phone-content">
+                                <span>咨询热线</span>
+                                <h3><a href="tel:92-666-888-0000">92 666 888 0000</a></h3>
+                            </div><!-- /.footer-widget__about-phone-content -->
+                        </div><!-- /.footer-widget__about-phone -->
+                    </div><!-- /.footer-widget footer-widget__about -->
+                </div><!-- /.col-lg-3 -->
+                <div class="col-lg-2 col-md-6">
+                    <div class="footer-widget footer-widget__link">
+                        <h3 class="footer-widget__title">搜索</h3>
+                        <ul class="list-unstyled footer-widget__link-list">
+                            <li><a href="#">关于</a></li>
+                            <li><a href="#">系统产品</a></li>
+                            <li><a href="#">我们的服务</a></li>
+                            <li><a href="#">最新消息</a></li>
+                            <li><a href="#">客户评价</a></li>
+                            <li><a href="#">联系我们</a></li>
+                        </ul><!-- /.list-unstyled -->
+                    </div><!-- /.footer-widget -->
+                </div><!-- /.col-lg-2 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget footer-widget__post">
+                        <h3 class="footer-widget__title">最新消息</h3>
+                        <ul class="list-unstyled footer-widget__post-list">
+                            <li>
+                                <img src="moban5146/assets/images/resources/footer-post-1-1.png" alt="">
+                                <div class="footer-widget__post-list-content">
+                                    <span>2021年10月</span>
+                                    <h3><a href="news-details.html">人工智能客服随时为你服务</a></h3>
+                                </div><!-- /.footer-widget__post-content -->
+                            </li>
+                            <li>
+                                <img src="moban5146/assets/images/resources/footer-post-1-2.png" alt="">
+                                <div class="footer-widget__post-list-content">
+                                    <span>2021年10月</span>
+                                    <h3><a href="news-details.html">我们正在提供优质的服务</a></h3>
+                                </div><!-- /.footer-widget__post-content -->
+                            </li>
+                        </ul><!-- /.list-unstyled -->
+                    </div><!-- /.footer-widget -->
+                </div><!-- /.col-lg-3 -->
+                <div class="col-lg-4 col-md-6">
+                    <div class="footer-widget footer-widget__contact">
+                        <h3>联系我们</h3>
+                        <ul class="list-unstyled footer-widget__contact-list">
+                            <li>
+                                <a href="#"><i class="pylon-icon-email1"></i>puhui_finance@163.com</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="pylon-icon-clock2"></i>工作日 早上8:00 - 下午6:00</a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="pylon-icon-pin1"></i>天津市西青区TBD云集中心4号楼C座307室</a>
+                            </li>
+                        </ul>
+                    </div><!-- /.footer-widget footer-widget__contact -->
+                </div><!-- /.col-lg-4 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </footer><!-- /.site-footer -->
+    <div class="bottom-footer">
+        <div class="container">
+            <p>Pocket &copy; 2021 All Rights Reserved 模拟商业银行普惠金融版权所有</p>
+            <div class="bottom-footer__social">
+                <a href="#" class="fab fa-facebook-square"></a>
+                <a href="#" class="fab fa-twitter"></a>
+                <a href="#" class="fab fa-pinterest-p"></a>
+                <a href="#" class="fab fa-instagram"></a>
+            </div><!-- /.bottom-footer__social -->
+        </div><!-- /.container -->
+    </div><!-- /.bottom-footer -->
+
+</div><!-- /.page-wrapper -->
+
+
+<!-- /.search-popup -->
+<a href="#" data-target="html" class="scroll-to-target scroll-to-top"><i class="fa fa-angle-up"></i></a>
+
+
+<script src="moban5146/assets/js/jquery-3.5.1.min.js"></script>
+<script src="/moban5146/assets/js/bootstrap.bundle.min.js"></script>
+<script src="moban5146/assets/js/swiper.min.js"></script>
+<script src="moban5146/assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="moban5146/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="moban5146/assets/js/jquery.validate.min.js"></script>
+<script src="moban5146/assets/js/bootstrap-select.min.js"></script>
+<script src="moban5146/assets/js/wow.js"></script>
+<script src="moban5146/assets/js/odometer.min.js"></script>
+<script src="moban5146/assets/js/jquery.appear.min.js"></script>
+<script src="moban5146/assets/js/wNumb.min.js"></script>
+<script src="moban5146/assets/js/nouislider.min.js"></script>
+
+<!-- template js -->
+<script src="moban5146/assets/js/theme.js"></script>
+<script src="/js/jquery.easing.min.js"></script>
+<script type="text/javascript">
+
+
+    $(function () {
+        $("#loaId").hide();
+        // 银行列表
+        $.ajax({
+            type: "GET",
+            url: "lma/queryLoans",
+            dataType: "json",
+            success: function (data) {
+                var loaList = data;
+                var bSelect = "<thead><tr><th>贷款编号</th><th>贷款银行</th><th>所得积分</th><th>贷款利率</th><th>贷款时间</th><th>贷款金额</th><th>贷款期限(月)</th><th>操作</th></tr></thead>";
+                for (var i = 0; i < loaList.length; i++) {
+                    bSelect += ("<tr id=" + loaList[i].loaId + ">" +
+                        "<td class='loaIdText' style='display: none'>" + loaList[i].loaId + "</td>" +
+                        "<td>" + loaList[i].loaNo + "</td>" +
+                        "<td>" + loaList[i].loaBank + "</td>" +
+                        "<td>" + loaList[i].loaIntegral + "</td>" +
+                        "<td>" + loaList[i].loaRate + "</td>" +
+                        "<td>" + loaList[i].loaTime + "</td>" +
+                        "<td>￥" + loaList[i].loaMoney + "</td>" +
+                        "<td>" + loaList[i].loaLisId + "</td>" +
+                        // "<td class='lState'>" + loaList[i].loaState + "</td>" +
+                        "<td> <a role='button' onclick='queryLoaId(this)'>审批进度</a></td> " +
+                        "</tr>");
+                    $("#loansTable").empty();
+                    $("#loansTable").append(bSelect);
+                }
+            },
+            error: function (error) {
+                alert("错误信息" + error);
+            }
+        });
+    });
+</script>
+
+
+<script type="text/javascript">
+    function queryLoaId(obj) {
+        // var loaId = $(obj).parents("tr").attr("id");
+        var loaId = $(obj).parents("tr").find(".loaIdText").text();
+        $.ajax({
+            type: "get",
+            url: "lma/loansPlan",
+            data: {loaId: loaId},
+            dataType: "json",
+            success: function (data) {
+                // 刷新页面
+                // window.location.reload();
+
+                if (data == '' || data == null || data[0].loaState == 0) {
+                    shua();
+                    $("#stat1").addClass("active");
+                    $("#stat1Text").html("待平台审批");
+                    // $("#stat1Time").html(data[0].loaTime);
+                    pass();
+                } else if (data[0].loaState == 1) {
+                    shua();
+                    $("#stat3").addClass("active");
+                    // $("#stat1Time").html(data[0].loaTime);
+                    $("#stat2Text").html(data[0].exaRemark);
+                    // $("#stat2Time").html(data[0].exaTime);
+                    // $("#stat1Time").html(data[0].loaTime);
+                    pass();
+                } else if (data[0].loaState == 2) {
+                    shua();
+                    $("#stat2").addClass("active");
+                    $("#stat2Text").html(data[0].exaRemark);
+                    $("#stat2Text").css("color", "red");
+                    // $("#stat2Time").html(data[0].exaTime);
+                    // $("#stat1Time").html(data[0].loaTime);
+                    pass();
+                } else if (data[0].loaState == 3) {
+                    shua();
+                    $("#stat4").addClass("active");
+                    // $("#stat2Time").html(data[0].exaTime);
+                    // $("#stat3Time").html(data[1].exaTime);
+                    $("#stat2Text").html(data[0].exaRemark);
+                    $("#stat3Text").html(data[1].exaRemark);
+                    pass();
+                } else if (data[0].loaState == 4) {
+                    shua();
+                    $("#stat3").addClass("active");
+                    $("#stat3Text").html(data[1].exaRemark);
+                    $("#stat3Text").css("color", "red");
+                    $("#stat2Text").html(data[0].exaRemark);
+                    // $("#stat3Time").html(data[1].exaTime);
+                    // $("#stat2Time").html(data[0].exaTime);
+                    // $("#stat1Time").html(data[0].loaTime);
+                    pass();
+                } else if (data[0].loaState == 5) {
+                    shua();
+                    $("#stat4").addClass("active");
+                    $("#stat2Text").html(data[0].exaRemark);
+                    $("#stat3Text").html(data[1].exaRemark);
+                    // $("#stat2Time").html(data[0].exaTime);
+                    // $("#stat3Time").html(data[1].exaTime);
+                    // $("#stat1Time").html(data[0].loaTime);
+                    pass();
+                } else if (data[0].loaState == 6) {
+                    shua();
+                    $("#stat5").addClass("active");
+                    $("#stat2Text").html(data[0].exaRemark);
+                    $("#stat3Text").html(data[1].exaRemark);
+                    $("#stat5Text").html("待放款");
+                    // $("#stat2Time").html(data[0].exaTime);
+                    // $("#stat3Time").html(data[1].exaTime);
+                    // $("#stat4Time").html(data[1].exaTime);
+                    // $("#stat1Time").html(data[0].loaTime);
+                    pass();
+                } else if (data[0].loaState == 7) {
+                    shua();
+                    $("#stat6").addClass("active");
+                    $("#stat6Text").html("已放款");
+                    $("#stat2Text").html(data[0].exaRemark);
+                    $("#stat3Text").html(data[1].exaRemark);
+                    // $("#stat2Time").html(data[0].exaTime);
+                    // $("#stat3Time").html(data[1].exaTime);
+                    // $("#stat4Time").html(data[1].exaTime);
+                    // $("#stat5Time").html(data[1].exaTime);
+                    // $("#stat1Time").html(data[0].loaTime);
+                    pass();
+                }
+            },
+            error: function (error) {
+                alert(error);
+            }
+            //局部刷新
+            /*,
+            complete: function () {
+                $("#loansTable").load("http://localhost:9090/lma/loansPlan");
+            }*/
+        });
+
+    }
+
+    function pass() {
+        //步骤条
+        if ($(".s-step0").hasClass("active")) {
+            $(".s-step0>b>b,.s-step0>div").addClass("active");
+            // $(".s-step1>em,.s-step2>em,.s-step3>em,.s-step4>em,.s-step5>em").hide();
+        } else if ($(".s-step1").hasClass("active")) {
+            $(".s-step1>b>b,.s-step1>div,.s-step0>b>b,.s-step0>p,.s-step0>div").addClass("active");
+            // $(".s-step2>em,.s-step3>em,.s-step4>em,.s-step5>em").hide();
+        } else if ($(".s-step2").hasClass("active")) {
+            $(".s-step2>b>b,.s-step2>div,.s-step1>p,.s-step1>b>b,.s-step1>div,.s-step0>b>b,.s-step0>p,.s-step0>div").addClass("active");
+            // $(".s-step3>em,.s-step4>em,.s-step5>em").hide();
+        } else if ($(".s-step3").hasClass("active")) {
+            $(".s-step3>b>b,.s-step3>div,.s-step2>p,.s-step2>b>b,.s-step2>div,.s-step1>p,.s-step1>b>b,.s-step1>div,.s-step0>b>b,.s-step0>p,.s-step0>div").addClass("active");
+            // $(".s-step4>em,.s-step5>em").hide();
+        } else if ($(".s-step4").hasClass("active")) {
+            $(".s-step4>b>b,.s-step4>div,.s-step3>p,.s-step3>b>b,.s-step3>div,.s-step2>p,.s-step2>b>b,.s-step2>div,.s-step1>b>b,.s-step1>p,.s-step1>div,.s-step0>b>b,.s-step0>p,.s-step0>div").addClass("active");
+            // $(".s-step5>em").hide();
+        } else {
+            $(".s-step5>b>b,.s-step5>div,.s-step5>b>b,.s-step4>p,.s-step4>b>b,.s-step4>div,.s-step3>p,.s-step3>b>b,.s-step3>div,.s-step2>p,.s-step2>b>b,.s-step2>div,.s-step1>b>b,.s-step1>p,.s-step1>div,.s-step0>b>b,.s-step0>p,.s-step0>div").addClass("active");
+        }
+    }
+
+    function shua() {
+        $("#stat1").removeClass("active");
+        $("#stat2").removeClass("active");
+        $("#stat3").removeClass("active");
+        $("#stat4").removeClass("active");
+        $("#stat5").removeClass("active");
+        $("#stat6").removeClass("active");
+        $("#stat1Text").html("");
+        $("#stat2Text").html("");
+        $("#stat3Text").html("");
+        $("#stat4Text").html("");
+        $("#stat5Text").html("");
+        $("#stat6Text").html("");
+        $("#stat1Time").html("");
+        $("#stat2Time").html("");
+        $("#stat3Time").html("");
+        $("#stat4Time").html("");
+        $("#stat5Time").html("");
+        $("#stat6Time").html("");
+
+        $(".order_status *").removeClass("active");
+    }
+</script>
+</body>
+
+</html>
