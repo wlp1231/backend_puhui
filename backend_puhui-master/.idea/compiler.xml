@@ -16,8 +16,8 @@
         <module name="qst-quartz" />
         <module name="qst-common" />
         <module name="ruoyi-admin" />
-        <module name="qst-generator" />
         <module name="qst-system" />
+        <module name="qst-generator" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8" />

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.CompanyMapper">
+
+    <!--查询所有的企业id-->
+    <select id="selectAllComIds" resultType="int">
+        select com_id from company
+    </select>
+
+
+    <resultMap type="Company" id="CompanyResult">
+        <result property="comId" column="com_id"/>
+        <result property="comNo" column="com_no"/>
+        <result property="comName" column="com_name"/>
+        <result property="comEmail" column="com_email"/>
+        <result property="comPhone" column="com_phone"/>
+        <result property="comPwd" column="com_pwd"/>
+        <result property="comRemark" column="com_remark"/>
+        <result property="comStatus" column="com_status"/>
+        <result property="comDel" column="com_del"/>
+    </resultMap>
+
+    <sql id="selectCompanyVo">
+        select com_id,
+        com_no,
+        com_name,
+        com_email,
+        com_phone,
+        com_pwd,
+        com_remark,
+        com_status,
+        com_del
+        from company
+    </sql>
+
+    <!--查询未实名所有企业-->
+    <select id="selectCompanyName" resultMap="CompanyResult">
+        <include refid="selectCompanyVo"/>
+        where com_status = 3
+    </select>
+
+    <!--查询已实名所有企业-->
+    <select id="selectCompanyNameAutonym" resultMap="CompanyResult">
+        <include refid="selectCompanyVo"/>
+        where com_status in (4,5)
+    </select>
+
+    <!--查询已实名所有企业-->
+    <select id="selectCompanyCount" resultType="int">
+        select count(com_id) from company
+        where com_del = 0
+    </select>
+
+
+
+    <select id="selectCompanyList" parameterType="Company" resultMap="CompanyResult">
+        <include refid="selectCompanyVo"/>
+        <where>
+            com_del = 0
+            <if test="comNo != null  and comNo != ''">and com_no = #{comNo}</if>
+            <if test="comName != null  and comName != ''">and com_name like concat('%', #{comName}, '%')</if>
+            <if test="comEmail != null  and comEmail != ''">and com_email = #{comEmail}</if>
+            <if test="comPhone != null  and comPhone != ''">and com_phone = #{comPhone}</if>
+            <if test="comPwd != null  and comPwd != ''">and com_pwd = #{comPwd}</if>
+            <if test="comRemark != null  and comRemark != ''">and com_remark = #{comRemark}</if>
+            <if test="comStatus != null  and comStatus != ''">and com_status = #{comStatus}</if>
+            <if test="comDel != null  and comDel != ''">and com_del = #{comDel}</if>
+        </where>
+    </select>
+
+    <select id="selectCompanyByComId" parameterType="Long" resultMap="CompanyResult">
+        <include refid="selectCompanyVo"/>
+        where com_id = #{comId}
+    </select>
+
+    <insert id="insertCompany" parameterType="Company" useGeneratedKeys="true" keyProperty="comId">
+        insert into company
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="comNo != null and comNo != ''">com_no,</if>
+            <if test="comName != null">com_name,</if>
+            <if test="comEmail != null">com_email,</if>
+            <if test="comPhone != null">com_phone,</if>
+            <if test="comPwd != null">com_pwd,</if>
+            <if test="comRemark != null">com_remark,</if>
+            <if test="comStatus != null">com_status,</if>
+            <if test="comDel != null">com_del,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="comNo != null and comNo != ''">#{comNo},</if>
+            <if test="comName != null">#{comName},</if>
+            <if test="comEmail != null">#{comEmail},</if>
+            <if test="comPhone != null">#{comPhone},</if>
+            <if test="comPwd != null">#{comPwd},</if>
+            <if test="comRemark != null">#{comRemark},</if>
+            <if test="comStatus != null">#{comStatus},</if>
+            <if test="comDel != null">#{comDel},</if>
+        </trim>
+    </insert>
+
+    <update id="updateCompany" parameterType="Company">
+        update company
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="comNo != null and comNo != ''">com_no = #{comNo},</if>
+            <if test="comName != null">com_name = #{comName},</if>
+            <if test="comEmail != null">com_email = #{comEmail},</if>
+            <if test="comPhone != null">com_phone = #{comPhone},</if>
+            <if test="comPwd != null">com_pwd = #{comPwd},</if>
+            <if test="comRemark != null">com_remark = #{comRemark},</if>
+            <if test="comStatus != null">com_status = #{comStatus},</if>
+            <if test="comDel != null">com_del = #{comDel},</if>
+        </trim>
+        where com_id = #{comId}
+    </update>
+
+    <delete id="updateCompanyStatus" parameterType="String">
+        update company set com_status = 4
+        where com_id = #{coId}
+    </delete>
+
+    <delete id="deleteCompanyByComId" parameterType="Long">
+        delete
+        from company
+        where com_id = #{comId}
+    </delete>
+    <!--逻辑删除-->
+    <update id="deleteCompanyByComIds" parameterType="String">
+        update company set com_del = 2 where com_id in
+        <foreach item="comId" collection="array" open="(" separator="," close=")">
+            #{comId}
+        </foreach>
+    </update>
+</mapper>
