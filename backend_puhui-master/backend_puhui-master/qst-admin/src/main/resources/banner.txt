@@ -1,2 +1,0 @@
-Application Version: ${qst.version}
-Spring Boot Version: ${spring-boot.version}
