@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.AreasMapper">
+    
+    <resultMap type="Areas" id="AreasResult">
+        <result property="id"    column="id"    />
+        <result property="areaid"    column="areaid"    />
+        <result property="area"    column="area"    />
+        <result property="cityid"    column="cityid"    />
+    </resultMap>
+
+    <sql id="selectAreasVo">
+        select id, areaid, area, cityid from areas
+    </sql>
+
+    <select id="selectAreasList" parameterType="Areas" resultMap="AreasResult">
+        <include refid="selectAreasVo"/>
+        <where>  
+            <if test="areaid != null  and areaid != ''"> and areaid = #{areaid}</if>
+            <if test="area != null  and area != ''"> and area = #{area}</if>
+            <if test="cityid != null  and cityid != ''"> and cityid = #{cityid}</if>
+        </where>
+    </select>
+    
+    <select id="selectAreasById" parameterType="Long" resultMap="AreasResult">
+        <include refid="selectAreasVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectAreaById" parameterType="String" resultMap="AreasResult">
+        <include refid="selectAreasVo"/>
+        where areaid = #{cArea}
+    </select>
+
+        
+    <insert id="insertAreas" parameterType="Areas" useGeneratedKeys="true" keyProperty="id">
+        insert into areas
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="areaid != null">areaid,</if>
+            <if test="area != null">area,</if>
+            <if test="cityid != null">cityid,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="areaid != null">#{areaid},</if>
+            <if test="area != null">#{area},</if>
+            <if test="cityid != null">#{cityid},</if>
+         </trim>
+    </insert>
+
+    <update id="updateAreas" parameterType="Areas">
+        update areas
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="areaid != null">areaid = #{areaid},</if>
+            <if test="area != null">area = #{area},</if>
+            <if test="cityid != null">cityid = #{cityid},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteAreasById" parameterType="Long">
+        delete from areas where id = #{id}
+    </delete>
+
+    <delete id="deleteAreasByIds" parameterType="String">
+        delete from areas where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

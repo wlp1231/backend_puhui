@@ -1,0 +1,7 @@
+/.idea/
+/qst-admin/target/
+/qst-common/target/
+/qst-framework/target/
+/qst-generator/target/
+/qst-quartz/target/
+/qst-system/target/
