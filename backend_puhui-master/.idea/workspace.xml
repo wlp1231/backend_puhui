@@ -5,12 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c2a173-33a7-4183-bd84-65f4472affd3" name="Changes" comment="沙箱环境修改登录退出后跳转地址index.html">
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/controller/ExamineController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/domain/Examine.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/mapper/ExamineMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/service/IExamineService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/service/impl/ExamineServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/resources/mapper/system/ExamineMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -193,7 +187,7 @@
       <workItem from="1693019278310" duration="212000" />
       <workItem from="1693019545485" duration="1509000" />
       <workItem from="1693031533543" duration="401000" />
-      <workItem from="1693031961754" duration="642000" />
+      <workItem from="1693031961754" duration="1306000" />
     </task>
     <task id="LOCAL-00001" summary="0124 commit">
       <created>1643100209517</created>
