@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.ExamineMapper">
+
+    <resultMap type="Examine" id="ExamineResult">
+        <result property="exaId" column="exa_id"/>
+        <result property="exaLoaId" column="exa_loa_id"/>
+        <result property="exaName" column="exa_name"/>
+        <result property="exaTime" column="exa_time"/>
+        <result property="exaState" column="exa_state"/>
+        <result property="exaRemark" column="exa_remark"/>
+        <result property="exaDel" column="exa_del"/>
+        <association property="loans" column="exa_loa_id" javaType="Loans" resultMap="LoansResult"/>
+    </resultMap>
+
+    <resultMap type="Loans" id="LoansResult">
+        <result property="loaId" column="loa_id"/>
+        <result property="loaNo" column="loa_no"/>
+        <result property="loaComNo" column="loa_com_no"/>
+        <result property="loaBankId" column="loa_bank_id"/>
+        <result property="loaLisId" column="loa_lis_id"/>
+        <result property="loaUse" column="loa_use"/>
+        <result property="loaIntegral" column="loa_integral"/>
+        <result property="loaRate" column="loa_rate"/>
+        <result property="loaState" column="loa_state"/>
+        <result property="loaTime" column="loa_time"/>
+        <result property="loaMoney" column="loa_money"/>
+        <result property="loaEndTime" column="loa_end_time"/>
+    </resultMap>
+
+    <sql id="selectExamineVo">
+        select exa_id,
+               exa_loa_id,
+               exa_name,
+               exa_time,
+               exa_state,
+               exa_remark,
+               exa_del,
+               loa_no
+        from examine e
+                 LEFT JOIN loans l on e.exa_loa_id = l.loa_id
+    </sql>
+
+    <select id="selectExamineList" parameterType="Examine" resultMap="ExamineResult">
+        <include refid="selectExamineVo"/>
+        <where>
+            and exa_del = 0
+            <if test="loaNo != null and loaNo != ''">and loa_no = #{loaNo}</if>
+            <if test="exaName != null  and exaName != ''">and exa_name like concat('%', #{exaName}, '%')</if>
+            <if test="exaTime != null ">and date(exa_time) = #{exaTime}</if>
+            <if test="exaState != null  and exaState != ''">and exa_state = #{exaState}</if>
+            <if test="exaRemark != null  and exaRemark != ''">and exa_remark like concat('%', #{exaRemark}, '%')</if>
+        </where>
+    </select>
+
+    <select id="selectExamineByExaId" parameterType="Long" resultMap="ExamineResult">
+        <include refid="selectExamineVo"/>
+        where exa_id = #{exaId}
+    </select>
+
+    <select id="selectExamineById" parameterType="Long" resultMap="ExamineResult">
+        <include refid="selectExamineVo"/>
+        where exa_id = #{eId}
+    </select>
+
+    <insert id="insertExamine" parameterType="Examine">
+        insert into examine
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="exaId != null">exa_id,</if>
+            <if test="exaLoaId != null">exa_loa_id,</if>
+            <if test="exaName != null">exa_name,</if>
+            <if test="exaTime != null">exa_time,</if>
+            <if test="exaState != null">exa_state,</if>
+            <if test="exaRemark != null">exa_remark,</if>
+            <if test="exaDel != null">exa_del,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="exaId != null">#{exaId},</if>
+            <if test="exaLoaId != null">#{exaLoaId},</if>
+            <if test="exaName != null">#{exaName},</if>
+            <if test="exaTime != null">#{exaTime},</if>
+            <if test="exaState != null">#{exaState},</if>
+            <if test="exaRemark != null">#{exaRemark},</if>
+            <if test="exaDel != null">#{exaDel},</if>
+        </trim>
+    </insert>
+
+    <update id="updateExamine" parameterType="Examine">
+        update examine
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="exaLoaId != null">exa_loa_id = #{exaLoaId},</if>
+            <if test="exaName != null">exa_name = #{exaName},</if>
+            <if test="exaTime != null">exa_time = #{exaTime},</if>
+            <if test="exaState != null">exa_state = #{exaState},</if>
+            <if test="exaRemark != null">exa_remark = #{exaRemark},</if>
+            <if test="exaDel != null">exa_del = #{exaDel},</if>
+        </trim>
+        where exa_id = #{exaId}
+    </update>
+
+    <delete id="deleteExamineByExaId" parameterType="Long">
+        delete
+        from examine
+        where exa_id = #{exaId}
+    </delete>
+
+    <update id="deleteExamineByExaIds" parameterType="String">
+        update examine set exa_del = 2 where exa_id in
+        <foreach item="exaId" collection="array" open="(" separator="," close=")">
+            #{exaId}
+        </foreach>
+    </update>
+</mapper>
