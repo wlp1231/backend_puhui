@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.BankcardMapper">
+
+    <resultMap type="Bankcard" id="BankcardResult">
+        <result property="id"    column="id"    />
+        <result property="bankname"    column="bankName"    />
+        <result property="bankcardno"    column="bankCardNo"    />
+        <result property="comid"    column="comId"    />
+        <result property="comName"    column="com_name"    />
+    </resultMap>
+
+    <sql id="selectBankcardVo">
+        select id, bankName, bankCardNo, comId, company.com_name from bankcard
+                                                                          left join company on bankcard.comId = company.com_id
+    </sql>
+
+    <select id="selectBankcardList" parameterType="Bankcard" resultMap="BankcardResult">
+        <include refid="selectBankcardVo"/>
+        <where>
+            <if test="bankname != null  and bankname != ''"> and bankName like concat('%', #{bankname}, '%')</if>
+            <if test="bankcardno != null  and bankcardno != ''"> and bankCardNo = #{bankcardno}</if>
+            <if test="comid != null "> and comId = #{comid}</if>
+        </where>
+    </select>
+
+    <select id="selectBankcardById" parameterType="Long" resultMap="BankcardResult">
+        <include refid="selectBankcardVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertBankcard" parameterType="Bankcard" useGeneratedKeys="true" keyProperty="id">
+        insert into bankcard
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bankname != null">bankName,</if>
+            <if test="bankcardno != null">bankCardNo,</if>
+            <if test="comid != null">comId,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bankname != null">#{bankname},</if>
+            <if test="bankcardno != null">#{bankcardno},</if>
+            <if test="comid != null">#{comid},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBankcard" parameterType="Bankcard">
+        update bankcard
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="bankname != null">bankName = #{bankname},</if>
+            <if test="bankcardno != null">bankCardNo = #{bankcardno},</if>
+            <if test="comid != null">comId = #{comid},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBankcardById" parameterType="Long">
+        delete from bankcard where id = #{id}
+    </delete>
+
+    <delete id="deleteBankcardByIds" parameterType="String">
+        delete from bankcard where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
