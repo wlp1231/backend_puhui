@@ -20,8 +20,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Interface" />
         <option value="spring-beans.schema" />
+        <option value="Tag Library Descriptor" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -67,7 +68,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/NPU-PuHui/backend_puhui-master",
+    "last_opened_file_path": "E:/NPU-PuHui",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -195,7 +196,7 @@
       <workItem from="1691993843559" duration="1966000" />
       <workItem from="1692949378342" duration="981000" />
       <workItem from="1693019278310" duration="212000" />
-      <workItem from="1693019545485" duration="64000" />
+      <workItem from="1693019545485" duration="1204000" />
     </task>
     <task id="LOCAL-00001" summary="0124 commit">
       <created>1643100209517</created>
