@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.BankMapper">
+
+    <resultMap type="Bank" id="BankResult">
+        <result property="bankId" column="bank_id"/>
+        <result property="bankName" column="bank_name"/>
+        <result property="bankEmail" column="bank_email"/>
+        <result property="bankPassword" column="bank_password"/>
+        <result property="bankRate" column="bank_rate"/>
+        <result property="bankPhone" column="bank_phone"/>
+        <result property="bankLength" column="bank_length"/>
+        <result property="bankProId" column="bank_pro_id"/>
+        <result property="bankCitId" column="bank_cit_id"/>
+        <result property="bankAraId" column="bank_ara_id"/>
+        <result property="bankAdress" column="bank_adress"/>
+        <result property="bankDel" column="bank_del"/>
+        <association property="provinces" column="bank_pro_id" javaType="Provinces" resultMap="ProvincesResult"/>
+        <association property="cities" column="bank_cit_id" javaType="Cities" resultMap="CitiesResult"/>
+        <association property="areas" column="bank_ara_id" javaType="Areas" resultMap="AreasResult"/>
+    </resultMap>
+
+    <resultMap type="Provinces" id="ProvincesResult">
+        <result property="id" column="id"/>
+        <result property="provinceid" column="provinceid"/>
+        <result property="province" column="province"/>
+    </resultMap>
+
+    <resultMap type="Cities" id="CitiesResult">
+        <result property="id" column="id"/>
+        <result property="cityid" column="cityid"/>
+        <result property="city" column="city"/>
+        <result property="provinceid" column="provinceid"/>
+    </resultMap>
+
+    <resultMap type="Areas" id="AreasResult">
+        <result property="id"    column="id"    />
+        <result property="areaid"    column="areaid"    />
+        <result property="area"    column="area"    />
+        <result property="cityid"    column="cityid"    />
+    </resultMap>
+
+    <sql id="selectBankVo">
+        select bank_id,
+               bank_name,
+               bank_email,
+               bank_password,
+               bank_rate,
+               bank_phone,
+               bank_length,
+               bank_pro_id,
+               bank_cit_id,
+               bank_ara_id,
+               bank_adress,
+               bank_del,
+               province,
+               city,
+               area
+        from bank b LEFT JOIN provinces p on b.bank_pro_id = p.provinceid
+                    LEFT JOIN cities c on b.bank_cit_id = c.cityid
+                    LEFT JOIN areas a on b.bank_ara_id = a.areaid
+    </sql>
+
+    <select id="selectBankList" parameterType="Bank" resultMap="BankResult">
+        <include refid="selectBankVo"/>
+        <where>
+            bank_del = 0
+            <if test="bankName != null  and bankName != ''">and bank_name like concat('%', #{bankName}, '%')</if>
+            <if test="bankEmail != null  and bankEmail != ''">and bank_email like concat('%', #{bankEmail}, '%')</if>
+            <if test="bankRate != null  and bankRate != ''">and bank_rate = #{bankRate}</if>
+            <if test="bankPhone != null  and bankPhone != ''">and bank_phone like concat('%', #{bankPhone}, '%')</if>
+            <if test="bankLength != null  and bankLength != ''">and bank_length = #{bankLength}</if>
+            <if test="bankProId != null  and bankProId != ''">and bank_pro_id = #{bankProId}</if>
+            <if test="bankCitId != null  and bankCitId != ''">and bank_cit_id = #{bankCitId}</if>
+            <if test="bankAraId != null  and bankAraId != ''">and bank_ara_id = #{bankAraId}</if>
+            <if test="bankAdress != null  and bankAdress != ''">and bank_adress like concat('%', #{bankAdress}, '%')
+            </if>
+        </where>
+    </select>
+
+    <select id="selectBankByBankId" parameterType="Long" resultMap="BankResult">
+        <include refid="selectBankVo"/>
+        where bank_id = #{bankId}
+    </select>
+
+    <select id="selectBankNames" resultMap="BankResult">
+        <include refid="selectBankVo"/>
+    </select>
+
+    <insert id="insertBank" parameterType="Bank" useGeneratedKeys="true" keyProperty="bankId">
+        insert into bank
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bankName != null">bank_name,</if>
+            <if test="bankEmail != null">bank_email,</if>
+            <if test="bankPassword != null">bank_password,</if>
+            <if test="bankRate != null">bank_rate,</if>
+            <if test="bankPhone != null">bank_phone,</if>
+            <if test="bankLength != null">bank_length,</if>
+            <if test="bankProId != null">bank_pro_id,</if>
+            <if test="bankCitId != null">bank_cit_id,</if>
+            <if test="bankAraId != null">bank_ara_id,</if>
+            <if test="bankAdress != null">bank_adress,</if>
+            <if test="bankDel != null">bank_del,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bankName != null">#{bankName},</if>
+            <if test="bankEmail != null">#{bankEmail},</if>
+            <if test="bankPassword != null">#{bankPassword},</if>
+            <if test="bankRate != null">#{bankRate},</if>
+            <if test="bankPhone != null">#{bankPhone},</if>
+            <if test="bankLength != null">#{bankLength},</if>
+            <if test="bankProId != null">#{bankProId},</if>
+            <if test="bankCitId != null">#{bankCitId},</if>
+            <if test="bankAraId != null">#{bankAraId},</if>
+            <if test="bankAdress != null">#{bankAdress},</if>
+            <if test="bankDel != null">#{bankDel},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBank" parameterType="Bank">
+        update bank
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="bankName != null">bank_name = #{bankName},</if>
+            <if test="bankEmail != null">bank_email = #{bankEmail},</if>
+            <if test="bankPassword != null">bank_password = #{bankPassword},</if>
+            <if test="bankRate != null">bank_rate = #{bankRate},</if>
+            <if test="bankPhone != null">bank_phone = #{bankPhone},</if>
+            <if test="bankLength != null">bank_length = #{bankLength},</if>
+            <if test="bankProId != null">bank_pro_id = #{bankProId},</if>
+            <if test="bankCitId != null">bank_cit_id = #{bankCitId},</if>
+            <if test="bankAraId != null">bank_ara_id = #{bankAraId},</if>
+            <if test="bankAdress != null">bank_adress = #{bankAdress},</if>
+            <if test="bankDel != null">bank_del = #{bankDel},</if>
+        </trim>
+        where bank_id = #{bankId}
+    </update>
+
+    <delete id="deleteBankByBankId" parameterType="Long">
+        delete
+        from bank
+        where bank_id = #{bankId}
+    </delete>
+
+    <update id="deleteBankByBankIds" parameterType="String">
+        update bank set bank_del = 2 where bank_id in
+        <foreach item="bankId" collection="array" open="(" separator="," close=")">
+            #{bankId}
+        </foreach>
+    </update>
+</mapper>
