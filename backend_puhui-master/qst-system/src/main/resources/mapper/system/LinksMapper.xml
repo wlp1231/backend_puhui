@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.LinksMapper">
+
+    <resultMap type="Links" id="LinksResult">
+        <result property="linkId"    column="link_id"    />
+        <result property="linkName"    column="link_name"    />
+        <result property="linkUrl"    column="link_url"    />
+        <result property="linkState"    column="link_state"    />
+        <result property="linkOrder"    column="link_order"    />
+    </resultMap>
+
+    <sql id="selectLinksVo">
+        select link_id, link_name, link_url, link_state, link_order from links
+    </sql>
+
+    <select id="selectLinksList" parameterType="Links" resultMap="LinksResult">
+        <include refid="selectLinksVo"/>
+        <where>
+            <if test="linkName != null  and linkName != ''"> and link_name like concat('%', #{linkName}, '%')</if>
+            <if test="linkUrl != null  and linkUrl != ''"> and link_url = #{linkUrl}</if>
+            <if test="linkState != null  and linkState != ''"> and link_state = #{linkState}</if>
+            <if test="linkOrder != null "> and link_order = #{linkOrder}</if>
+        </where>
+    </select>
+
+    <select id="selectLinksByLinkId" parameterType="Long" resultMap="LinksResult">
+        <include refid="selectLinksVo"/>
+        where link_id = #{linkId}
+    </select>
+
+    <insert id="insertLinks" parameterType="Links" useGeneratedKeys="true" keyProperty="linkId">
+        insert into links
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="linkName != null">link_name,</if>
+            <if test="linkUrl != null">link_url,</if>
+            <if test="linkState != null">link_state,</if>
+            <if test="linkOrder != null">link_order,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="linkName != null">#{linkName},</if>
+            <if test="linkUrl != null">#{linkUrl},</if>
+            <if test="linkState != null">#{linkState},</if>
+            <if test="linkOrder != null">#{linkOrder},</if>
+        </trim>
+    </insert>
+
+    <update id="updateLinks" parameterType="Links">
+        update links
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="linkName != null">link_name = #{linkName},</if>
+            <if test="linkUrl != null">link_url = #{linkUrl},</if>
+            <if test="linkState != null">link_state = #{linkState},</if>
+            <if test="linkOrder != null">link_order = #{linkOrder},</if>
+        </trim>
+        where link_id = #{linkId}
+    </update>
+
+    <delete id="deleteLinksByLinkId" parameterType="Long">
+        delete from links where link_id = #{linkId}
+    </delete>
+
+    <delete id="deleteLinksByLinkIds" parameterType="String">
+        delete from links where link_id in
+        <foreach item="linkId" collection="array" open="(" separator="," close=")">
+            #{linkId}
+        </foreach>
+    </delete>
+</mapper>

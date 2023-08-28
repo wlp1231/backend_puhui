@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.LevelRewardMapper">
+
+    <resultMap type="LevelReward" id="LevelRewardResult">
+        <result property="rewardId"    column="reward_id"    />
+        <result property="levelDetail"    column="level_detail"    />
+        <result property="rewardDetail"    column="reward_detail"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectLevelRewardVo">
+        select reward_id, level_detail, reward_detail, update_time from level_reward
+    </sql>
+
+    <select id="selectLevelRewardList" parameterType="LevelReward" resultMap="LevelRewardResult">
+        <include refid="selectLevelRewardVo"/>
+        <where>
+            <if test="levelDetail != null  and levelDetail != ''"> and level_detail = #{levelDetail}</if>
+            <if test="rewardDetail != null  and rewardDetail != ''"> and reward_detail = #{rewardDetail}</if>
+        </where>
+    </select>
+
+    <select id="selectLevelRewardByRewardId" parameterType="Long" resultMap="LevelRewardResult">
+        <include refid="selectLevelRewardVo"/>
+        where reward_id = #{rewardId}
+    </select>
+
+    <insert id="insertLevelReward" parameterType="LevelReward" useGeneratedKeys="true" keyProperty="rewardId">
+        insert into level_reward
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="levelDetail != null">level_detail,</if>
+            <if test="rewardDetail != null">reward_detail,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="levelDetail != null">#{levelDetail},</if>
+            <if test="rewardDetail != null">#{rewardDetail},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateLevelReward" parameterType="LevelReward">
+        update level_reward
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="levelDetail != null">level_detail = #{levelDetail},</if>
+            <if test="rewardDetail != null">reward_detail = #{rewardDetail},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where reward_id = #{rewardId}
+    </update>
+
+    <delete id="deleteLevelRewardByRewardId" parameterType="Long">
+        delete from level_reward where reward_id = #{rewardId}
+    </delete>
+
+    <delete id="deleteLevelRewardByRewardIds" parameterType="String">
+        delete from level_reward where reward_id in
+        <foreach item="rewardId" collection="array" open="(" separator="," close=")">
+            #{rewardId}
+        </foreach>
+    </delete>
+</mapper>

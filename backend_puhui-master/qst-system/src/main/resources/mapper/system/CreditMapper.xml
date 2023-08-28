@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.CreditMapper">
+
+    <!--从平台信用列表中，查询出已经有的企业id*-->
+    <select id="selectAllComIds" resultType="int">
+        select com_id from credit
+    </select>
+
+    <resultMap type="Credit" id="CreditResult">
+        <result property="comId"    column="com_id"    />
+        <result property="comName"    column="com_name"    />
+        <result property="scoreNum"    column="score_num"    />
+        <result property="levelDetail"    column="level_detail"    />
+        <result property="loanCount"    column="loan_count"    />
+        <result property="refundCount"    column="refund_count"    />
+        <result property="overdueCount"    column="overdue_count"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="creditState"    column="credit_state"    />
+    </resultMap>
+
+    <sql id="selectCreditVo">
+        select credit.com_id,company.com_name, score_num, level_detail, loan_count, refund_count, overdue_count, update_time, credit_state from credit
+                                                                                                                                                    left join company on credit.com_id = company.com_id
+    </sql>
+
+    <select id="selectCreditList" parameterType="Credit" resultMap="CreditResult">
+        <include refid="selectCreditVo"/>
+        <where>
+            <if test="scoreNum != null "> and score_num = #{scoreNum}</if>
+            <if test="levelDetail != null  and levelDetail != ''"> and level_detail = #{levelDetail}</if>
+            <if test="loanCount != null "> and loan_count = #{loanCount}</if>
+            <if test="refundCount != null "> and refund_count = #{refundCount}</if>
+            <if test="overdueCount != null "> and overdue_count = #{overdueCount}</if>
+            <if test="creditState != null  and creditState != ''"> and credit_state = #{creditState}</if>
+        </where>
+    </select>
+
+    <select id="selectCreditByComId" parameterType="Long" resultMap="CreditResult">
+        <include refid="selectCreditVo"/>
+        where com_id = #{comId}
+    </select>
+
+    <insert id="insertCredit" parameterType="Credit" useGeneratedKeys="true" keyProperty="comId">
+        insert into credit
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="comId != null">com_id,</if>
+            <if test="scoreNum != null">score_num,</if>
+            <if test="levelDetail != null">level_detail,</if>
+            <if test="loanCount != null">loan_count,</if>
+            <if test="refundCount != null">refund_count,</if>
+            <if test="overdueCount != null">overdue_count,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="creditState != null">credit_state,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="comId != null">#{comId},</if>
+            <if test="scoreNum != null">#{scoreNum},</if>
+            <if test="levelDetail != null">#{levelDetail},</if>
+            <if test="loanCount != null">#{loanCount},</if>
+            <if test="refundCount != null">#{refundCount},</if>
+            <if test="overdueCount != null">#{overdueCount},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="creditState != null">#{creditState},</if>
+        </trim>
+    </insert>
+
+    <update id="updateCredit" parameterType="Credit">
+        update credit
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="scoreNum != null">score_num = #{scoreNum},</if>
+            <if test="levelDetail != null">level_detail = #{levelDetail},</if>
+            <if test="loanCount != null">loan_count = #{loanCount},</if>
+            <if test="refundCount != null">refund_count = #{refundCount},</if>
+            <if test="overdueCount != null">overdue_count = #{overdueCount},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="creditState != null">credit_state = #{creditState},</if>
+        </trim>
+        where com_id = #{comId}
+    </update>
+
+    <delete id="deleteCreditByComId" parameterType="Long">
+        delete from credit where com_id = #{comId}
+    </delete>
+
+    <delete id="deleteCreditByComIds" parameterType="String">
+        delete from credit where com_id in
+        <foreach item="comId" collection="array" open="(" separator="," close=")">
+            #{comId}
+        </foreach>
+    </delete>
+</mapper>
