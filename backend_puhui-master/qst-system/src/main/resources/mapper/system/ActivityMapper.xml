@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.ActivityMapper">
+
+    <resultMap type="Activity" id="ActivityResult">
+        <result property="aId"    column="a_id"    />
+        <result property="beginDate"    column="begin_date"    />
+        <result property="endDate"    column="end_date"    />
+        <result property="actTitle"    column="act_title"    />
+        <result property="actDetail"    column="act_detail"    />
+        <result property="actState"    column="act_state"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectActivityVo">
+        select a_id, begin_date, end_date, act_title, act_detail, act_state, update_time from activity
+    </sql>
+
+    <select id="selectActivityList" parameterType="Activity" resultMap="ActivityResult">
+        <include refid="selectActivityVo"/>
+        <where>
+            <if test="beginDate != null "> and begin_date = #{beginDate}</if>
+            <if test="endDate != null "> and end_date = #{endDate}</if>
+            <if test="actTitle != null  and actTitle != ''"> and act_title = #{actTitle}</if>
+            <if test="actDetail != null  and actDetail != ''"> and act_detail = #{actDetail}</if>
+            <if test="actState != null  and actState != ''"> and act_state = #{actState}</if>
+        </where>
+    </select>
+
+    <select id="selectActivityByAId" parameterType="Long" resultMap="ActivityResult">
+        <include refid="selectActivityVo"/>
+        where a_id = #{aId}
+    </select>
+
+    <insert id="insertActivity" parameterType="Activity" useGeneratedKeys="true" keyProperty="aId">
+        insert into activity
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="beginDate != null">begin_date,</if>
+            <if test="endDate != null">end_date,</if>
+            <if test="actTitle != null">act_title,</if>
+            <if test="actDetail != null">act_detail,</if>
+            <if test="actState != null">act_state,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="beginDate != null">#{beginDate},</if>
+            <if test="endDate != null">#{endDate},</if>
+            <if test="actTitle != null">#{actTitle},</if>
+            <if test="actDetail != null">#{actDetail},</if>
+            <if test="actState != null">#{actState},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateActivity" parameterType="Activity">
+        update activity
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="beginDate != null">begin_date = #{beginDate},</if>
+            <if test="endDate != null">end_date = #{endDate},</if>
+            <if test="actTitle != null">act_title = #{actTitle},</if>
+            <if test="actDetail != null">act_detail = #{actDetail},</if>
+            <if test="actState != null">act_state = #{actState},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where a_id = #{aId}
+    </update>
+
+    <delete id="deleteActivityByAId" parameterType="Long">
+        delete from activity where a_id = #{aId}
+    </delete>
+
+    <delete id="deleteActivityByAIds" parameterType="String">
+        delete from activity where a_id in
+        <foreach item="aId" collection="array" open="(" separator="," close=")">
+            #{aId}
+        </foreach>
+    </delete>
+</mapper>
