@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.ShareRuleMapper">
+
+    <resultMap type="ShareRule" id="ShareRuleResult">
+        <result property="sId"    column="s_id"    />
+        <result property="beginNum"    column="begin_num"    />
+        <result property="endNum"    column="end_num"    />
+        <result property="shareReward"    column="share_reward"    />
+    </resultMap>
+
+    <sql id="selectShareRuleVo">
+        select s_id, begin_num, end_num, share_reward from share_rule
+    </sql>
+
+    <select id="selectShareRuleList" parameterType="ShareRule" resultMap="ShareRuleResult">
+        <include refid="selectShareRuleVo"/>
+        <where>
+            <if test="beginNum != null "> and begin_num = #{beginNum}</if>
+            <if test="endNum != null "> and end_num = #{endNum}</if>
+            <if test="shareReward != null  and shareReward != ''"> and share_reward = #{shareReward}</if>
+        </where>
+    </select>
+
+    <select id="selectShareRuleBySId" parameterType="Long" resultMap="ShareRuleResult">
+        <include refid="selectShareRuleVo"/>
+        where s_id = #{sId}
+    </select>
+
+    <insert id="insertShareRule" parameterType="ShareRule" useGeneratedKeys="true" keyProperty="sId">
+        insert into share_rule
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="beginNum != null">begin_num,</if>
+            <if test="endNum != null">end_num,</if>
+            <if test="shareReward != null">share_reward,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="beginNum != null">#{beginNum},</if>
+            <if test="endNum != null">#{endNum},</if>
+            <if test="shareReward != null">#{shareReward},</if>
+        </trim>
+    </insert>
+
+    <update id="updateShareRule" parameterType="ShareRule">
+        update share_rule
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="beginNum != null">begin_num = #{beginNum},</if>
+            <if test="endNum != null">end_num = #{endNum},</if>
+            <if test="shareReward != null">share_reward = #{shareReward},</if>
+        </trim>
+        where s_id = #{sId}
+    </update>
+
+    <delete id="deleteShareRuleBySId" parameterType="Long">
+        delete from share_rule where s_id = #{sId}
+    </delete>
+
+    <delete id="deleteShareRuleBySIds" parameterType="String">
+        delete from share_rule where s_id in
+        <foreach item="sId" collection="array" open="(" separator="," close=")">
+            #{sId}
+        </foreach>
+    </delete>
+</mapper>

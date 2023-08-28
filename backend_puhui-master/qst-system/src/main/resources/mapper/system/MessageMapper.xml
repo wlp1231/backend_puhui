@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.MessageMapper">
+
+    <resultMap type="Message" id="MessageResult">
+        <result property="mId"    column="m_id"    />
+        <result property="comId"    column="com_id"    />
+        <result property="comName"    column="com_name"    />
+        <result property="msgDetail"    column="msg_detail"    />
+        <result property="msgTime"    column="msg_time"    />
+        <result property="respDetail"    column="resp_detail"    />
+        <result property="respTime"    column="resp_time"    />
+        <result property="msgState"    column="msg_state"    />
+    </resultMap>
+
+    <sql id="selectMessageVo">
+        select m_id, message.com_id,company.com_name, msg_detail, msg_time, resp_detail, resp_time, msg_state from message
+                                                                                                                       left join company on message.com_id = company.com_id
+    </sql>
+
+    <select id="selectMessageList" parameterType="Message" resultMap="MessageResult">
+        <include refid="selectMessageVo"/>
+        <where>
+            <if test="comId != null "> and message.com_id = #{comId}</if>
+            <if test="msgDetail != null  and msgDetail != ''"> and msg_detail = #{msgDetail}</if>
+            <if test="msgTime != null "> and msg_time = #{msgTime}</if>
+            <if test="respDetail != null  and respDetail != ''"> and resp_detail = #{respDetail}</if>
+            <if test="respTime != null "> and resp_time = #{respTime}</if>
+            <if test="msgState != null  and msgState != ''"> and msg_state = #{msgState}</if>
+        </where>
+    </select>
+
+    <select id="selectMessageByMId" parameterType="Long" resultMap="MessageResult">
+        <include refid="selectMessageVo"/>
+        where m_id = #{mId}
+    </select>
+
+    <insert id="insertMessage" parameterType="Message" useGeneratedKeys="true" keyProperty="mId">
+        insert into message
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="comId != null">com_id,</if>
+            <if test="msgDetail != null">msg_detail,</if>
+            <if test="msgTime != null">msg_time,</if>
+            <if test="respDetail != null">resp_detail,</if>
+            <if test="respTime != null">resp_time,</if>
+            <if test="msgState != null">msg_state,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="comId != null">#{comId},</if>
+            <if test="msgDetail != null">#{msgDetail},</if>
+            <if test="msgTime != null">#{msgTime},</if>
+            <if test="respDetail != null">#{respDetail},</if>
+            <if test="respTime != null">#{respTime},</if>
+            <if test="msgState != null">#{msgState},</if>
+        </trim>
+    </insert>
+
+    <update id="updateMessage" parameterType="Message">
+        update message
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="comId != null">com_id = #{comId},</if>
+            <if test="msgDetail != null">msg_detail = #{msgDetail},</if>
+            <if test="msgTime != null">msg_time = #{msgTime},</if>
+            <if test="respDetail != null">resp_detail = #{respDetail},</if>
+            <if test="respTime != null">resp_time = #{respTime},</if>
+            <if test="msgState != null">msg_state = #{msgState},</if>
+        </trim>
+        where m_id = #{mId}
+    </update>
+
+    <delete id="deleteMessageByMId" parameterType="Long">
+        delete from message where m_id = #{mId}
+    </delete>
+
+    <delete id="deleteMessageByMIds" parameterType="String">
+        delete from message where m_id in
+        <foreach item="mId" collection="array" open="(" separator="," close=")">
+            #{mId}
+        </foreach>
+    </delete>
+</mapper>

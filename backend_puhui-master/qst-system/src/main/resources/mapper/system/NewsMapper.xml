@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.NewsMapper">
+
+    <resultMap type="News" id="NewsResult">
+        <result property="nId"    column="n_id"    />
+        <result property="newsTitle"    column="news_title"    />
+        <result property="newsDetail"    column="news_detail"    />
+        <result property="newsState"    column="news_state"    />
+        <result property="newsType"    column="news_type"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectNewsVo">
+        select n_id, news_title, news_detail, news_state, news_type, update_time from news
+    </sql>
+
+    <select id="selectNewsList" parameterType="News" resultMap="NewsResult">
+        <include refid="selectNewsVo"/>
+        <where>
+            <if test="newsTitle != null  and newsTitle != ''"> and news_title = #{newsTitle}</if>
+            <if test="newsDetail != null  and newsDetail != ''"> and news_detail = #{newsDetail}</if>
+            <if test="newsState != null  and newsState != ''"> and news_state = #{newsState}</if>
+            <if test="newsType != null  and newsType != ''"> and news_type = #{newsType}</if>
+        </where>
+    </select>
+
+    <select id="selectNewsByNId" parameterType="Long" resultMap="NewsResult">
+        <include refid="selectNewsVo"/>
+        where n_id = #{nId}
+    </select>
+
+    <insert id="insertNews" parameterType="News" useGeneratedKeys="true" keyProperty="nId">
+        insert into news
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="newsTitle != null">news_title,</if>
+            <if test="newsDetail != null">news_detail,</if>
+            <if test="newsState != null">news_state,</if>
+            <if test="newsType != null">news_type,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="newsTitle != null">#{newsTitle},</if>
+            <if test="newsDetail != null">#{newsDetail},</if>
+            <if test="newsState != null">#{newsState},</if>
+            <if test="newsType != null">#{newsType},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateNews" parameterType="News">
+        update news
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="newsTitle != null">news_title = #{newsTitle},</if>
+            <if test="newsDetail != null">news_detail = #{newsDetail},</if>
+            <if test="newsState != null">news_state = #{newsState},</if>
+            <if test="newsType != null">news_type = #{newsType},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where n_id = #{nId}
+    </update>
+
+    <delete id="deleteNewsByNId" parameterType="Long">
+        delete from news where n_id = #{nId}
+    </delete>
+
+    <delete id="deleteNewsByNIds" parameterType="String">
+        delete from news where n_id in
+        <foreach item="nId" collection="array" open="(" separator="," close=")">
+            #{nId}
+        </foreach>
+    </delete>
+</mapper>
