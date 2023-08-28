@@ -157,7 +157,7 @@
                   <el-input v-model="form.cIntegral" placeholder="请输入企业积分" />
                 </el-form-item>-->
         <el-form-item label="企业名称" prop="coId">
-           <!--  新增为 下拉列表 可选择状态为3 的企业, 修改时 采用文本框 显示 不可编辑         -->
+          <!--  新增为 下拉列表 可选择状态为3 的企业, 修改时 采用文本框 显示 不可编辑         -->
           <el-select v-model="form.coId" placeholder="请选企业" v-if="flag">
             <el-option
               v-for="item in companyName"
@@ -198,9 +198,9 @@
         <el-form-item label="法人证件号" prop="cLegalId">
           <el-input v-model="form.cLegalId" placeholder="请输入法人证件号"/>
         </el-form-item>
-<!--        <el-form-item label="法人证件(正反面)" prop="cLegalImg">
-          <imageUpload v-model="form.cLegalImg"/>
-        </el-form-item>-->
+        <!--        <el-form-item label="法人证件(正反面)" prop="cLegalImg">
+                  <imageUpload v-model="form.cLegalImg"/>
+                </el-form-item>-->
         <el-form-item label="有效期限" prop="cLegalTime">
           <el-date-picker
             clearable size="small"
@@ -272,11 +272,11 @@ export default {
       // 企业详情表格数据
       detailsList: [],
       // 省份数据  --- 这种方式没有 从数据库中读取数据
-     // options: provinceAndCityData,
+      // options: provinceAndCityData,
       // 身份数据 -- 从数据库读取
       options: [],
       // json省市区
-    //  provinceAndCity,
+      //  provinceAndCity,
       // 组件省市
       selectOptions: [],
       // 弹出层标题
@@ -327,7 +327,7 @@ export default {
         cCity: [{required: true, message: "企业注册市不能为空", trigger: "blur"}],
         cAddress: [{required: true, message: "企业详细地址不能为空", trigger: "blur"}],
         cBusSco: [{required: true, message: "企业经营范围不能为空", trigger: "blur"}]
-      //  coId: [{required: true, message: "企业名称不能为空", trigger: "blur"}],
+        //  coId: [{required: true, message: "企业名称不能为空", trigger: "blur"}],
       }
     };
   },
@@ -423,7 +423,7 @@ export default {
     // 获得省列表
     getPro() {
       getPros().then(response => {
-      // this.options=[];
+        // this.options=[];
         response.provincs.forEach((item)=>{
           let obj = {"value":item.provinceid,"label":item.province,"children":[]};
           item.citiesList.forEach((c)=>{
@@ -448,7 +448,7 @@ export default {
         this.flag=false; // 设置为修改
 
         //alert(response.data.cPro+"----"+response.data.cCity);
-      this.selectOptions=[response.data.cPro,response.data.cCity];
+        this.selectOptions=[response.data.cPro,response.data.cCity];
 
 
       });
@@ -513,4 +513,3 @@ export default {
   }
 };
 </script>
-

@@ -187,7 +187,33 @@ export const constantRoutes = [
 
     component: (resolve) => require(['@/views/system/company/index'], resolve),
 
-    hidden: true},
+    hidden: true
+  },
+  {
+
+    path: '/details',
+
+    component: Layout,
+
+    hidden: true,
+
+    children: [
+
+      {
+
+        path: 'companyDetails/:cId(\\d+)',
+
+        component: (resolve) => require(['@/views/system/details/companyDetails'], resolve),
+
+        name: 'company',
+
+        meta: { title: '查看详情', activeMenu: '/system/details'}
+
+      }
+
+    ]
+
+  },
   {
     path: '/loans',
     component: Layout,

@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c2a173-33a7-4183-bd84-65f4472affd3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qst-ui/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/qst-ui/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -440,7 +440,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693205926503</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="4.1">
+      <option name="closed" value="true" />
+      <created>1693207452953</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1693207452953</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -494,7 +502,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="后台菜单左上角改为后台管理系统" />
     <MESSAGE value="完成用户积分管理" />
     <MESSAGE value="完成等级设置" />
     <MESSAGE value="完成用户等级设置" />
@@ -519,7 +526,8 @@
     <MESSAGE value="沙箱环境修改redis密码端口" />
     <MESSAGE value="沙箱环境修改登录退出后跳转地址index.html" />
     <MESSAGE value="3.6" />
-    <option name="LAST_COMMIT_MESSAGE" value="3.6" />
+    <MESSAGE value="4.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.1" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

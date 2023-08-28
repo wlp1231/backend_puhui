@@ -2,13 +2,13 @@
   <div class="app-container">
     <h4 class="form-header h4">基本信息</h4>
     <div class="dashboard-editor-container">
-        <h3 class="comName">
-          企业名称：{{ companies['company']['comName']}}
-        </h3>
-        <h4 class="comName">
-          企业积分：{{ companies.cIntegral}}
-        </h4>
-<!--        <img class="user-avatar" :src="'/dev-api'+companies.cLicense" @click="handleChangeImg($event)" />-->
+      <h3 class="comName">
+        企业名称：{{ companies['company']['comName']}}
+      </h3>
+      <h4 class="comName">
+        企业积分：{{ companies.cIntegral}}
+      </h4>
+      <!--        <img class="user-avatar" :src="'/dev-api'+companies.cLicense" @click="handleChangeImg($event)" />-->
 
       <el-row>
 
