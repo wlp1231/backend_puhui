@@ -20,7 +20,7 @@ public class Overdue extends BaseEntity
 {
     private static final long serialVersionUID = 1L;
 
-    /** id */
+    /** id  */
     @ApiModelProperty("主键")
     private Long oveId;
 
