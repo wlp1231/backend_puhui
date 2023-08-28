@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.AptitudeMapper">
+
+    <resultMap type="Aptitude" id="AptitudeResult">
+        <result property="aptId"    column="apt_id"    />
+        <result property="comId"    column="com_id"    />
+        <result property="comName" column="com_name"  />
+        <result property="aptLoaId"    column="apt_loa_id"    />
+        <result property="aptCredit"    column="apt_credit"    />
+        <result property="aptPawn"    column="apt_pawn"    />
+        <result property="aptLoansRecord"    column="apt_loans_record"    />
+        <result property="aptComValue"    column="apt_com_value"    />
+        <result property="aptDel"    column="apt_del"    />
+    </resultMap>
+
+    <sql id="selectAptitudeVo">
+        <!--select apt_id, com_id, apt_loa_id, apt_credit, apt_pawn, apt_loans_record, apt_com_value, apt_del from aptitude-->
+        SELECT apt_id, a.com_id, apt_loa_id, apt_credit, apt_pawn, apt_loans_record, apt_com_value, apt_del,com_name FROM aptitude a INNER JOIN company c
+        ON a.`com_id`=c.`com_id`
+    </sql>
+
+    <select id="selectAptitudeList" parameterType="Aptitude" resultMap="AptitudeResult">
+        <include refid="selectAptitudeVo"/>
+        <where>
+            and apt_del = 0
+            <if test="comId != null "> and a.com_id = #{comId}</if>
+            <if test="aptLoaId != null "> and apt_loa_id = #{aptLoaId}</if>
+            <if test="aptCredit != null  and aptCredit != ''"> and apt_credit = #{aptCredit}</if>
+            <if test="aptPawn != null  and aptPawn != ''"> and apt_pawn = #{aptPawn}</if>
+            <if test="aptLoansRecord != null  and aptLoansRecord != ''"> and apt_loans_record = #{aptLoansRecord}</if>
+            <if test="aptComValue != null  and aptComValue != ''"> and apt_com_value = #{aptComValue}</if>
+            <if test="aptDel != null  and aptDel != ''"> and apt_del = #{aptDel}</if>
+        </where>
+        order by apt_id desc
+    </select>
+
+    <select id="selectAptitudeByAptId" parameterType="Long" resultMap="AptitudeResult">
+        <include refid="selectAptitudeVo"/>
+        where apt_id = #{aptId}
+    </select>
+
+
+    <select id="selectAptitudeById" parameterType="Long" resultMap="AptitudeResult">
+        <include refid="selectAptitudeVo"/>
+        where apt_loa_id = #{eId}
+    </select>
+
+    <insert id="insertAptitude" parameterType="Aptitude" useGeneratedKeys="true" keyProperty="aptId">
+        insert into aptitude
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="comId != null">com_id,</if>
+            <if test="aptLoaId != null">apt_loa_id,</if>
+            <if test="aptCredit != null">apt_credit,</if>
+            <if test="aptPawn != null">apt_pawn,</if>
+            <if test="aptLoansRecord != null">apt_loans_record,</if>
+            <if test="aptComValue != null">apt_com_value,</if>
+            <if test="aptDel != null">apt_del,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="comId != null">#{comId},</if>
+            <if test="aptLoaId != null">#{aptLoaId},</if>
+            <if test="aptCredit != null">#{aptCredit},</if>
+            <if test="aptPawn != null">#{aptPawn},</if>
+            <if test="aptLoansRecord != null">#{aptLoansRecord},</if>
+            <if test="aptComValue != null">#{aptComValue},</if>
+            <if test="aptDel != null">#{aptDel},</if>
+        </trim>
+    </insert>
+
+    <update id="updateAptitude" parameterType="Aptitude">
+        update aptitude
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="comId != null">com_id = #{comId},</if>
+            <if test="aptLoaId != null">apt_loa_id = #{aptLoaId},</if>
+            <if test="aptCredit != null">apt_credit = #{aptCredit},</if>
+            <if test="aptPawn != null">apt_pawn = #{aptPawn},</if>
+            <if test="aptLoansRecord != null">apt_loans_record = #{aptLoansRecord},</if>
+            <if test="aptComValue != null">apt_com_value = #{aptComValue},</if>
+            <if test="aptDel != null">apt_del = #{aptDel},</if>
+        </trim>
+        where apt_id = #{aptId}
+    </update>
+
+    <delete id="deleteAptitudeByAptId" parameterType="Long">
+        delete from aptitude where apt_id = #{aptId}
+    </delete>
+
+    <update id="deleteAptitudeByAptIds" parameterType="String">
+        update aptitude set apt_del = 2 where apt_id in
+        <foreach item="aptId" collection="array" open="(" separator="," close=")">
+            #{aptId}
+        </foreach>
+    </update>
+</mapper>

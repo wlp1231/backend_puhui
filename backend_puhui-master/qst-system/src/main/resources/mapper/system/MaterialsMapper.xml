@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.MaterialsMapper">
+
+    <resultMap type="Materials" id="MaterialsResult">
+        <result property="lisId" column="lis_id"/>
+        <result property="lisComId" column="lis_com_id"/>
+        <result property="lisLoaId" column="lis_loa_id"/>
+        <result property="lisIdCard" column="lis_id_card"/>
+        <result property="lisSixRunWater" column="lis_six_run_water"/>
+        <result property="lisWork" column="lis_work"/>
+        <result property="lisReport" column="lis_report"/>
+        <result property="lisPawn" column="lis_pawn"/>
+        <result property="lisDel" column="lis_del"/>
+        <association property="company" column="lis_com_id" javaType="Company" resultMap="CompanyResult"/>
+    </resultMap>
+
+    <resultMap type="Company" id="CompanyResult">
+        <result property="comId" column="com_id"/>
+        <result property="comNo" column="com_no"/>
+        <result property="comName" column="com_name"/>
+        <result property="comEmail" column="com_email"/>
+        <result property="comPhone" column="com_phone"/>
+        <result property="comPwd" column="com_pwd"/>
+        <result property="comRemark" column="com_remark"/>
+        <result property="comStatus" column="com_status"/>
+    </resultMap>
+
+    <sql id="selectMaterialsVo">
+        select lis_id,
+               lis_com_id,
+               lis_loa_id,
+               lis_id_card,
+               lis_six_run_water,
+               lis_work,
+               lis_report,
+               lis_pawn,
+               lis_del,
+               com_name
+        from materials m
+                 LEFT JOIN company c on m.`lis_com_id` = c.com_id
+    </sql>
+
+    <select id="selectMaterialsList" parameterType="Materials" resultMap="MaterialsResult">
+        <include refid="selectMaterialsVo"/>
+        <where>
+            and lis_del = 0
+            <if test="lisComId != null ">and lis_com_id = #{lisComId}</if>
+            <if test="lisLoaId != null ">and lis_loa_id = #{lisLoaId}</if>
+        </where>
+        order by lis_id desc
+    </select>
+
+    <select id="selectMaterialsByLisId" parameterType="Long" resultMap="MaterialsResult">
+        <include refid="selectMaterialsVo"/>
+        where lis_id = #{lisId}
+    </select>
+
+    <select id="selectMaterialsById" parameterType="Long" resultMap="MaterialsResult">
+        <include refid="selectMaterialsVo"/>
+        where lis_loa_id = #{eId}
+    </select>
+
+
+    <insert id="insertMaterials" parameterType="Materials" useGeneratedKeys="true" keyProperty="lisId">
+        insert into materials
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="lisComId != null">lis_com_id,</if>
+            <if test="lisLoaId != null">lis_loa_id,</if>
+            <if test="lisIdCard != null">lis_id_card,</if>
+            <if test="lisSixRunWater != null">lis_six_run_water,</if>
+            <if test="lisWork != null">lis_work,</if>
+            <if test="lisReport != null">lis_report,</if>
+            <if test="lisPawn != null">lis_pawn,</if>
+            <if test="lisDel != null">lis_del,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="lisComId != null">#{lisComId},</if>
+            <if test="lisLoaId != null">#{lisLoaId},</if>
+            <if test="lisIdCard != null">#{lisIdCard},</if>
+            <if test="lisSixRunWater != null">#{lisSixRunWater},</if>
+            <if test="lisWork != null">#{lisWork},</if>
+            <if test="lisReport != null">#{lisReport},</if>
+            <if test="lisPawn != null">#{lisPawn},</if>
+            <if test="lisDel != null">#{lisDel},</if>
+        </trim>
+    </insert>
+
+    <update id="updateMaterials" parameterType="Materials">
+        update materials
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="lisComId != null">lis_com_id = #{lisComId},</if>
+            <if test="lisLoaId != null">lis_loa_id = #{lisLoaId},</if>
+            <if test="lisIdCard != null">lis_id_card = #{lisIdCard},</if>
+            <if test="lisSixRunWater != null">lis_six_run_water = #{lisSixRunWater},</if>
+            <if test="lisWork != null">lis_work = #{lisWork},</if>
+            <if test="lisReport != null">lis_report = #{lisReport},</if>
+            <if test="lisPawn != null">lis_pawn = #{lisPawn},</if>
+            <if test="lisDel != null">lis_del = #{lisDel},</if>
+        </trim>
+        where lis_id = #{lisId}
+    </update>
+
+    <delete id="deleteMaterialsByLisId" parameterType="Long">
+        delete
+        from materials
+        where lis_id = #{lisId}
+    </delete>
+
+    <update id="deleteMaterialsByLisIds" parameterType="String">
+        update materials set lis_del = 2 where lis_id in
+        <foreach item="lisId" collection="array" open="(" separator="," close=")">
+            #{lisId}
+        </foreach>
+    </update>
+</mapper>

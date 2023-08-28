@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.RiskMapper">
+
+    <resultMap type="Risk" id="RiskResult">
+        <result property="riskId"    column="risk_id"    />
+        <result property="loaNo"    column="loa_no"    />
+        <result property="comName"    column="com_name"    />
+        <result property="loaMoney"    column="loa_money"    />
+        <result property="loaLisId"    column="loa_lis_id"    />
+        <result property="aptPrice"    column="apt_price"    />
+        <result property="monthAccountMin"    column="month_account_min"    />
+        <result property="grossLiabilities"    column="gross_liabilities"    />
+        <result property="creditLine"    column="credit_line"    />
+        <result property="riskDel"    column="risk_del"    />
+        <result property="creInvesState"    column="creInves_state"    />
+    </resultMap>
+
+    <sql id="selectRiskVo">
+        select risk_id, loa_no, com_name, loa_money, loa_lis_id, apt_price, month_account_min, gross_liabilities, credit_line, risk_del,creInves_state from risk
+    </sql>
+
+    <select id="selectRiskList" parameterType="Risk" resultMap="RiskResult">
+        <include refid="selectRiskVo"/>
+        <where>
+            risk_del = 0
+            <if test="loaNo != null  and loaNo != ''"> and loa_no like concat('%', #{loaNo}, '%')</if>
+            <if test="comName != null  and comName != ''"> and com_name like concat('%', #{comName}, '%')</if>
+            <if test="loaMoney != null "> and loa_money = #{loaMoney}</if>
+            <if test="loaLisId != null "> and loa_lis_id = #{loaLisId}</if>
+            <if test="aptPrice != null  and aptPrice != ''"> and apt_price = #{aptPrice}</if>
+            <if test="monthAccountMin != null "> and month_account_min = #{monthAccountMin}</if>
+            <if test="grossLiabilities != null  and grossLiabilities != ''"> and gross_liabilities = #{grossLiabilities}</if>
+            <if test="creditLine != null  and creditLine != ''"> and credit_line = #{creditLine}</if>
+            <if test="riskDel != null  and riskDel != ''"> and risk_del = #{riskDel}</if>
+            <if test="creInvesState != null  and creInvesState != ''"> and creInves_state = #{creInvesState}</if>
+        </where>
+    </select>
+
+    <select id="selectRiskByRiskId" parameterType="Long" resultMap="RiskResult">
+        <include refid="selectRiskVo"/>
+        where risk_id = #{riskId}
+    </select>
+
+    <insert id="insertRisk" parameterType="Risk" useGeneratedKeys="true" keyProperty="riskId">
+        insert into risk
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="loaNo != null">loa_no,</if>
+            <if test="comName != null">com_name,</if>
+            <if test="loaMoney != null">loa_money,</if>
+            <if test="loaLisId != null">loa_lis_id,</if>
+            <if test="aptPrice != null">apt_price,</if>
+            <if test="monthAccountMin != null">month_account_min,</if>
+            <if test="grossLiabilities != null">gross_liabilities,</if>
+            <if test="creditLine != null">credit_line,</if>
+            <if test="riskDel != null">risk_del,</if>
+            <if test="creInvesState != null">creInves_state</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="loaNo != null">#{loaNo},</if>
+            <if test="comName != null">#{comName},</if>
+            <if test="loaMoney != null">#{loaMoney},</if>
+            <if test="loaLisId != null">#{loaLisId},</if>
+            <if test="aptPrice != null">#{aptPrice},</if>
+            <if test="monthAccountMin != null">#{monthAccountMin},</if>
+            <if test="grossLiabilities != null">#{grossLiabilities},</if>
+            <if test="creditLine != null">#{creditLine},</if>
+            <if test="riskDel != null">#{riskDel},</if>
+            <if test="creInvesState != null">#{creInvesState},</if>
+        </trim>
+    </insert>
+
+    <update id="updateRisk" parameterType="Risk">
+        update risk
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="loaNo != null">loa_no = #{loaNo},</if>
+            <if test="comName != null">com_name = #{comName},</if>
+            <if test="loaMoney != null">loa_money = #{loaMoney},</if>
+            <if test="loaLisId != null">loa_lis_id = #{loaLisId},</if>
+            <if test="aptPrice != null">apt_price = #{aptPrice},</if>
+            <if test="monthAccountMin != null">month_account_min = #{monthAccountMin},</if>
+            <if test="grossLiabilities != null">gross_liabilities = #{grossLiabilities},</if>
+            <if test="creditLine != null">credit_line = #{creditLine},</if>
+            <if test="riskDel != null">risk_del = #{riskDel},</if>
+            <if test="creInvesState != null">creInves_state = #{creInvesState}</if>
+        </trim>
+        where risk_id = #{riskId}
+    </update>
+
+    <delete id="deleteRiskByRiskId" parameterType="Long">
+        delete from risk where risk_id = #{riskId}
+    </delete>
+
+    <update id="deleteRiskByRiskIds" parameterType="String">
+        update risk set risk_del = 2 where risk_id in
+        <foreach item="riskId" collection="array" open="(" separator="," close=")">
+            #{riskId}
+        </foreach>
+    </update>
+
+</mapper>

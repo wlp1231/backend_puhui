@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.IdcardMapper">
+
+    <resultMap type="Idcard" id="IdcardResult">
+        <result property="id"    column="id"    />
+        <result property="username"    column="username"    />
+        <result property="idcard"    column="idcard"    />
+        <result property="address"    column="address"    />
+        <result property="birthday"    column="birthday"    />
+        <result property="gender"    column="gender"    />
+        <result property="nation"    column="nation"    />
+        <result property="comid"    column="comId"    />
+        <result property="comName"    column="com_name"    />
+    </resultMap>
+
+    <sql id="selectIdcardVo">
+        select id, username, idcard, address, birthday, gender, nation, comId,company.com_name from idcard
+                                                                                                        left join company on idcard.comId = company.com_id
+    </sql>
+
+    <select id="selectIdcardList" parameterType="Idcard" resultMap="IdcardResult">
+        <include refid="selectIdcardVo"/>
+        <where>
+            <if test="username != null  and username != ''"> and username like concat('%', #{username}, '%')</if>
+            <if test="idcard != null  and idcard != ''"> and idcard = #{idcard}</if>
+            <if test="comid != null "> and comId = #{comid}</if>
+        </where>
+    </select>
+
+    <select id="selectIdcardById" parameterType="Long" resultMap="IdcardResult">
+        <include refid="selectIdcardVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertIdcard" parameterType="Idcard" useGeneratedKeys="true" keyProperty="id">
+        insert into idcard
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username != null">username,</if>
+            <if test="idcard != null">idcard,</if>
+            <if test="address != null">address,</if>
+            <if test="birthday != null">birthday,</if>
+            <if test="gender != null">gender,</if>
+            <if test="nation != null">nation,</if>
+            <if test="comid != null">comId,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="username != null">#{username},</if>
+            <if test="idcard != null">#{idcard},</if>
+            <if test="address != null">#{address},</if>
+            <if test="birthday != null">#{birthday},</if>
+            <if test="gender != null">#{gender},</if>
+            <if test="nation != null">#{nation},</if>
+            <if test="comid != null">#{comid},</if>
+        </trim>
+    </insert>
+
+    <update id="updateIdcard" parameterType="Idcard">
+        update idcard
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="username != null">username = #{username},</if>
+            <if test="idcard != null">idcard = #{idcard},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="birthday != null">birthday = #{birthday},</if>
+            <if test="gender != null">gender = #{gender},</if>
+            <if test="nation != null">nation = #{nation},</if>
+            <if test="comid != null">comId = #{comid},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteIdcardById" parameterType="Long">
+        delete from idcard where id = #{id}
+    </delete>
+
+    <delete id="deleteIdcardByIds" parameterType="String">
+        delete from idcard where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

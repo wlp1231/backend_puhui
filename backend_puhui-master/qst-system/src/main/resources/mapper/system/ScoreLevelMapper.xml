@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.ScoreLevelMapper">
+
+    <resultMap type="ScoreLevel" id="ScoreLevelResult">
+        <result property="scoreId"    column="score_id"    />
+        <result property="comId"    column="com_id"    />
+        <result property="comName"    column="com_name"    />
+        <result property="scoreNum"    column="score_num"    />
+        <result property="levelDetail"    column="level_detail"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectScoreLevelVo">
+        select score_id,score.com_id,com_name,score_num,level_detail,update_time from score
+                                                                                          LEFT JOIN level on score_num BETWEEN score_start and score_end
+                                                                                          LEFT JOIN company on score.com_id=company.com_id
+    </sql>
+
+    <select id="selectScoreLevelList" parameterType="ScoreLevel" resultMap="ScoreLevelResult">
+        <include refid="selectScoreLevelVo"/>
+        <where>
+            <if test="comId != null "> and score.com_id = #{comId}</if>
+            <if test="levelDetail != null  and levelDetail != ''"> and level_detail = #{levelDetail}</if>
+        </where>
+    </select>
+
+    <select id="selectScoreLevelByScoreId" parameterType="Long" resultMap="ScoreLevelResult">
+        <include refid="selectScoreLevelVo"/>
+        where score_id = #{scoreId}
+    </select>
+
+    <select id="selectScoreLevelByComId" parameterType="Long" resultMap="ScoreLevelResult">
+        <include refid="selectScoreLevelVo"/>
+        where score.com_id = #{comId}
+    </select>
+
+    <insert id="insertScoreLevel" parameterType="ScoreLevel" useGeneratedKeys="true" keyProperty="scoreId">
+        insert into score_level
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="comId != null">com_id,</if>
+            <if test="scoreNum != null">score_num,</if>
+            <if test="levelDetail != null">level_detail,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="comId != null">#{comId},</if>
+            <if test="scoreNum != null">#{scoreNum},</if>
+            <if test="levelDetail != null">#{levelDetail},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateScoreLevel" parameterType="ScoreLevel">
+        update score_level
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="comId != null">com_id = #{comId},</if>
+            <if test="scoreNum != null">score_num = #{scoreNum},</if>
+            <if test="levelDetail != null">level_detail = #{levelDetail},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where score_id = #{scoreId}
+    </update>
+
+    <delete id="deleteScoreLevelByScoreId" parameterType="Long">
+        delete from score_level where score_id = #{scoreId}
+    </delete>
+
+    <delete id="deleteScoreLevelByScoreIds" parameterType="String">
+        delete from score_level where score_id in
+        <foreach item="scoreId" collection="array" open="(" separator="," close=")">
+            #{scoreId}
+        </foreach>
+    </delete>
+</mapper>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.ScoreMapper">
+
+    <resultMap type="Score" id="ScoreResult">
+        <result property="scoreId"    column="score_id"    />
+        <result property="comId"    column="com_id"    />
+        <result property="comName"    column="com_name"    />
+        <result property="scoreNum"    column="score_num"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateDetail"    column="update_detail"    />
+    </resultMap>
+
+    <sql id="selectScoreVo">
+        select score_id, score.com_id,company.com_name, score_num, update_time, update_detail from score
+                                                                                                       left join company on score.com_id = company.com_id
+    </sql>
+
+    <select id="selectScoreList" parameterType="Score" resultMap="ScoreResult">
+        <include refid="selectScoreVo"/>
+        <where>
+            <if test="comId != null "> and score.com_id = #{comId}</if>
+            <if test="scoreNum != null "> and score_num = #{scoreNum}</if>
+            <if test="updateTime != null "> and update_time = #{updateTime}</if>
+            <if test="updateDetail != null  and updateDetail != ''"> and update_detail = #{updateDetail}</if>
+        </where>
+    </select>
+
+    <select id="selectScoreByScoreId" parameterType="Long" resultMap="ScoreResult">
+        <include refid="selectScoreVo"/>
+        where score_id = #{scoreId}
+    </select>
+
+    <insert id="insertScore" parameterType="Score" useGeneratedKeys="true" keyProperty="scoreId">
+        insert into score
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="comId != null">com_id,</if>
+            <if test="scoreNum != null">score_num,</if>
+            update_time,
+            <if test="updateDetail != null">update_detail,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="comId != null">#{comId},</if>
+            <if test="scoreNum != null">#{scoreNum},</if>
+            sysdate(),
+            <if test="updateDetail != null">#{updateDetail},</if>
+        </trim>
+    </insert>
+
+    <update id="updateScore" parameterType="Score">
+        update score
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="comId != null">com_id = #{comId},</if>
+            <if test="scoreNum != null">score_num = #{scoreNum},</if>
+            update_time = sysdate(),
+            <if test="updateDetail != null">update_detail = #{updateDetail},</if>
+        </trim>
+        where score_id = #{scoreId}
+    </update>
+
+    <delete id="deleteScoreByScoreId" parameterType="Long">
+        delete from score where score_id = #{scoreId}
+    </delete>
+
+    <delete id="deleteScoreByScoreIds" parameterType="String">
+        delete from score where score_id in
+        <foreach item="scoreId" collection="array" open="(" separator="," close=")">
+            #{scoreId}
+        </foreach>
+    </delete>
+</mapper>
