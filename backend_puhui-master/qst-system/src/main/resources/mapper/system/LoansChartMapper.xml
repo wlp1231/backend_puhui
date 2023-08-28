@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.LoansChartMapper">
+
+    <resultMap type="Loans" id="LoansResult">
+        <result property="loaId" column="loa_id"/>
+        <result property="loaNo" column="loa_no"/>
+        <result property="loaComNo" column="loa_com_no"/>
+        <result property="loaBankId" column="loa_bank_id"/>
+        <result property="loaLisId" column="loa_lis_id"/>
+        <result property="loaUse" column="loa_use"/>
+        <result property="loaIntegral" column="loa_integral"/>
+        <result property="loaRate" column="loa_rate"/>
+        <result property="loaState" column="loa_state"/>
+        <result property="loaTime" column="loa_time"/>
+        <result property="loaMoney" column="loa_money"/>
+        <result property="loaEndTime" column="loa_end_time"/>
+        <result property="loaDel" column="loa_del"/>
+        <association property="company" column="loa_com_no" javaType="Company" resultMap="CompanyResult"/>
+        <association property="bank" column="loa_bang_id" javaType="Bank" resultMap="BankResult"/>
+    </resultMap>
+    <resultMap type="Company" id="CompanyResult">
+        <result property="comId" column="com_id"/>
+        <result property="comNo" column="com_no"/>
+        <result property="comName" column="com_name"/>
+        <result property="comEmail" column="com_email"/>
+        <result property="comPhone" column="com_phone"/>
+        <result property="comPwd" column="com_pwd"/>
+        <result property="comRemark" column="com_remark"/>
+        <result property="comStatus" column="com_status"/>
+    </resultMap>
+
+    <resultMap type="Bank" id="BankResult">
+        <result property="bankId" column="bank_id"/>
+        <result property="bankName" column="bank_name"/>
+        <result property="bankEmail" column="bank_email"/>
+        <result property="bankPassword" column="bank_password"/>
+        <result property="bankRate" column="bank_rate"/>
+        <result property="bankPhone" column="bank_phone"/>
+        <result property="bankLength" column="bank_length"/>
+        <result property="bankProId" column="bank_pro_id"/>
+        <result property="bankCitId" column="bank_cit_id"/>
+        <result property="bankAraId" column="bank_ara_id"/>
+        <result property="bankAdress" column="bank_adress"/>
+    </resultMap>
+
+    <sql id="selectLoansVo">
+        select loa_id,
+               loa_no,
+               loa_com_no,
+               loa_bank_id,
+               loa_lis_id,
+               loa_use,
+               loa_integral,
+               loa_rate,
+               loa_state,
+               loa_time,
+               loa_money,
+               loa_end_time,
+               loa_del,
+               com_name,
+               bank_name
+        from loans l
+                 LEFT JOIN company c on l.loa_com_no = c.com_id
+                 LEFT JOIN bank b on l.loa_bank_id = b.bank_id
+    </sql>
+
+    <select id="selectLoansList" parameterType="Loans" resultMap="LoansResult">
+        <include refid="selectLoansVo"/>
+        <where>
+
+            <if test="loaComNo != null  and loaComNo != ''">and loa_com_no = #{loaComNo}</if>
+            <if test="loaNo != null  and loaNo != ''">and loa_no like concat('%', #{loaNo}, '%')</if>
+            <if test="loaBankId != null ">and loa_bank_id = #{loaBankId}</if>
+            <if test="loaLisId != null ">and loa_lis_id = #{loaLisId}</if>
+            <if test="loaUse != null  and loaUse != ''">and loa_use = #{loaUse}</if>
+            <if test="loaIntegral != null  and loaIntegral != ''">and loa_integral = #{loaIntegral}</if>
+            <if test="loaRate != null  and loaRate != ''">and loa_rate = #{loaRate}</if>
+            <if test="loaState != null  and loaState != ''">and loa_state = #{loaState}</if>
+            <if test="loaTime != null ">and loa_time = #{loaTime}</if>
+            <if test="loaMoney != null ">and loa_money = #{loaMoney}</if>
+            <if test="loaEndTime != null ">and loa_end_time &lt;= #{loaEndTime}</if>
+        </where>
+        order by loa_time
+    </select>
+
+</mapper>
