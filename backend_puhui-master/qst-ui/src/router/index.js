@@ -182,6 +182,13 @@ export const constantRoutes = [
     ]
   },
   {
+
+    path: '/company/comuser',
+
+    component: (resolve) => require(['@/views/system/company/index'], resolve),
+
+    hidden: true},
+  {
     path: '/loans',
     component: Layout,
     hidden: true,
