@@ -5,12 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c2a173-33a7-4183-bd84-65f4472affd3" name="Changes" comment="沙箱环境修改登录退出后跳转地址index.html">
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/controller/ShareRuleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/domain/ShareRule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/mapper/ShareRuleMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/service/IShareRuleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/service/impl/ShareRuleServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/resources/mapper/system/ShareRuleMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/controller/ShareRecordController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/domain/ShareRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/mapper/ShareRecordMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/service/IShareRecordService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/service/impl/ShareRecordServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qst-system/src/main/resources/mapper/system/ShareRecordMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,6 +72,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
@@ -188,7 +189,7 @@
       <workItem from="1667350692396" duration="5091000" />
       <workItem from="1691993843559" duration="1966000" />
       <workItem from="1692949378342" duration="981000" />
-      <workItem from="1693203586336" duration="682000" />
+      <workItem from="1693203586336" duration="1078000" />
     </task>
     <task id="LOCAL-00001" summary="0124 commit">
       <created>1643100209517</created>
