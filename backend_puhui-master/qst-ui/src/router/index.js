@@ -44,6 +44,43 @@ export const constantRoutes = [
     hidden: true
   },
   {
+
+    path: '/refund',
+    component: (resolve) => require(['@/views/system/refund/index'], resolve),
+    hidden: true
+  },
+  {
+    path: '/bank/bank',
+    component: (resolve) => require(['@/views/system/bank/index'], resolve),
+    hidden: true
+  },
+  {
+    path: '/overdue',
+    component: (resolve) => require(['@/views/system/overdue/index'], resolve),
+    hidden: true
+  },
+  {
+    path: '/loans',
+    component: (resolve) => require(['@/views/system/loans/index'], resolve),
+    hidden: true
+  },
+  {
+    path: '/bankLoans',
+    component: (resolve) => require(['@/views/system/bankExamine/index'], resolve),
+    hidden: true
+  },
+  {
+    path: '/examine',
+    component: (resolve) => require(['@/views/system/examine/index'], resolve),
+    hidden: true
+  },
+  {
+    path: '/materials',
+    component: (resolve) => require(['@/views/system/materials/index'], resolve),
+    hidden: true
+  },
+
+  {
     path: '/register',
     component: (resolve) => require(['@/views/register'], resolve),
     hidden: true
@@ -67,7 +104,7 @@ export const constantRoutes = [
         path: 'index',
         component: (resolve) => require(['@/views/index_v1'], resolve),
         name: 'Index',
-        meta: { title: '首页', icon: 'dashboard', affix: true }
+        meta: {title: '首页', icon: 'dashboard', affix: true}
       }
     ]
   },
@@ -81,7 +118,7 @@ export const constantRoutes = [
         path: 'profile',
         component: (resolve) => require(['@/views/system/user/profile/index'], resolve),
         name: 'Profile',
-        meta: { title: '个人中心', icon: 'user' }
+        meta: {title: '个人中心', icon: 'user'}
       }
     ]
   },
@@ -94,7 +131,7 @@ export const constantRoutes = [
         path: 'role/:userId(\\d+)',
         component: (resolve) => require(['@/views/system/user/authRole'], resolve),
         name: 'AuthRole',
-        meta: { title: '分配角色', activeMenu: '/system/user'}
+        meta: {title: '分配角色', activeMenu: '/system/user'}
       }
     ]
   },
@@ -107,7 +144,7 @@ export const constantRoutes = [
         path: 'user/:roleId(\\d+)',
         component: (resolve) => require(['@/views/system/role/authUser'], resolve),
         name: 'AuthUser',
-        meta: { title: '分配用户', activeMenu: '/system/role'}
+        meta: {title: '分配用户', activeMenu: '/system/role'}
       }
     ]
   },
@@ -120,7 +157,7 @@ export const constantRoutes = [
         path: 'index/:dictId(\\d+)',
         component: (resolve) => require(['@/views/system/dict/data'], resolve),
         name: 'Data',
-        meta: { title: '字典数据', activeMenu: '/system/dict'}
+        meta: {title: '字典数据', activeMenu: '/system/dict'}
       }
     ]
   },
@@ -133,7 +170,7 @@ export const constantRoutes = [
         path: 'index',
         component: (resolve) => require(['@/views/monitor/job/log'], resolve),
         name: 'JobLog',
-        meta: { title: '调度日志', activeMenu: '/monitor/job'}
+        meta: {title: '调度日志', activeMenu: '/monitor/job'}
       }
     ]
   },
@@ -146,7 +183,7 @@ export const constantRoutes = [
         path: 'index/:tableId(\\d+)',
         component: (resolve) => require(['@/views/tool/gen/editTable'], resolve),
         name: 'GenEdit',
-        meta: { title: '修改生成配置', activeMenu: '/tool/gen'}
+        meta: {title: '修改生成配置', activeMenu: '/tool/gen'}
       }
     ]
   },
@@ -164,7 +201,7 @@ export const constantRoutes = [
         path: 'companyDetails/:cId(\\d+)',
         component: (resolve) => require(['@/views/system/details/companyDetails'], resolve),
         name: 'company',
-        meta: { title: '查看详情', activeMenu: '/system/details'}
+        meta: {title: '查看详情', activeMenu: '/system/details'}
       }
     ]
   },
@@ -177,10 +214,17 @@ export const constantRoutes = [
         path: 'bankLoanDetails/:beId(\\d+)',
         component: (resolve) => require(['@/views/system/bankLoans/bankLoanDetails'], resolve),
         name: 'bankLoans',
-        meta: { title: '贷款审批', activeMenu: '/system/bankLoans'}
+        meta: {title: '贷款审批', activeMenu: '/system/bankLoans'}
       }
     ]
   },
+  {
+
+    path: '/send',
+    component: (resolve) => require(['@/views/system/send/index'], resolve),
+    hidden: true
+  },
+
   {
 
     path: '/company/comuser',
@@ -207,7 +251,7 @@ export const constantRoutes = [
 
         name: 'company',
 
-        meta: { title: '查看详情', activeMenu: '/system/details'}
+        meta: {title: '查看详情', activeMenu: '/system/details'}
 
       }
 
@@ -223,7 +267,7 @@ export const constantRoutes = [
         path: 'loanDetails/:eId(\\d+)',
         component: (resolve) => require(['@/views/system/loans/loanDetails'], resolve),
         name: 'loans',
-        meta: { title: '贷款审批', activeMenu: '/system/loans'}
+        meta: {title: '贷款审批', activeMenu: '/system/loans'}
       }
     ]
   },
@@ -232,6 +276,6 @@ export const constantRoutes = [
 
 export default new Router({
   mode: 'history', // 去掉url中的#
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior: () => ({y: 0}),
   routes: constantRoutes
 })
