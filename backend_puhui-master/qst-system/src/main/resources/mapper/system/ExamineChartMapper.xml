@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.ExamineChartMapper">
+
+    <resultMap type="Examine" id="ExamineResult">
+        <result property="exaId" column="exa_id"/>
+        <result property="exaLoaId" column="exa_loa_id"/>
+        <result property="exaName" column="exa_name"/>
+        <result property="exaTime" column="exa_time"/>
+        <result property="exaState" column="exa_state"/>
+        <result property="exaRemark" column="exa_remark"/>
+        <result property="exaDel" column="exa_del"/>
+        <association property="loans" column="exa_loa_id" javaType="Loans" resultMap="LoansResult"/>
+    </resultMap>
+
+    <resultMap type="Loans" id="LoansResult">
+        <result property="loaId" column="loa_id"/>
+        <result property="loaNo" column="loa_no"/>
+        <result property="loaComNo" column="loa_com_no"/>
+        <result property="loaBankId" column="loa_bank_id"/>
+        <result property="loaLisId" column="loa_lis_id"/>
+        <result property="loaUse" column="loa_use"/>
+        <result property="loaIntegral" column="loa_integral"/>
+        <result property="loaRate" column="loa_rate"/>
+        <result property="loaState" column="loa_state"/>
+        <result property="loaTime" column="loa_time"/>
+        <result property="loaMoney" column="loa_money"/>
+        <result property="loaEndTime" column="loa_end_time"/>
+    </resultMap>
+
+    <sql id="selectExamineVo">
+        select exa_id,
+               exa_loa_id,
+               exa_name,
+               exa_time,
+               exa_state,
+               exa_remark,
+               exa_del,
+               loa_no
+        from examine e
+                 LEFT JOIN loans l on e.exa_loa_id = l.loa_id
+    </sql>
+
+    <select id="selectExamineList" parameterType="Examine" resultMap="ExamineResult">
+        <include refid="selectExamineVo"/>
+        <where>
+            and exa_del = 0
+            <if test="exaLoaId != null ">and exa_loa_id = #{exaLoaId}</if>
+            <if test="exaName != null  and exaName != ''">and exa_name like concat('%', #{exaName}, '%')</if>
+            <if test="exaTime != null ">and exa_time = #{exaTime}</if>
+            <if test="exaState != null  and exaState != ''">and exa_state = #{exaState}</if>
+            <if test="exaRemark != null  and exaRemark != ''">and exa_remark like concat('%', #{exaRemark}, '%')</if>
+        </where>
+        order by exa_state
+    </select>
+
+
+</mapper>

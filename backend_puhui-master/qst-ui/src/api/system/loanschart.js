@@ -8,4 +8,3 @@ export function listLoans(query) {
     params: query
   })
 }
-
