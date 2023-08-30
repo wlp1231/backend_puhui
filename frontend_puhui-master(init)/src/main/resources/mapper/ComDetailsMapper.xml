@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jd.dao.ComDetailsMapper">
+
+    <resultMap type="ComDetails" id="ComDetailsResult">
+        <result property="cId" column="c_id"/>
+        <result property="coId" column="co_id"/>
+        <result property="cIntegral" column="c_integral"/>
+        <result property="cLicense" column="c_license"/>
+        <result property="cType" column="c_type"/>
+        <result property="cLegalName" column="c_legal_name"/>
+        <result property="cLegalId" column="c_legal_id"/>
+        <result property="cLegalImg" column="c_legal_img"/>
+        <result property="cLegalTime" column="c_legal_time"/>
+        <result property="cPro" column="c_pro"/>
+        <result property="cCity" column="c_city"/>
+        <result property="cAddress" column="c_address"/>
+        <result property="cBusSco" column="c_bus_sco"/>
+        <result property="cLicTime" column="c_lic_time"/>
+        <association property="company" column="c_id" javaType="Company" resultMap="CompanyResult"/>
+        <association property="provinces" column="cPro" javaType="Provinces" resultMap="ProvincesResult"/>
+        <association property="cities" column="cCity" javaType="Cities" resultMap="CitiesResult"/>
+
+    </resultMap>
+
+    <resultMap type="Company" id="CompanyResult">
+        <result property="comId" column="com_id"/>
+        <result property="comNo" column="com_no"/>
+        <result property="comName" column="com_name"/>
+        <result property="comEmail" column="com_email"/>
+        <result property="comPhone" column="com_phone"/>
+        <result property="comPwd" column="com_pwd"/>
+        <result property="comTime" column="com_time"/>
+        <result property="comRemark" column="com_remark"/>
+        <result property="comStatus" column="com_status"/>
+        <result property="comDel" column="com_del"/>
+    </resultMap>
+
+    <resultMap type="Provinces" id="ProvincesResult">
+        <result property="id" column="id"/>
+        <result property="provinceid" column="provinceid"/>
+        <result property="province" column="province"/>
+    </resultMap>
+
+    <resultMap type="Cities" id="CitiesResult">
+        <result property="id" column="id"/>
+        <result property="cityid" column="cityid"/>
+        <result property="city" column="city"/>
+        <result property="provinceid" column="provinceid"/>
+    </resultMap>
+
+    <sql id="selectCompanyDetailsVo">
+        select c_id,
+               co_id,
+               c_integral,
+               c_license,
+               c_type,
+               c_legal_name,
+               c_legal_id,
+               c_legal_img,
+               c_legal_time,
+               c_pro,
+               c_city,
+               c_address,
+               c_bus_sco,
+               c_lic_time,
+               com_no,
+               com_name,
+               com_email,
+               com_phone,
+               com_status,
+               com_time,
+               province,
+               city
+        from company p
+                 LEFT JOIN com_details d on p.com_id = d.co_id
+                 LEFT JOIN provinces pro on d.c_pro = pro.provinceid
+                 LEFT JOIN cities c on d.c_city = c.cityid
+    </sql>
+
+    <sql id="selectComDetailsVo">
+        select c_id,
+               co_id,
+               c_integral,
+               c_license,
+               c_type,
+               c_legal_name,
+               c_legal_id,
+               c_legal_img,
+               c_legal_time,
+               c_pro,
+               c_city,
+               c_address,
+               c_bus_sco,
+               c_lic_time
+        from  com_details
+    </sql>
+
+    <select id="selectComDetailsList" parameterType="ComDetails" resultMap="ComDetailsResult">
+        <include refid="selectCompanyDetailsVo"/>
+        <where>
+            com_status = 4 and
+            c_del = 0
+            <if test="cIntegral != null  and cIntegral != ''">and c_integral = #{cIntegral}</if>
+            <if test="cLicense != null  and cLicense != ''">and c_license = #{cLicense}</if>
+            <if test="cType != null  and cType != ''">and c_type = #{cType}</if>
+            <if test="cLegalName != null  and cLegalName != ''">and c_legal_name like concat('%', #{cLegalName}, '%')
+            </if>
+            <if test="cLegalId != null  and cLegalId != ''">and c_legal_id = #{cLegalId}</if>
+            <if test="cLegalImg != null  and cLegalImg != ''">and c_legal_img = #{cLegalImg}</if>
+            <if test="cLegalTime != null ">and c_legal_time = #{cLegalTime}</if>
+            <if test="cPro != null  and cPro != ''">and c_pro = #{cPro}</if>
+            <if test="cCity != null  and cCity != ''">and c_city = #{cCity}</if>
+            <if test="cAddress != null  and cAddress != ''">and c_address = #{cAddress}</if>
+            <if test="cBusSco != null  and cBusSco != ''">and c_bus_sco = #{cBusSco}</if>
+            <if test="cLicTime != null ">and c_lic_time = #{cLicTime}</if>
+        </where>
+    </select>
+
+    <select id="selectComDetailsByCId" parameterType="Long" resultMap="ComDetailsResult">
+        <include refid="selectCompanyDetailsVo"/>
+        where co_id = #{cId}
+    </select>
+
+    <insert id="insertComDetails" parameterType="ComDetails">
+        insert into com_details
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="cId != null">c_id,</if>
+            <if test="coId != null">co_id,</if>
+            <if test="cIntegral != null">c_integral,</if>
+            <if test="cLicense != null">c_license,</if>
+            <if test="cType != null">c_type,</if>
+            <if test="cLegalName != null">c_legal_name,</if>
+            <if test="cLegalId != null">c_legal_id,</if>
+            <if test="cLegalImg != null">c_legal_img,</if>
+            <if test="cLegalTime != null">c_legal_time,</if>
+            <if test="cPro != null">c_pro,</if>
+            <if test="cCity != null">c_city,</if>
+            <if test="cAddress != null">c_address,</if>
+            <if test="cBusSco != null">c_bus_sco,</if>
+            <if test="cLicTime != null">c_lic_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="cId != null">#{cId},</if>
+            <if test="coId != null">#{coId},</if>
+            <if test="cIntegral != null">#{cIntegral},</if>
+            <if test="cLicense != null">#{cLicense},</if>
+            <if test="cType != null">#{cType},</if>
+            <if test="cLegalName != null">#{cLegalName},</if>
+            <if test="cLegalId != null">#{cLegalId},</if>
+            <if test="cLegalImg != null">#{cLegalImg},</if>
+            <if test="cLegalTime != null">#{cLegalTime},</if>
+            <if test="cPro != null">#{cPro},</if>
+            <if test="cCity != null">#{cCity},</if>
+            <if test="cAddress != null">#{cAddress},</if>
+            <if test="cBusSco != null">#{cBusSco},</if>
+            <if test="cLicTime != null">#{cLicTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateComDetails" parameterType="ComDetails">
+        update com_details
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="cIntegral != null">c_integral = #{cIntegral},</if>
+            <if test="cLicense != null">c_license = #{cLicense},</if>
+            <if test="cType != null">c_type = #{cType},</if>
+            <if test="cLegalName != null">c_legal_name = #{cLegalName},</if>
+            <if test="cLegalId != null">c_legal_id = #{cLegalId},</if>
+            <if test="cLegalImg != null">c_legal_img = #{cLegalImg},</if>
+            <if test="cLegalTime != null">c_legal_time = #{cLegalTime},</if>
+            <if test="cPro != null">c_pro = #{cPro},</if>
+            <if test="cCity != null">c_city = #{cCity},</if>
+            <if test="cAddress != null">c_address = #{cAddress},</if>
+            <if test="cBusSco != null">c_bus_sco = #{cBusSco},</if>
+            <if test="cLicTime != null">c_lic_time = #{cLicTime},</if>
+        </trim>
+        where c_id = #{cId}
+    </update>
+
+    <delete id="deleteComDetailsByCId" parameterType="Long">
+        delete
+        from com_details
+        where c_id = #{cId}
+    </delete>
+
+    <delete id="deleteComDetailsByCIds" parameterType="String">
+        update com_details set c_del = 2 where c_id in
+        <foreach item="cId" collection="array" open="(" separator="," close=")">
+            #{cId}
+        </foreach>
+    </delete>
+</mapper>
