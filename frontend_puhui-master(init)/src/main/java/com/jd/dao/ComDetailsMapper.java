@@ -7,8 +7,8 @@ import java.util.List;
 /**
  * 企业详情Mapper接口
  *
- * @author zpbao
- * @date 2023-08-30
+ * @author wen
+ * @date 2021-09-11
  */
 public interface ComDetailsMapper
 {
