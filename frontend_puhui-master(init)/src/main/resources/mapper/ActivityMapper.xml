@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jd.dao.ActivityMapper">
+
+    <select id="showActivies" resultType="com.jd.bean.Activity">
+        select a_id as aId, begin_date as beginDate, end_date as endDate, act_title as actTitle, act_detail as actDetail, act_state as actState, update_time as updateTime from activity
+    </select>
+    <select id="findById" resultType="com.jd.bean.Activity">
+        select a_id as aId, begin_date as beginDate, end_date as endDate, act_title as actTitle, act_detail as actDetail, act_state as actState, update_time as updateTime from activity where a_id=#{id}
+    </select>
+    <select id="showMessages" resultType="com.jd.bean.Message">
+        select m_id as mId,com_id as comId,msg_detail as msgDetail ,msg_time as msgTime,resp_detail as respDetail,resp_time as respTime,msg_state as msgState from message where com_id=#{comNo}
+    </select>
+
+
+</mapper>
