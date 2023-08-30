@@ -27,6 +27,13 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * 实现用户认证信息参数传递，并存入到数据库中
+ *
+ * @author zpbao
+ * @version 1.0.0
+ * @date 2023/08/30
+ */
 @Controller
 @RequestMapping("/lma")
 public class LMAController {

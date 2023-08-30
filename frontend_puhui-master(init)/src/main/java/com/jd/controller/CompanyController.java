@@ -22,13 +22,6 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
-/**
- * 实现页面跳转、添加用户信息入库
- *
- * @author zpbao
- * @version 1.0.0
- * @date 2023/08/30
- */
 @Controller
 @RequestMapping("/company")
 public class CompanyController {
