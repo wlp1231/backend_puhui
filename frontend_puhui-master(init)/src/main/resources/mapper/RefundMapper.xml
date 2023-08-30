@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jd.dao.RefundMapper">
+
+    <resultMap type="Refund" id="RefundResult">
+        <result property="refId" column="ref_id"/>
+        <result property="refComNo" column="ref_com_no"/>
+        <result property="refBankId" column="ref_bank_id"/>
+        <result property="refLoId" column="ref_lo_id"/>
+        <result property="refOveId" column="ref_ove_id"/>
+        <result property="refTime" column="ref_time"/>
+        <result property="refMoney" column="ref_money"/>
+        <result property="refMode" column="ref_mode"/>
+        <result property="refState" column="ref_state"/>
+        <result property="refDel" column="ref_del"/>
+        <result property="refActTime" column="ref_act_time"/>
+    </resultMap>
+
+    <sql id="selectRefundVo">
+        select ref_id,
+               ref_com_no,
+               ref_bank_id,
+               ref_lo_id,
+               ref_ove_id,
+               ref_time,
+               ref_money,
+               ref_mode,
+               ref_state,
+               ref_del
+        from refund
+    </sql>
+
+    <sql id="selectRefundSign">
+        SELECT r.ref_money, r.ref_time, l.loa_no loaNo,l.loa_end_time loaEndTime, b.bank_name bankName
+        from refund r,
+             loans l,
+             bank b
+    </sql>
+
+    <select id="selectRefundList" parameterType="Refund" resultMap="RefundResult">
+        <include refid="selectRefundVo"/>
+        <where>
+            <if test="refComNo != null  and refComNo != ''">and ref_com_no = #{refComNo}</if>
+            <if test="refBankId != null ">and ref_bank_id = #{refBankId}</if>
+            <if test="refLoId != null ">and ref_lo_id = #{refLoId}</if>
+            <if test="refOveId != null ">and ref_ove_id = #{refOveId}</if>
+            <if test="refTime != null ">and ref_time = #{refTime}</if>
+            <if test="refMoney != null ">and ref_money = #{refMoney}</if>
+            <if test="refMode != null  and refMode != ''">and ref_mode = #{refMode}</if>
+            <if test="refState != null  and refState != ''">and ref_state = #{refState}</if>
+        </where>
+    </select>
+
+    <select id="selectRefundByRefId" parameterType="Long" resultMap="RefundResult">
+        <include refid="selectRefundVo"/>
+        where ref_id = #{refId}
+    </select>
+
+    <select id="selectRefundListAll" parameterType="String" resultMap="RefundResult">
+        <!--        <include refid="selectRefundSign"/>-->
+        SELECT l.loa_no loaNo,b.bank_name bankName,r.ref_money, r.ref_time, r.ref_state
+        from refund r,
+        loans l,
+        bank b
+
+        where ref_com_no = #{cId} And ref_state = 1
+        AND r.ref_lo_id = l.loa_id AND r.ref_bank_id = b.bank_id
+    </select>
+
+    <select id="selectRefundLog" parameterType="String" resultMap="RefundResult">
+        <!--        <include refid="selectRefundSign"/>-->
+        SELECT l.loa_no loaNo,b.bank_name bankName,r.ref_money, r.ref_time, r.ref_state,r.ref_act_time
+        from refund r,
+        loans l,
+        bank b
+        where ref_com_no = #{cId} And ref_state = 2
+        AND r.ref_lo_id = l.loa_id AND r.ref_bank_id = b.bank_id
+    </select>
+
+    <insert id="insertRefund" parameterType="Refund" useGeneratedKeys="true" keyProperty="refId">
+        insert into refund
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="refComNo != null">ref_com_no,</if>
+            <if test="refBankId != null">ref_bank_id,</if>
+            <if test="refLoId != null">ref_lo_id,</if>
+            <if test="refOveId != null">ref_ove_id,</if>
+            <if test="refTime != null">ref_time,</if>
+            <if test="refMoney != null">ref_money,</if>
+            <if test="refMode != null">ref_mode,</if>
+            <if test="refState != null">ref_state,</if>
+            <if test="refDel != null">ref_del,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="refComNo != null">#{refComNo},</if>
+            <if test="refBankId != null">#{refBankId},</if>
+            <if test="refLoId != null">#{refLoId},</if>
+            <if test="refOveId != null">#{refOveId},</if>
+            <if test="refTime != null">#{refTime},</if>
+            <if test="refMoney != null">#{refMoney},</if>
+            <if test="refMode != null">#{refMode},</if>
+            <if test="refState != null">#{refState},</if>
+            <if test="refDel != null">#{refDel},</if>
+        </trim>
+    </insert>
+
+    <update id="updateRefund" parameterType="Refund">
+        update refund
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="refComNo != null">ref_com_no = #{refComNo},</if>
+            <if test="refBankId != null">ref_bank_id = #{refBankId},</if>
+            <if test="refLoId != null">ref_lo_id = #{refLoId},</if>
+            <if test="refOveId != null">ref_ove_id = #{refOveId},</if>
+            <if test="refTime != null">ref_time = #{refTime},</if>
+            <if test="refMoney != null">ref_money = #{refMoney},</if>
+            <if test="refMode != null">ref_mode = #{refMode},</if>
+            <if test="refState != null">ref_state = #{refState},</if>
+            <if test="refDel != null">ref_del = #{refDel},</if>
+        </trim>
+        where ref_id = #{refId}
+    </update>
+
+    <delete id="deleteRefundByRefId" parameterType="Long">
+        delete
+        from refund
+        where ref_id = #{refId}
+    </delete>
+
+    <delete id="deleteRefundByRefIds" parameterType="String">
+        delete from refund where ref_id in
+        <foreach item="refId" collection="array" open="(" separator="," close=")">
+            #{refId}
+        </foreach>
+    </delete>
+</mapper>
