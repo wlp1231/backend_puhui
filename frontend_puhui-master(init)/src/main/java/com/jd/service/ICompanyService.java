@@ -7,13 +7,6 @@ import com.jd.bean.IdCard;
 import java.util.Date;
 import java.util.List;
 
-/**
- * 添加公司用户注册方法
- *
- * @author zpbao
- * @version 1.0.0
- * @date 2023/08/30
- */
 public interface ICompanyService {
     /**
      * 按邮箱登录

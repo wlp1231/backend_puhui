@@ -8,13 +8,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.Date;
 import java.util.List;
 
-/**
- * 向公司注册表插入信息
- *
- * @author zpbao
- * @version 1.0.0
- * @date 2023/08/30
- */
 public interface CompanyMapper {
 
     /**

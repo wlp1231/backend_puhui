@@ -13,13 +13,6 @@ import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
-/**
- * 实现公司用户注册方法
- *
- * @author zpbao
- * @version 1.0.0
- * @date 2023/08/30
- */
 @Service
 public class CompanyServiceImpl implements ICompanyService {
 
