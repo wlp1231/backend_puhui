@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c2a173-33a7-4183-bd84-65f4472affd3" name="Changes" comment="沙箱环境修改登录退出后跳转地址index.html">
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/controller/ShareRecordController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/domain/ShareRecord.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/mapper/ShareRecordMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/service/IShareRecordService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/service/impl/ShareRecordServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qst-system/src/main/resources/mapper/system/ShareRecordMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/runConfigurations.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +54,6 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="mavenHome" value="$PROJECT_DIR$/../../../../bak_myjava/maven/apache-maven-3.6.1" />
-        <option name="useMavenConfig" value="true" />
         <option name="userSettingsFile" value="D:\bak_myjava\maven\apache-maven-3.6.1\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
@@ -72,7 +68,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../frontend_puhui-master(init)" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.14124292" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
@@ -190,6 +192,9 @@
       <workItem from="1691993843559" duration="1966000" />
       <workItem from="1692949378342" duration="981000" />
       <workItem from="1693203586336" duration="1078000" />
+      <workItem from="1693274286206" duration="1383000" />
+      <workItem from="1693291423840" duration="47000" />
+      <workItem from="1693291482992" duration="1688000" />
     </task>
     <task id="LOCAL-00001" summary="0124 commit">
       <created>1643100209517</created>
@@ -468,6 +473,7 @@
         <entry key="0d326b23-5559-4e26-ab4d-d5f060f55d92" value="TOOL_WINDOW" />
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
