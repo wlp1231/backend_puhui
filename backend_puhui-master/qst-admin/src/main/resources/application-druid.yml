@@ -8,7 +8,7 @@ spring:
             master:
                 url: jdbc:mysql://localhost:3306/financial_lending?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
                 username: root
-                password: 123456a?
+                password: ws0403
             # 从库数据源
             slave:
                 # 从数据源开关/默认关闭

@@ -4,11 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98c2a173-33a7-4183-bd84-65f4472affd3" name="Changes" comment="沙箱环境修改登录退出后跳转地址index.html">
-      <change afterPath="$PROJECT_DIR$/../.idea/runConfigurations.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+    <list default="true" id="98c2a173-33a7-4183-bd84-65f4472affd3" name="Changes" comment="4.1">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qst-admin/src/main/resources/application-druid.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qst-admin/src/main/resources/application-druid.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qst-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qst-admin/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/controller/RiskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/controller/RiskController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qst-ui/src/views/system/record/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/qst-ui/src/views/system/record/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qst-ui/src/views/system/role/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/qst-ui/src/views/system/role/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qst-ui/src/views/system/rule/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/qst-ui/src/views/system/rule/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +42,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -67,25 +72,27 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../frontend_puhui-master(init)" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.14124292" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
   </component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\shixi\NPU-PuHui\backend_puhui-master\qst-system\src\main\resources\mapper\system" />
       <recent name="H:\IdeaProjects\puhui_jinrong\update_version\backend_puhui-master\qst-system\src\main\resources\mapper\system" />
       <recent name="H:\IdeaProjects\puhui_jinrong\update_version\backend_puhui-master\qst-system\src\main\java\com\qst\system\controller" />
       <recent name="H:\IdeaProjects\puhui_jinrong\update_version\backend_puhui-master\qst-system\src\main\java\com\qst\system\mapper" />
       <recent name="H:\IdeaProjects\puhui_jinrong\update_version\backend_puhui-master\qst-system\src\main\java\com\qst\system\service\impl" />
-      <recent name="H:\IdeaProjects\puhui_jinrong\update_version\backend_puhui-master\qst-system\src\main\java\com\qst\system\service" />
     </key>
   </component>
   <component name="RunManager">
@@ -191,10 +198,9 @@
       <workItem from="1667350692396" duration="5091000" />
       <workItem from="1691993843559" duration="1966000" />
       <workItem from="1692949378342" duration="981000" />
-      <workItem from="1693203586336" duration="1078000" />
-      <workItem from="1693274286206" duration="1383000" />
-      <workItem from="1693291423840" duration="47000" />
-      <workItem from="1693291482992" duration="1688000" />
+      <workItem from="1693272658798" duration="1295000" />
+      <workItem from="1693358221570" duration="4572000" />
+      <workItem from="1693382903734" duration="374000" />
     </task>
     <task id="LOCAL-00001" summary="0124 commit">
       <created>1643100209517</created>
@@ -427,7 +433,31 @@
       <option name="project" value="LOCAL" />
       <updated>1661415530021</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="沙箱环境修改登录退出后跳转地址index.html">
+      <option name="closed" value="true" />
+      <created>1693205252357</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1693205252357</updated>
+    </task>
+    <task id="LOCAL-00035" summary="3.6">
+      <option name="closed" value="true" />
+      <created>1693205926503</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1693205926503</updated>
+    </task>
+    <task id="LOCAL-00036" summary="4.1">
+      <option name="closed" value="true" />
+      <created>1693207452953</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1693207452953</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -473,7 +503,6 @@
         <entry key="0d326b23-5559-4e26-ab4d-d5f060f55d92" value="TOOL_WINDOW" />
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -482,8 +511,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="添加后台springcloud依赖等内容" />
-    <MESSAGE value="后台菜单左上角改为后台管理系统" />
     <MESSAGE value="完成用户积分管理" />
     <MESSAGE value="完成等级设置" />
     <MESSAGE value="完成用户等级设置" />
@@ -507,7 +534,9 @@
     <MESSAGE value="8.19刘老师修改后台4个bug（首页曲线坐标，企业详情管理修改bug，企业详情状态bug，银行审批bug）" />
     <MESSAGE value="沙箱环境修改redis密码端口" />
     <MESSAGE value="沙箱环境修改登录退出后跳转地址index.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="沙箱环境修改登录退出后跳转地址index.html" />
+    <MESSAGE value="3.6" />
+    <MESSAGE value="4.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.1" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

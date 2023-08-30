@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.RefundChartMapper">
+
+    <resultMap type="Refund" id="RefundResult">
+        <result property="refId" column="ref_id"/>
+        <result property="refComNo" column="ref_com_no"/>
+        <result property="refBankId" column="ref_bank_id"/>
+        <result property="refLoId" column="ref_lo_id"/>
+        <result property="refOveId" column="ref_ove_id"/>
+        <result property="refTime" column="ref_time"/>
+        <result property="refMoney" column="ref_money"/>
+        <result property="refMode" column="ref_mode"/>
+        <result property="refState" column="ref_state"/>
+        <result property="refDel" column="ref_del"/>
+        <association property="company" column="ref_com_no" javaType="Company" resultMap="CompanyResult"/>
+        <association property="bank" column="ref_bank_id" javaType="Bank" resultMap="BankResult"/>
+        <association property="loans" column="ref_lo_id" javaType="Loans" resultMap="LoansResult"/>
+    </resultMap>
+
+
+    <resultMap type="Company" id="CompanyResult">
+        <result property="comId" column="com_id"/>
+        <result property="comNo" column="com_no"/>
+        <result property="comName" column="com_name"/>
+        <result property="comEmail" column="com_email"/>
+        <result property="comPhone" column="com_phone"/>
+        <result property="comPwd" column="com_pwd"/>
+        <result property="comRemark" column="com_remark"/>
+        <result property="comStatus" column="com_status"/>
+    </resultMap>
+
+    <resultMap type="Bank" id="BankResult">
+        <result property="bankId" column="bank_id"/>
+        <result property="bankName" column="bank_name"/>
+        <result property="bankEmail" column="bank_email"/>
+        <result property="bankPassword" column="bank_password"/>
+        <result property="bankRate" column="bank_rate"/>
+        <result property="bankPhone" column="bank_phone"/>
+        <result property="bankLength" column="bank_length"/>
+        <result property="bankProId" column="bank_pro_id"/>
+        <result property="bankCitId" column="bank_cit_id"/>
+        <result property="bankAraId" column="bank_ara_id"/>
+        <result property="bankAdress" column="bank_adress"/>
+    </resultMap>
+
+    <resultMap type="Loans" id="LoansResult">
+        <result property="loaId" column="loa_id"/>
+        <result property="loaNo" column="loa_no"/>
+        <result property="loaComNo" column="loa_com_no"/>
+        <result property="loaBankId" column="loa_bank_id"/>
+        <result property="loaLisId" column="loa_lis_id"/>
+        <result property="loaUse" column="loa_use"/>
+        <result property="loaIntegral" column="loa_integral"/>
+        <result property="loaRate" column="loa_rate"/>
+        <result property="loaState" column="loa_state"/>
+        <result property="loaTime" column="loa_time"/>
+        <result property="loaMoney" column="loa_money"/>
+        <result property="loaEndTime" column="loa_end_time"/>
+    </resultMap>
+
+    <sql id="selectRefundVo">
+        select ref_id,
+               ref_com_no,
+               ref_bank_id,
+               ref_lo_id,
+               ref_ove_id,
+               ref_time,
+               ref_money,
+               ref_mode,
+               ref_state,
+               ref_del,
+               com_name,
+               bank_name,
+               loa_no
+        from refund r
+                 LEFT JOIN company c
+                           on r.ref_com_no = c.com_id
+                 LEFT JOIN bank b on r.ref_bank_id = b.bank_id
+                 LEFT JOIN loans l on r.ref_lo_id = l.loa_id
+    </sql>
+
+    <select id="selectRefundList" parameterType="Refund" resultMap="RefundResult">
+        <include refid="selectRefundVo"/>
+        <where>
+            <if test="refComNo != null  and refComNo != ''">and ref_com_no = #{refComNo}</if>
+            <if test="refBankId != null ">and ref_bank_id = #{refBankId}</if>
+            <if test="refLoId != null ">and ref_lo_id = #{refLoId}</if>
+            <if test="refOveId != null ">and ref_ove_id = #{refOveId}</if>
+            <if test="refTime != null ">and ref_time = #{refTime}</if>
+            <if test="refMoney != null ">and ref_money = #{refMoney}</if>
+            <if test="refMode != null  and refMode != ''">and ref_mode = #{refMode}</if>
+            <if test="refState != null  and refState != ''">and ref_state = #{refState}</if>
+        </where>
+        order by ref_time
+    </select>
+
+</mapper>

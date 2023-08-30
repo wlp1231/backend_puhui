@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qst.system.mapper.BankSendMapper">
+
+    <resultMap type="BankSend" id="BankSendResult">
+        <result property="senId"    column="sen_id"    />
+        <result property="senBankId"    column="sen_bank_id"    />
+        <result property="senLoaId"    column="sen_loa_id"    />
+        <result property="senComId"    column="sen_com_id"    />
+        <result property="senAccount"    column="sen_account"    />
+        <result property="senUname"    column="sen_uname"    />
+        <result property="senUid"    column="sen_uid"    />
+        <result property="senMoney"    column="sen_money"    />
+        <result property="senTime"    column="sen_time"    />
+        <result property="senMode"    column="sen_mode"    />
+        <result property="senStatus"    column="sen_status"    />
+        <result property="senDel"    column="sen_del"    />
+        <association property="company" column="loa_com_no" javaType="Company" resultMap="CompanyResult"/>
+        <association property="bank" column="loa_bang_id" javaType="Bank" resultMap="BankResult"/>
+        <association property="loans" column="sen_loa_id" javaType="Loans" resultMap="LoansResult"/>
+    </resultMap>
+
+    <resultMap type="Company" id="CompanyResult">
+        <result property="comId" column="com_id"/>
+        <result property="comNo" column="com_no"/>
+        <result property="comName" column="com_name"/>
+        <result property="comEmail" column="com_email"/>
+        <result property="comPhone" column="com_phone"/>
+        <result property="comPwd" column="com_pwd"/>
+        <result property="comRemark" column="com_remark"/>
+        <result property="comStatus" column="com_status"/>
+    </resultMap>
+
+    <resultMap type="Bank" id="BankResult">
+        <result property="bankId" column="bank_id"/>
+        <result property="bankName" column="bank_name"/>
+        <result property="bankEmail" column="bank_email"/>
+        <result property="bankPassword" column="bank_password"/>
+        <result property="bankRate" column="bank_rate"/>
+        <result property="bankPhone" column="bank_phone"/>
+        <result property="bankLength" column="bank_length"/>
+        <result property="bankProId" column="bank_pro_id"/>
+        <result property="bankCitId" column="bank_cit_id"/>
+        <result property="bankAraId" column="bank_ara_id"/>
+        <result property="bankAdress" column="bank_adress"/>
+    </resultMap>
+
+    <resultMap type="Loans" id="LoansResult">
+        <result property="loaId" column="loa_id"/>
+        <result property="loaNo" column="loa_no"/>
+        <result property="loaComNo" column="loa_com_no"/>
+        <result property="loaBankId" column="loa_bank_id"/>
+        <result property="loaLisId" column="loa_lis_id"/>
+        <result property="loaUse" column="loa_use"/>
+        <result property="loaIntegral" column="loa_integral"/>
+        <result property="loaRate" column="loa_rate"/>
+        <result property="loaState" column="loa_state"/>
+        <result property="loaTime" column="loa_time"/>
+        <result property="loaMoney" column="loa_money"/>
+        <result property="loaEndTime" column="loa_end_time"/>
+    </resultMap>
+
+    <sql id="selectBankSendVo">
+        select sen_id,
+               sen_bank_id,
+               sen_loa_id,
+               sen_com_id,
+               sen_uname,
+               sen_account,
+               sen_uid,
+               sen_money,
+               sen_time,
+               sen_mode,
+               sen_status,
+               sen_del,
+               com_name,
+               bank_name,
+               loa_no
+        from bank_send bs
+                 LEFT JOIN company c on bs.sen_com_id = c.com_id
+                 LEFT JOIN bank b on bs.sen_bank_id = b.bank_id
+                 LEFT JOIN loans l on bs.sen_loa_id = l.loa_id
+    </sql>
+
+    <!--2022.1.24 增加 按照 编号降序 查询-->
+    <select id="selectBankSendList" parameterType="BankSend" resultMap="BankSendResult">
+        <include refid="selectBankSendVo"/>
+        <where>
+            <if test="senBankId != null "> and sen_bank_id = #{senBankId}</if>
+            <if test="senLoaId != null "> and sen_loa_id = #{senLoaId}</if>
+            <if test="senComId != null "> and sen_com_id = #{senComId}</if>
+            <if test="senUname != null  and senUname != ''"> and sen_uname like concat('%', #{senUname}, '%')</if>
+            <if test="senUid != null  and senUid != ''"> and sen_uid like concat('%', #{senUid}, '%')</if>
+            <if test="senMoney != null  and senMoney != ''"> and sen_money = #{senMoney}</if>
+            <if test="senTime != null "> and date(sen_time) = #{senTime}</if>
+            <if test="senMode != null  and senMode != ''"> and sen_mode = #{senMode}</if>
+            <if test="senStatus != null  and senStatus != ''"> and sen_status = #{senStatus}</if>
+        </where>
+        order by sen_id desc
+    </select>
+
+    <select id="selectBankSendBySenId" parameterType="Long" resultMap="BankSendResult">
+        <include refid="selectBankSendVo"/>
+        where sen_id = #{senId}
+    </select>
+
+    <insert id="insertBankSend" parameterType="BankSend" useGeneratedKeys="true" keyProperty="senId">
+        insert into bank_send
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="senBankId != null">sen_bank_id,</if>
+            <if test="senLoaId != null">sen_loa_id,</if>
+            <if test="senComId != null">sen_com_id,</if>
+            <if test="senAccount != null">sen_account,</if>
+            <if test="senUname != null">sen_uname,</if>
+            <if test="senUid != null">sen_uid,</if>
+            <if test="senMoney != null">sen_money,</if>
+            <if test="senTime != null">sen_time,</if>
+            <if test="senMode != null">sen_mode,</if>
+            <if test="senStatus != null">sen_status,</if>
+            <if test="senDel != null">sen_del,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="senBankId != null">#{senBankId},</if>
+            <if test="senLoaId != null">#{senLoaId},</if>
+            <if test="senComId != null">#{senComId},</if>
+            <if test="senAccount != null">#{senAccount},</if>
+            <if test="senUname != null">#{senUname},</if>
+            <if test="senUid != null">#{senUid},</if>
+            <if test="senMoney != null">#{senMoney},</if>
+            <if test="senTime != null">#{senTime},</if>
+            <if test="senMode != null">#{senMode},</if>
+            <if test="senStatus != null">#{senStatus},</if>
+            <if test="senDel != null">#{senDel},</if>
+        </trim>
+    </insert>
+
+    <update id="updateBankSend" parameterType="BankSend">
+        update bank_send
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="senBankId != null">sen_bank_id = #{senBankId},</if>
+            <if test="senLoaId != null">sen_loa_id = #{senLoaId},</if>
+            <if test="senComId != null">sen_com_id = #{senComId},</if>
+            <if test="senAccount != null">sen_account = #{senAccount},</if>
+            <if test="senUname != null">sen_uname = #{senUname},</if>
+            <if test="senUid != null">sen_uid = #{senUid},</if>
+            <if test="senMoney != null">sen_money = #{senMoney},</if>
+            <if test="senTime != null">sen_time = #{senTime},</if>
+            <if test="senMode != null">sen_mode = #{senMode},</if>
+            <if test="senStatus != null">sen_status = #{senStatus},</if>
+            <if test="senDel != null">sen_del = #{senDel},</if>
+        </trim>
+        where sen_id = #{senId}
+    </update>
+
+    <delete id="deleteBankSendBySenId" parameterType="Long">
+        delete from bank_send where sen_id = #{senId}
+    </delete>
+
+    <delete id="deleteBankSendBySenIds" parameterType="String">
+        delete from bank_send where sen_id in
+        <foreach item="senId" collection="array" open="(" separator="," close=")">
+            #{senId}
+        </foreach>
+    </delete>
+</mapper>
