@@ -2,7 +2,7 @@ package com.qst.system.controller;
 
 import java.util.List;
 
-import com.qst.system.service.ICreditInvestService;
+import com.qst.system.service.ICreditService;
 import com.qst.system.service.ILoansService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -49,7 +49,7 @@ public class RiskController extends BaseController
     private ILoansService loansService;
 
     @Autowired
-    private ICreditInvestService creditInvestService;
+    private ICreditService creditService;
 
     /**
      * 查询风控管理列表
@@ -99,13 +99,13 @@ public class RiskController extends BaseController
         /*Long类型转为String类型*/
         String loaComNo = String.valueOf(lcn);
         /*通过企业编号找到征信状态*/
-        String creInvesState = creditInvestService.selectCreInvesState(loaComNo);
+        String creInvesState = creditService.selectCreditByComId(loaComNo);
         /*将征信状态字段的数据存入风控表中*/
         if(creInvesState== null){
             creInvesState = "";
         }
         Risk risknew = new Risk(riskId,creInvesState);
-        edit(risknew);
+        edit(risk);
 
 
     }
