@@ -6,7 +6,6 @@ export function login(username, password, code, uuid) {
     username,
     password,
     code,
-    uuid
   }
   return request({
     url: '/login',

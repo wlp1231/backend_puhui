@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c2a173-33a7-4183-bd84-65f4472affd3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qst-ui/src/api/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/qst-ui/src/api/login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qst-ui/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/qst-ui/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +76,12 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "ts.external.directory.path": "E:\\IDEA\\IntelliJ IDEA 2023.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external"
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "spring.configuration.checksum": "6b51a41b60756a0dc719902658571d4c",
+    "ts.external.directory.path": "E:\\IDEA\\IntelliJ IDEA 2023.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="ReactorSettings">
@@ -192,6 +199,7 @@
       <workItem from="1667350692396" duration="5091000" />
       <workItem from="1691993843559" duration="1966000" />
       <workItem from="1692949378342" duration="981000" />
+      <workItem from="1693358141260" duration="3661000" />
     </task>
     <task id="LOCAL-00001" summary="0124 commit">
       <created>1643100209517</created>
@@ -448,7 +456,15 @@
       <option name="project" value="LOCAL" />
       <updated>1693207452953</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="4.2">
+      <option name="closed" value="true" />
+      <created>1693207628273</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1693207628273</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -502,7 +518,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="完成用户积分管理" />
     <MESSAGE value="完成等级设置" />
     <MESSAGE value="完成用户等级设置" />
     <MESSAGE value="完成等级奖励" />
@@ -527,7 +542,8 @@
     <MESSAGE value="沙箱环境修改登录退出后跳转地址index.html" />
     <MESSAGE value="3.6" />
     <MESSAGE value="4.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.1" />
+    <MESSAGE value="4.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
