@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98c2a173-33a7-4183-bd84-65f4472affd3" name="Changes" comment="4.1">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qst-admin/src/main/resources/application-druid.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qst-admin/src/main/resources/application-druid.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qst-admin/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/qst-admin/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/controller/RiskController.java" beforeDir="false" afterPath="$PROJECT_DIR$/qst-system/src/main/java/com/qst/system/controller/RiskController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qst-ui/src/views/system/record/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/qst-ui/src/views/system/record/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qst-ui/src/views/system/role/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/qst-ui/src/views/system/role/index.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qst-ui/src/views/system/rule/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/qst-ui/src/views/system/rule/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qst-framework/src/main/java/com/qst/framework/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/qst-framework/src/main/java/com/qst/framework/config/RedisConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +72,8 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -201,6 +196,7 @@
       <workItem from="1693272658798" duration="1295000" />
       <workItem from="1693358221570" duration="4572000" />
       <workItem from="1693382903734" duration="374000" />
+      <workItem from="1693448606372" duration="1435000" />
     </task>
     <task id="LOCAL-00001" summary="0124 commit">
       <created>1643100209517</created>
@@ -503,6 +499,7 @@
         <entry key="0d326b23-5559-4e26-ab4d-d5f060f55d92" value="TOOL_WINDOW" />
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
