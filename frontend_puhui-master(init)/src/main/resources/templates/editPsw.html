@@ -80,7 +80,7 @@
     <div id="hy_con">
         <div th:replace="mytemp :: leftmenu"></div>
         <div id="con_rh">
-<!--            <p><img src="imgs/img_2.png"/></p>-->
+            <!--            <p><img src="imgs/img_2.png"/></p>-->
             <div class="con_rh_con">
                 <p class="rh_title">修改密码</p>
                 <form method="post" id="pswForm">
@@ -116,7 +116,7 @@
                     </div>
                 </form>
             </div>
-<!--            <p><img src="imgs/img_3.png"/></p>-->
+            <!--            <p><img src="imgs/img_3.png"/></p>-->
         </div>
     </div>
     <div class="clear"></div>
@@ -137,44 +137,44 @@
 <script src="/js/jquery.easing.min.js"></script>
 
 <script>
-$(function (){
-    $("#psw").click(function (){
-        var hidPsw = $("#hidPsw").val();
-        var psw1 = $("#psw1").val();
-        var psw2 = $("#psw2").val();
-        var psw3 = $("#psw3").val();
-        // alert(hidPsw+psw1+psw2+psw3);
-        if (!(hidPsw === psw1)){
-            $("#psw1_help").html("原密码输入错误");
-            return false;
-        }else {
-            $("#psw1_help").html("");
-            if (!(psw2 === psw3)){
-                $("#psw3-help").html("两次密码输入不一致");
+    $(function (){
+        $("#psw").click(function (){
+            var hidPsw = $("#hidPsw").val();
+            var psw1 = $("#psw1").val();
+            var psw2 = $("#psw2").val();
+            var psw3 = $("#psw3").val();
+            // alert(hidPsw+psw1+psw2+psw3);
+            if (!(hidPsw === psw1)){
+                $("#psw1_help").html("原密码输入错误");
                 return false;
             }else {
-                $("#psw3-help").html("");
-                if (psw1 === psw2){
-                    $("#psw2-help").html("原密码与新密码相同");
+                $("#psw1_help").html("");
+                if (!(psw2 === psw3)){
+                    $("#psw3-help").html("两次密码输入不一致");
                     return false;
                 }else {
-                    $("#psw2-help").html("");
-                    $.ajax({
-                        type: "post",
-                        url: "lma/editPsw",
-                        data: {psw:psw2},
-                        dataType: "json",
-                        success: function (){
-                            window.location.href = "signOut";
-                        }
-                    });
+                    $("#psw3-help").html("");
+                    if (psw1 === psw2){
+                        $("#psw2-help").html("原密码与新密码相同");
+                        return false;
+                    }else {
+                        $("#psw2-help").html("");
+                        $.ajax({
+                            type: "post",
+                            url: "lma/editPsw",
+                            data: {psw:psw2},
+                            dataType: "json",
+                            success: function (){
+                                window.location.href = "signOut";
+                            }
+                        });
+                    }
                 }
+
             }
+        });
 
-        }
-    });
-
-})
+    })
 </script>
 </body>
 </html>

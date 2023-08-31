@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jd.dao.LoansMapper">
+
+    <resultMap type="Loans" id="LoansResult">
+        <result property="loaId" column="loa_id"/>
+        <result property="loaNo" column="loa_no"/>
+        <result property="loaComNo" column="loa_com_no"/>
+        <result property="loaBankId" column="loa_bank_id"/>
+        <result property="loaLisId" column="loa_lis_id"/>
+        <result property="loaUse" column="loa_use"/>
+        <result property="loaIntegral" column="loa_integral"/>
+        <result property="loaRate" column="loa_rate"/>
+        <result property="loaState" column="loa_state"/>
+        <result property="loaTime" column="loa_time"/>
+        <result property="loaMoney" column="loa_money"/>
+        <result property="loaEndTime" column="loa_end_time"/>
+        <result property="loaDel" column="loa_del"/>
+    </resultMap>
+
+    <sql id="selectLoansVo">
+        select loa_id,
+               loa_no,
+               loa_com_no,
+               loa_bank_id,
+               loa_lis_id,
+               loa_use,
+               loa_integral,
+               loa_rate,
+               loa_state,
+               loa_time,
+               loa_money,
+               loa_end_time,
+               loa_del
+        from loans
+    </sql>
+
+    <select id="selectLoansById" parameterType="Long" resultMap="LoansResult">
+        <include refid="selectLoansVo"/>
+        where loa_id = #{eId}
+    </select>
+    <!--按贷款编号查找贷款ID-->
+    <select id="selectLoansByNo" parameterType="String" resultType="Long">
+        select loa_id
+        from loans
+        where loa_no = #{loaNo}
+    </select>
+
+    <!--查询贷款数-->
+    <select id="selectLoansCount" parameterType="String" resultType="int">
+        select count(loa_id)
+        from loans
+        where loa_com_no = #{cId}
+    </select>
+
+    <!--    查询所有贷款表-->
+    <select id="selectLoansNoAll" resultMap="LoansResult">
+        <include refid="selectLoansVo"/>
+        where loa_del = 0
+    </select>
+
+    <!--    查询所有待签约表-->
+    <select id="selectLoansSign" parameterType="String" resultType="Loans">
+        select l.loa_id       loaId,
+               l.loa_no       loaNo,
+               l.loa_bank_id  loaBankId,
+               l.loa_integral loaIntegral,
+               l.loa_rate     loaRate,
+               l.loa_state    loaState,
+               l.loa_time     loaTime,
+               l.loa_money    loaMoney,
+               l.loa_end_time loaEndTime,
+               b.bank_name    loaBank
+        FROM loans l,
+             bank b
+        WHERE l.loa_com_no = #{comId}
+          And b.bank_id = l.loa_bank_id
+          and loa_state = 5
+        ORDER BY loa_time DESC
+    </select>
+
+
+    <!--    按公司查询所有贷款表-->
+    <select id="selectLoansByComList" parameterType="String" resultType="Loans">
+        select l.loa_id       loaId,
+               l.loa_no       loaNo,
+               l.loa_integral loaIntegral,
+               l.loa_rate     loaRate,
+               l.loa_state    loaState,
+               l.loa_time     loaTime,
+               l.loa_money    loaMoney,
+               l.loa_end_time loaEndTime,
+               l.loa_lis_id   loaLisId,
+               b.bank_name    loaBank
+        FROM loans l,
+             bank b
+        WHERE l.loa_com_no = #{comId}
+          And b.bank_id = l.loa_bank_id
+          AND l.loa_del = 0
+        ORDER BY loa_time DESC
+
+
+    </select>
+
+    <!--    按公司查询贷款表审批进度-->
+    <select id="selectLoansPlanList" parameterType="int" resultType="Loans">
+        SELECT max.*, MAX(max.exaState)
+        FROM (
+                 SELECT l.loa_time   loaTime,
+                        l.loa_state  loaState,
+                        e.exa_name   exaName,
+                        e.exa_time   exaTime,
+                        e.exa_remark exaRemark,
+                        e.exa_state  exaState
+                 FROM loans l,
+                      examine e
+                 WHERE loa_id = #{comId}
+                   AND l.loa_id = e.exa_loa_id
+                 ORDER BY e.exa_id DESC
+             ) max
+        GROUP BY
+            max.exaName
+    </select>
+
+    <select id="selectLoansList" parameterType="Loans" resultMap="LoansResult">
+        <include refid="selectLoansVo"/>
+        <where>
+
+            <if test="loaComNo != null  and loaComNo != ''">and loa_com_no = #{loaComNo}</if>
+            <if test="loaNo != null  and loaNo != ''">and loa_no like concat('%', #{loaNo}, '%')</if>
+            <if test="loaBankId != null ">and loa_bank_id = #{loaBankId}</if>
+            <if test="loaLisId != null ">and loa_lis_id = #{loaLisId}</if>
+            <if test="loaUse != null  and loaUse != ''">and loa_use = #{loaUse}</if>
+            <if test="loaIntegral != null  and loaIntegral != ''">and loa_integral = #{loaIntegral}</if>
+            <if test="loaRate != null  and loaRate != ''">and loa_rate = #{loaRate}</if>
+            <if test="loaState != null  and loaState != ''">and loa_state = #{loaState}</if>
+            <if test="loaTime != null ">and loa_time = #{loaTime}</if>
+            <if test="loaMoney != null ">and loa_money = #{loaMoney}</if>
+        </where>
+    </select>
+
+
+    <select id="selectBankLoansList" parameterType="Loans" resultMap="LoansResult">
+        <include refid="selectLoansVo"/>
+        <where>
+            loa_state in (1,3,4)
+            <if test="loaComNo != null  and loaComNo != ''">and loa_com_no = #{loaComNo}</if>
+            <if test="loaNo != null  and loaNo != ''">and loa_no like concat('%', #{loaNo}, '%')</if>
+            <if test="loaBankId != null ">and loa_bank_id = #{loaBankId}</if>
+            <if test="loaLisId != null ">and loa_lis_id = #{loaLisId}</if>
+            <if test="loaUse != null  and loaUse != ''">and loa_use = #{loaUse}</if>
+            <if test="loaIntegral != null  and loaIntegral != ''">and loa_integral = #{loaIntegral}</if>
+            <if test="loaRate != null  and loaRate != ''">and loa_rate = #{loaRate}</if>
+            <if test="loaState != null  and loaState != ''">and loa_state = #{loaState}</if>
+            <if test="loaTime != null ">and loa_time = #{loaTime}</if>
+            <if test="loaMoney != null ">and loa_money = #{loaMoney}</if>
+        </where>
+    </select>
+
+    <select id="selectLoansByLoaId" parameterType="Long" resultMap="LoansResult">
+        <include refid="selectLoansVo"/>
+        where loa_id = #{loaId}
+    </select>
+
+    <insert id="insertLoans" parameterType="Loans" useGeneratedKeys="true" keyProperty="loaId">
+        insert into loans
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="loaComNo != null">loa_com_no,</if>
+            <if test="loaNo != null">loa_no,</if>
+            <if test="loaBankId != null">loa_bank_id,</if>
+            <if test="loaLisId != null">loa_lis_id,</if>
+            <if test="loaUse != null">loa_use,</if>
+            <if test="loaIntegral != null">loa_integral,</if>
+            <if test="loaRate != null">loa_rate,</if>
+            <if test="loaState != null">loa_state,</if>
+            <if test="loaTime != null">loa_time,</if>
+            <if test="loaMoney != null">loa_money,</if>
+            <if test="loaEndTime != null">loa_end_time,</if>
+            <if test="loaDel != null">loa_del,</if>
+            <if test="bAccountNo != null">b_account_no,</if>
+            <if test="bName != null">b_name,</if>
+            <if test="bBankName != null">b_bank_name,</if>
+            <if test="bIdCard != null">b_idcard,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="loaComNo != null">#{loaComNo},</if>
+            <if test="loaNo != null">#{loaNo},</if>
+            <if test="loaBankId != null">#{loaBankId},</if>
+            <if test="loaLisId != null">#{loaLisId},</if>
+            <if test="loaUse != null">#{loaUse},</if>
+            <if test="loaIntegral != null">#{loaIntegral},</if>
+            <if test="loaRate != null">#{loaRate},</if>
+            <if test="loaState != null">#{loaState},</if>
+            <if test="loaTime != null">#{loaTime},</if>
+            <if test="loaMoney != null">#{loaMoney},</if>
+            <if test="loaEndTime != null">#{loaEndTime},</if>
+            <if test="loaDel != null">#{loaDel},</if>
+            <if test="bAccountNo != null">#{bAccountNo},</if>
+            <if test="bName != null">#{bName},</if>
+            <if test="bBankName != null">#{bBankName},</if>
+            <if test="bIdCard != null">#{bIdCard},</if>
+        </trim>
+    </insert>
+
+    <!--    平台管理员审批修改状态-->
+    <update id="updateLoansById" parameterType="Long">
+        update loans
+        set loa_state = 1
+        where loa_id = #{exaLoaId}
+    </update>
+
+    <!--    平台管理员审批修改状态-->
+    <update id="updateLoansNoById" parameterType="Long">
+        update loans
+        set loa_state = 2
+        where loa_id = #{exaLoaId}
+    </update>
+
+    <!--    银行管理员审批修改状态-->
+    <update id="updateBankLoansById" parameterType="Long">
+        update loans
+        set loa_state = 3
+        where loa_id = #{exaLoaId}
+    </update>
+
+    <!--    银行管理员审批修改状态-->
+    <update id="updateBankLoansNoById" parameterType="Long">
+        update loans
+        set loa_state = 4
+        where loa_id = #{exaLoaId}
+    </update>
+
+    <update id="updateLoans" parameterType="Loans">
+        update loans
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="loaComNo != null">loa_com_no = #{loaComNo},</if>
+            <if test="loaNo != null">loa_no = #{loaNo},</if>
+            <if test="loaBankId != null">loa_bank_id = #{loaBankId},</if>
+            <if test="loaLisId != null">loa_lis_id = #{loaLisId},</if>
+            <if test="loaUse != null">loa_use = #{loaUse},</if>
+            <if test="loaIntegral != null">loa_integral = #{loaIntegral},</if>
+            <if test="loaRate != null">loa_rate = #{loaRate},</if>
+            <if test="loaState != null">loa_state = #{loaState},</if>
+            <if test="loaTime != null">loa_time = #{loaTime},</if>
+            <if test="loaMoney != null">loa_money = #{loaMoney},</if>
+            <if test="loaDel != null">loa_del = #{loaDel},</if>
+        </trim>
+        where loa_id = #{loaId}
+    </update>
+
+    <delete id="deleteLoansByLoaId" parameterType="Long">
+        delete
+        from loans
+        where loa_id = #{loaId}
+    </delete>
+
+    <delete id="deleteLoansByLoaIds" parameterType="String">
+        delete from loans where loa_id in
+        <foreach item="loaId" collection="array" open="(" separator="," close=")">
+            #{loaId}
+        </foreach>
+    </delete>
+</mapper>

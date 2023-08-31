@@ -271,6 +271,11 @@ export const constantRoutes = [
       }
     ]
   },
+  {
+
+    path: '/bank/bank',
+    component: (resolve) => require(['@/views/system/bank/index'], resolve),
+    hidden: true},
 
 ]
 

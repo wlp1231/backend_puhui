@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98c2a173-33a7-4183-bd84-65f4472affd3" name="Changes" comment="4.1">
-      <change beforePath="$PROJECT_DIR$/qst-framework/src/main/java/com/qst/framework/config/RedisConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/qst-framework/src/main/java/com/qst/framework/config/RedisConfig.java" afterDir="false" />
+    <list default="true" id="98c2a173-33a7-4183-bd84-65f4472affd3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qst-ui/src/api/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/qst-ui/src/api/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qst-ui/src/router/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/qst-ui/src/router/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +37,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -51,7 +52,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="$PROJECT_DIR$/../../../../bak_myjava/maven/apache-maven-3.6.1" />
+        <option name="mavenHome" value="D:/bak_myjava/maven/apache-maven-3.6.1" />
         <option name="userSettingsFile" value="D:\bak_myjava\maven\apache-maven-3.6.1\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
@@ -64,20 +65,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="DatabaseDriversLRU" value="mysql" />
-    <property name="RequestMappingsPanelOrder0" value="0" />
-    <property name="RequestMappingsPanelOrder1" value="1" />
-    <property name="RequestMappingsPanelWidth0" value="75" />
-    <property name="RequestMappingsPanelWidth1" value="75" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/shixi/NPU-PuHui/backend_puhui-master/qst-system/src/main/resources/mapper/system",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "spring.configuration.checksum": "6b51a41b60756a0dc719902658571d4c",
+    "ts.external.directory.path": "E:\\IDEA\\IntelliJ IDEA 2023.2\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -93,13 +99,13 @@
   <component name="RunManager">
     <configuration name="QstApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
       <module name="qst-admin" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qst.QstApplication" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.qst.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.qst.QstApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -193,10 +199,7 @@
       <workItem from="1667350692396" duration="5091000" />
       <workItem from="1691993843559" duration="1966000" />
       <workItem from="1692949378342" duration="981000" />
-      <workItem from="1693272658798" duration="1295000" />
-      <workItem from="1693358221570" duration="4572000" />
-      <workItem from="1693382903734" duration="374000" />
-      <workItem from="1693448606372" duration="1435000" />
+      <workItem from="1693358141260" duration="3661000" />
     </task>
     <task id="LOCAL-00001" summary="0124 commit">
       <created>1643100209517</created>
@@ -453,19 +456,31 @@
       <option name="project" value="LOCAL" />
       <updated>1693207452953</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="4.2">
+      <option name="closed" value="true" />
+      <created>1693207628273</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1693207628273</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="0d326b23-5559-4e26-ab4d-d5f060f55d92" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="0d326b23-5559-4e26-ab4d-d5f060f55d92">
           <value>
             <State>
-              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
@@ -484,6 +499,7 @@
                   </entry>
                 </map>
               </option>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
             </State>
           </value>
         </entry>
@@ -494,12 +510,6 @@
         </entry>
       </map>
     </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="0d326b23-5559-4e26-ab4d-d5f060f55d92" value="TOOL_WINDOW" />
-      </map>
-    </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -508,7 +518,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
-    <MESSAGE value="完成用户积分管理" />
     <MESSAGE value="完成等级设置" />
     <MESSAGE value="完成用户等级设置" />
     <MESSAGE value="完成等级奖励" />
@@ -533,7 +542,8 @@
     <MESSAGE value="沙箱环境修改登录退出后跳转地址index.html" />
     <MESSAGE value="3.6" />
     <MESSAGE value="4.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.1" />
+    <MESSAGE value="4.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.2" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
