@@ -10,8 +10,8 @@ import java.util.List;
 
 /**
  * 逾期Service业务层处理
- *
- * @author Yushun Xiang
+ * 
+ * @author qst
  * @date 2021-09-28
  */
 @Service
@@ -22,7 +22,7 @@ public class OverdueServiceImpl implements IOverdueService
 
     /**
      * 查询逾期
-     *
+     * 
      * @param oveId 逾期主键
      * @return 逾期
      */
@@ -34,7 +34,7 @@ public class OverdueServiceImpl implements IOverdueService
 
     /**
      * 查询逾期列表
-     *
+     * 
      * @param overdue 逾期
      * @return 逾期
      */
@@ -46,7 +46,7 @@ public class OverdueServiceImpl implements IOverdueService
 
     /**
      * 新增逾期
-     *
+     * 
      * @param overdue 逾期
      * @return 结果
      */
@@ -58,7 +58,7 @@ public class OverdueServiceImpl implements IOverdueService
 
     /**
      * 修改逾期
-     *
+     * 
      * @param overdue 逾期
      * @return 结果
      */
@@ -70,7 +70,7 @@ public class OverdueServiceImpl implements IOverdueService
 
     /**
      * 批量删除逾期
-     *
+     * 
      * @param oveIds 需要删除的逾期主键
      * @return 结果
      */
@@ -82,7 +82,7 @@ public class OverdueServiceImpl implements IOverdueService
 
     /**
      * 删除逾期信息
-     *
+     * 
      * @param oveId 逾期主键
      * @return 结果
      */

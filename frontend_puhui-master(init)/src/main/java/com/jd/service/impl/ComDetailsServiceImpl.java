@@ -1,166 +1,102 @@
-package com.jd.service;
+package com.jd.service.impl;
+
 import com.jd.bean.ComDetails;
+import com.jd.dao.ComDetailsMapper;
+import com.jd.service.IComDetailsService;
+import com.jd.utils.IDUtils;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 
 /**
- * 企业详情Service接口
- *
- * @author wen
- * @date 2021-09-11
- */
-public interface IComDetailsService
-{
-    /**
-     * 查询企业详情
-     *
-     * @param cId 企业详情主键
-     * @return 企业详情
-     */
-    public ComDetails selectComDetailsByCId(Long cId);
-
-    /**
-     * 查询企业详情列表
-     *
-     * @param comDetails 企业详情
-     * @return 企业详情集合
-     */
-    public List<ComDetails> selectComDetailsList(ComDetails comDetails);
-
-    /**
-     * 新增企业详情
-     *
-     * @param comDetails 企业详情
-     * @return 结果
-     */
-    public int insertComDetails(ComDetails comDetails);
-
-    /**
-     * 修改企业详情
-     *
-     * @param comDetails 企业详情
-     * @return 结果
-     */
-    public int updateComDetails(ComDetails comDetails);
-
-    /**
-     * 批量删除企业详情
-     *
-     * @param cIds 需要删除的企业详情主键集合
-     * @return 结果
-     */
-    public int deleteComDetailsByCIds(Long[] cIds);
-
-    /**
-     * 删除企业详情信息
-     *
-     * @param cId 企业详情主键
-     * @return 结果
-     */
-    public int deleteComDetailsByCId(Long cId);
-
-    /**
-     * 实名认证
-     * @param files
-     * @return
-     */
-    public boolean attCompanies(ComDetails comDetails, List<MultipartFile> files);
-}
-5.ComDetailsServiceImpl.java
-        功能描述：负责实现ICompanyService.java接口
-
-        package com.jd.service.impl;
-
-        import com.jd.bean.ComDetails;
-        import com.jd.dao.ComDetailsMapper;
-        import com.jd.service.IComDetailsService;
-        import org.springframework.stereotype.Service;
-        import org.springframework.web.multipart.MultipartFile;
-
-        import javax.annotation.Resource;
-        import java.io.File;
-        import java.io.IOException;
-        import java.io.InputStream;
-        import java.nio.file.Files;
-        import java.nio.file.Paths;
-        import java.nio.file.StandardCopyOption;
-        import java.util.List;
-
-/**
  * 企业详情Service业务层处理
- *
+ * 
  * @author wen
  * @date 2021-09-11
  */
 @Service
-public class ComDetailsServiceImpl implements IComDetailsService {
+public class ComDetailsServiceImpl implements IComDetailsService
+{
     @Resource
     private ComDetailsMapper comDetailsMapper;
 
     /**
      * 查询企业详情
-     *
+     * 
      * @param cId 企业详情主键
      * @return 企业详情
      */
     @Override
-    public ComDetails selectComDetailsByCId(Long cId) {
+    public ComDetails selectComDetailsByCId(Long cId)
+    {
         return comDetailsMapper.selectComDetailsByCId(cId);
     }
 
     /**
      * 查询企业详情列表
-     *
+     * 
      * @param comDetails 企业详情
      * @return 企业详情
      */
     @Override
-    public List<ComDetails> selectComDetailsList(ComDetails comDetails) {
+    public List<ComDetails> selectComDetailsList(ComDetails comDetails)
+    {
         return comDetailsMapper.selectComDetailsList(comDetails);
     }
 
     /**
      * 新增企业详情
-     *
+     * 
      * @param comDetails 企业详情
      * @return 结果
      */
     @Override
-    public int insertComDetails(ComDetails comDetails) {
+    public int insertComDetails(ComDetails comDetails)
+    {
         return comDetailsMapper.insertComDetails(comDetails);
     }
 
     /**
      * 修改企业详情
-     *
+     * 
      * @param comDetails 企业详情
      * @return 结果
      */
     @Override
-    public int updateComDetails(ComDetails comDetails) {
+    public int updateComDetails(ComDetails comDetails)
+    {
         return comDetailsMapper.updateComDetails(comDetails);
     }
 
     /**
      * 批量删除企业详情
-     *
+     * 
      * @param cIds 需要删除的企业详情主键
      * @return 结果
      */
     @Override
-    public int deleteComDetailsByCIds(Long[] cIds) {
+    public int deleteComDetailsByCIds(Long[] cIds)
+    {
         return comDetailsMapper.deleteComDetailsByCIds(cIds);
     }
 
     /**
      * 删除企业详情信息
-     *
+     * 
      * @param cId 企业详情主键
      * @return 结果
      */
     @Override
-    public int deleteComDetailsByCId(Long cId) {
+    public int deleteComDetailsByCId(Long cId)
+    {
         return comDetailsMapper.deleteComDetailsByCId(cId);
     }
 
@@ -173,7 +109,7 @@ public class ComDetailsServiceImpl implements IComDetailsService {
      */
     @Override
     public boolean attCompanies(ComDetails comDetails, List<MultipartFile> files) {
-        for (int i = 0; i < files.size(); i++) {
+        for (int i = 0 ; i < files.size(); i++){
             //获取图片名
 //            String fileName = file.getOriginalFilename();
 
@@ -182,18 +118,18 @@ public class ComDetailsServiceImpl implements IComDetailsService {
             String imageName = IDUtils.getUUID() + fileName.substring(fileName.lastIndexOf("."));
 //            String imageName = System.currentTimeMillis() + fileName.substring(fileName.lastIndexOf("."));
 
-            comDetails.setcLicense("/profile/upload/att/" + imageName);
+            comDetails.setcLicense("/profile/upload/att/"+imageName);
 
             try (InputStream stream = files.get(i).getInputStream()) {
                 File f = new File("D:/qst/uploadPath/upload/att/");
-                if (!f.exists()) {
-                    f.mkdirs();
-                    //根据路径生成文件
-                    Files.copy(stream, Paths.get("D:/qst/uploadPath/upload/att/" + imageName), StandardCopyOption.REPLACE_EXISTING);
-                } else {
-                    //根据路径生成文件
-                    Files.copy(stream, Paths.get("D:/qst/uploadPath/upload/att/" + imageName), StandardCopyOption.REPLACE_EXISTING);
-                }
+                    if (!f.exists()){
+                        f.mkdirs();
+                        //根据路径生成文件
+                        Files.copy(stream, Paths.get("D:/qst/uploadPath/upload/att/"+imageName), StandardCopyOption.REPLACE_EXISTING);
+                    }else {
+                        //根据路径生成文件
+                        Files.copy(stream, Paths.get("D:/qst/uploadPath/upload/att/"+imageName), StandardCopyOption.REPLACE_EXISTING);
+                    }
 
             } catch (IOException e) {
                 e.printStackTrace();

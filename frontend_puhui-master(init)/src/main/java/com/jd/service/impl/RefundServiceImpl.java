@@ -10,8 +10,8 @@ import java.util.List;
 
 /**
  * 还款Service业务层处理
- *
- * @author Yushun Xiang
+ * 
+ * @author qst
  * @date 2021-09-27
  */
 @Service
@@ -22,7 +22,7 @@ public class RefundServiceImpl implements IRefundService
 
     /**
      * 查询还款
-     *
+     * 
      * @param refId 还款主键
      * @return 还款
      */
@@ -34,7 +34,7 @@ public class RefundServiceImpl implements IRefundService
 
     /**
      * 查询还款列表
-     *
+     * 
      * @param refund 还款
      * @return 还款
      */
@@ -46,7 +46,7 @@ public class RefundServiceImpl implements IRefundService
 
     /**
      * 新增还款
-     *
+     * 
      * @param refund 还款
      * @return 结果
      */
@@ -58,7 +58,7 @@ public class RefundServiceImpl implements IRefundService
 
     /**
      * 修改还款
-     *
+     * 
      * @param refund 还款
      * @return 结果
      */
@@ -70,7 +70,7 @@ public class RefundServiceImpl implements IRefundService
 
     /**
      * 批量删除还款
-     *
+     * 
      * @param refIds 需要删除的还款主键
      * @return 结果
      */
@@ -82,7 +82,7 @@ public class RefundServiceImpl implements IRefundService
 
     /**
      * 删除还款信息
-     *
+     * 
      * @param refId 还款主键
      * @return 结果
      */
